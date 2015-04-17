@@ -7,14 +7,18 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 
     Dictionary<int,Item> items = new Dictionary<int,Item>();
 
-    public void AddWall(QuadInfo info, Item item)
+    public Wall wallPrefab;
+
+    public void AddItem(QuadInfo info, Item item)
     {
         item.SetQuad(info);
         items.Add(item.SpotID, item);
+
         int[] bros = item.SpotBrothersID;
         for (int i = 0; i < bros.Length; ++i)
         {
             items.Add(bros[i], item);
+
         }
     }
 

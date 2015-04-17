@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Manager item drag Maneja la logica desde el arrastrado hasta el drop
+/// de los items
+/// </summary>
 public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
 {
 
@@ -9,6 +13,8 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
 
     public void OnDrag(Item item)
     {
+        ManagerInputItem.Instance.isClickOnGUI = true;
+
         itemSpawned = item.Spawn();
         if (ManagerMouseControl.Instance.CurrentMousePos().HasValue)
         {
@@ -25,7 +31,7 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
             {
                 itemSpawned.OnDrop();
 
-                ManagerItemGrid.Instance.AddWall(ManagerMouseControl.Instance.CurrentMousePos().Value, itemSpawned);
+                ManagerItemGrid.Instance.AddItem(ManagerMouseControl.Instance.CurrentMousePos().Value, itemSpawned);
 
             }
             else
@@ -41,7 +47,16 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
         }
 
         itemSpawned = null;
+        StopCoroutine("ResetClick");
+        StartCoroutine("ResetClick", false);
 
+    }
+
+    IEnumerator ResetClick(bool value)
+    {
+
+        yield return new WaitForSeconds(0.2f);
+        ManagerInputItem.Instance.isClickOnGUI = value;
     }
 
     void Update()

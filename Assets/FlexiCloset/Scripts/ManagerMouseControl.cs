@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Inidica la posicion del mouse en el grid
+/// </summary>
 public class ManagerMouseControl : PersistentSingleton<ManagerMouseControl>
 {
 
@@ -22,15 +25,9 @@ public class ManagerMouseControl : PersistentSingleton<ManagerMouseControl>
         else
             return null;
     }
-
-    // Use this for initialization
-    void Start()
-    {
-	
-    }
 	
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
 	
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);

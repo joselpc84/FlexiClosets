@@ -24,6 +24,17 @@ public class Item : MonoBehaviour
 
     protected List<int> brothers = new List<int>();
 
+    protected bool isDropped = false;
+
+    public int SpotID
+    {
+
+        get
+        {
+
+            return PositionStart.index;
+        }
+    }
 
     void OnEnable()
     {
@@ -31,12 +42,18 @@ public class Item : MonoBehaviour
         PositionStart.index = -1;
         PositionStart.center = Vector3.zero;
         DirectionForward = DirectionFace.NegZ;
+
+        isDropped = false;
     }
 
     public void Rotate(DirectionFace toDirection)
     {
-        //   brothers.Clear();
+        brothers.Clear();
     }
+
+
+
+    #region BrothersLogic:
 
     void SetBrother(DirectionFace face, int size)
     {
@@ -79,7 +96,6 @@ public class Item : MonoBehaviour
         brothers.Clear();
         return posibleList;
     }
-
 
     public void SetQuad(QuadInfo quad)
     {
@@ -124,16 +140,6 @@ public class Item : MonoBehaviour
 
     }
 
-    public int SpotID
-    {
-    
-        get
-        {
-        
-            return PositionStart.index;
-        }
-    }
-
     public int[] SpotBrothersID
     {
 
@@ -144,10 +150,13 @@ public class Item : MonoBehaviour
         }
     }
 
+    #endregion
+
     #region BuildStage:
 
     public void OnDrag()
     {
+        
         for (int i = 0; i < mesh.Length; ++i)
             LeanTween.alpha(mesh[i].gameObject, 0.2f, 1.0f).setLoopPingPong(); 
 
@@ -180,6 +189,17 @@ public class Item : MonoBehaviour
         {
             planes[i].gameObject.SetActive(false);
         }
+
+        //New Stuff
+        StartCoroutine(SetIsDropped());
+    }
+
+    IEnumerator SetIsDropped()
+    {
+    
+        yield return new WaitForSeconds(0.3f);
+        isDropped = true;
+
     }
 
     public void ChangueColorPlane(Color color)
@@ -204,4 +224,39 @@ public class Item : MonoBehaviour
 
     #endregion
 
+    #region ModifiedStage:
+
+    bool isSelected = false;
+
+    public bool OnClicked()
+    {
+    
+        if (!isDropped && isSelected)
+            return false;
+
+        isSelected = true;
+        LogicOnClicked();
+        return true;
+
+    }
+
+    protected virtual void LogicOnClicked()
+    {
+    }
+
+    public void OnCancel()
+    {
+        if (!isDropped && !isSelected)
+            return;
+
+        isSelected = false;
+
+        LogicOnCancel();
+    }
+
+    protected virtual void LogicOnCancel()
+    {
+    }
+
+    #endregion
 }
