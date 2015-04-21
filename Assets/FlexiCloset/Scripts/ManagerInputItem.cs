@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Maneja si lso items se pueden seleccionar o no.
+/// </summary>
 public class ManagerInputItem : PersistentSingleton<ManagerInputItem>
 {
 

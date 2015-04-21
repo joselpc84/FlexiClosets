@@ -15,13 +15,6 @@ public class BotonGuiWall : MonoBehaviour
 
     #endregion
 
-    bool isCliked = false;
-
-    void OnEnable()
-    {
-        isCliked = false;
-    }
-
     public void CheckIfEnable()
     {
         Vector3 direction = gameObject.transform.position - wall.transform.position;
@@ -49,7 +42,6 @@ public class BotonGuiWall : MonoBehaviour
                 if (hitInfo.collider == _collider)
                 {
                     ManagerInputItem.Instance.isClickOnGUI = true;
-                    isCliked = true;
                     OnClick();
                 }
             }
@@ -71,7 +63,6 @@ public class BotonGuiWall : MonoBehaviour
     
         yield return new WaitForSeconds(0.1f);
         ManagerInputItem.Instance.isClickOnGUI = value;
-        isCliked = value;
         gameObject.SetActive(false);
 
     }

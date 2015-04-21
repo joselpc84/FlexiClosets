@@ -36,7 +36,12 @@ public class Item : MonoBehaviour
         }
     }
 
-    void OnEnable()
+    protected virtual void OnEnable()
+    {
+
+    }
+
+    protected virtual void OnDisable()
     {
         brothers.Clear();
         PositionStart.index = -1;
@@ -97,7 +102,7 @@ public class Item : MonoBehaviour
         return posibleList;
     }
 
-    public void SetQuad(QuadInfo quad)
+    public virtual void SetQuad(QuadInfo quad)
     {
         brothers.Clear();
         PositionStart.center = quad.center;
@@ -136,8 +141,6 @@ public class Item : MonoBehaviour
                 SetBrother(DirectionFace.NegZ, SizeBack);
                 break;
         }
-
-
     }
 
     public int[] SpotBrothersID
@@ -166,7 +169,7 @@ public class Item : MonoBehaviour
         }
     }
 
-    public void OnDrop()
+    public virtual void OnDrop()
     {
         for (int i = 0; i < mesh.Length; ++i)
             LeanTween.cancel(mesh[i].gameObject);
