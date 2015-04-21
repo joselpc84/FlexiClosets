@@ -67,6 +67,7 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
         {
             if (spot.Key == quad.index)
             {
+                
                 isEmpty = false;
             }
             else

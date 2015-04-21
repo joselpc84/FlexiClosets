@@ -79,8 +79,8 @@ public class BotonGuiWall : MonoBehaviour
         {
             Item itemSpawned = ManagerItemGrid.Instance.wallPrefab.Spawn();
             itemSpawned.OnDrag();
-            itemSpawned.OnDrop();
             ManagerItemGrid.Instance.AddItem(quad, itemSpawned);
+            itemSpawned.OnDrop();
 
             StopCoroutine("ResetClick");
             StartCoroutine("ResetClick", false);

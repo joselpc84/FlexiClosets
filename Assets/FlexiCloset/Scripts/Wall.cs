@@ -38,7 +38,6 @@ public class Wall : Item
     public override void OnDrop()
     {
         base.OnDrop();
-
         AddWallVecinos();
     }
 
