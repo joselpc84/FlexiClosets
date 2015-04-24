@@ -120,14 +120,6 @@ Material:
         second: 0
       data:
         first:
-          name: _NumX
-        second: 20
-      data:
-        first:
-          name: _NumZ
-        second: 20
-      data:
-        first:
           name: _Parallax
         second: .0199999996
       data:
@@ -168,6 +160,14 @@ Material:
         second: 0
       data:
         first:
+          name: _NumX
+        second: 50
+      data:
+        first:
+          name: _NumZ
+        second: 50
+      data:
+        first:
           name: _EmissionLM
         second: 0
       data:
@@ -205,9 +205,9 @@ Material:
         second: {r: .200000003, g: .200000003, b: .200000003, a: 1}
       data:
         first:
-          name: _Color2
-        second: {r: 0, g: 0, b: 0, a: 1}
-      data:
-        first:
           name: _EmissionColorUI
         second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _Color2
+        second: {r: 0, g: 0, b: 0, a: 1}

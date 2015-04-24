@@ -9,7 +9,7 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
 {
 
     protected Item itemSpawned = null;
-
+    public float OffSetY = 0.01f;
 
     public void OnDrag(Item item)
     {
@@ -75,7 +75,7 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
                 }
                 else
                 {
-                    itemSpawned.transform.position = itemSpawned.transform.position + Vector3.up * 1f;
+                    itemSpawned.transform.position = itemSpawned.transform.position + Vector3.up * OffSetY;
                     itemSpawned.ChangueColorPlane(Color.red);
 
 

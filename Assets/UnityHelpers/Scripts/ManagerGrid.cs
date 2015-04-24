@@ -77,7 +77,7 @@ public class ManagerGrid : Singleton<ManagerGrid>
         }
     }
 
-    public int Size
+    public float Size
     {
 
         get

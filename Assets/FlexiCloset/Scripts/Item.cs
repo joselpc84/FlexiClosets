@@ -18,7 +18,7 @@ public class Item : MonoBehaviour
     public int SizeRight = 1;
     public MeshRenderer[] mesh;
     public MeshRenderer[] planes;
-    protected  DirectionFace DirectionForward = DirectionFace.NegZ;
+    public  DirectionFace DirectionForward = DirectionFace.NegZ;
 
     protected QuadInfo PositionStart;
 
@@ -60,9 +60,9 @@ public class Item : MonoBehaviour
 
     #region BrothersLogic:
 
-    void SetBrother(DirectionFace face, int size)
+    int[] SetBrother(int pastIndex, DirectionFace face, int size)
     {
-        int pastIndex = PositionStart.index;
+        int[] brotherAux = new int[size - 1];
         for (int i = 0; i < size - 1; ++i)
         {
             int newBro = -1;
@@ -85,62 +85,84 @@ public class Item : MonoBehaviour
             if (newBro != -1)
             {
                 brothers.Add(newBro);
+                brotherAux[i] = newBro;
                 pastIndex = newBro;
             }
         }
+        return brotherAux;
     }
 
     public List<int> getPosibleBrothers(int index)
     {
-        brothers.Clear();
-        //Derecha: NegX
-        SetBrother(DirectionFace.NegX, SizeRight);
-        //Atras: PosZ
-        SetBrother(DirectionFace.PosZ, SizeBack);
+
+        SetBrothersList(index);
+
         List<int> posibleList = new List<int>(brothers);
         brothers.Clear();
         return posibleList;
     }
 
-    public virtual void SetQuad(QuadInfo quad)
+    protected void SetBrothersList(int index)
     {
         brothers.Clear();
+        //PosZ = Up
+        //NegZ = Down
+        //PosX = Rigth
+        //NegX = Left
+        int[] listRightBro;
+        switch (DirectionForward)
+        {
+            case DirectionFace.NegX:
+                //Derecha: PosZ
+                listRightBro = SetBrother(index, DirectionFace.PosZ, SizeRight);
+                //Atras: PosX
+                SetBrother(index, DirectionFace.PosX, SizeBack);
+                for (int i = 0; i < listRightBro.Length; ++i)
+                    SetBrother(listRightBro[i], DirectionFace.PosX, SizeBack);
+                break;
+            case DirectionFace.NegZ:
+                //Derecha: NegX
+                listRightBro = SetBrother(index, DirectionFace.NegX, SizeRight);
+                //Atras: PosZ
+                SetBrother(index, DirectionFace.PosZ, SizeBack);
+                for (int i = 0; i < listRightBro.Length; ++i)
+                    SetBrother(listRightBro[i], DirectionFace.PosZ, SizeBack);
+                break;
+            case DirectionFace.PosX:
+                //Derecha: NegZ
+                listRightBro = SetBrother(index, DirectionFace.NegZ, SizeRight);
+                //Atras: NegX
+                SetBrother(index, DirectionFace.NegX, SizeBack);
+                for (int i = 0; i < listRightBro.Length; ++i)
+                    SetBrother(listRightBro[i], DirectionFace.NegX, SizeBack);
+                break;
+            case DirectionFace.PosZ:
+                //Derecha: PosX
+                listRightBro = SetBrother(index, DirectionFace.PosX, SizeRight);
+                //Atras: NegZ
+                SetBrother(index, DirectionFace.NegZ, SizeBack);
+                for (int i = 0; i < listRightBro.Length; ++i)
+                    SetBrother(listRightBro[i], DirectionFace.NegZ, SizeBack);
+                break;
+        }
+    }
+
+    public virtual void SetQuad(QuadInfo quad)
+    {
         PositionStart.center = quad.center;
         PositionStart.index = quad.index;
 
         transform.position = PositionStart.center;
 
-        //PosZ = Up
-        //NegZ = Down
-        //PosX = Rigth
-        //NegX = Left
-        switch (DirectionForward)
-        {
-            case DirectionFace.NegX:
-                //Derecha: PosZ
-                SetBrother(DirectionFace.PosZ, SizeRight);
-                //Atras: PosX
-                SetBrother(DirectionFace.PosX, SizeBack);
-                break;
-            case DirectionFace.NegZ:
-                //Derecha: NegX
-                SetBrother(DirectionFace.NegX, SizeRight);
-                //Atras: PosZ
-                SetBrother(DirectionFace.PosZ, SizeBack);
-                break;
-            case DirectionFace.PosX:
-                //Derecha: NegZ
-                SetBrother(DirectionFace.NegZ, SizeRight);
-                //Atras: NegX
-                SetBrother(DirectionFace.NegX, SizeBack);
-                break;
-            case DirectionFace.PosZ:
-                //Derecha: PosX
-                SetBrother(DirectionFace.PosX, SizeRight);
-                //Atras: NegZ
-                SetBrother(DirectionFace.NegZ, SizeBack);
-                break;
-        }
+        SetBrothersList(PositionStart.index);
+    }
+
+    public virtual void SetPos(QuadInfo quad)
+    {
+        PositionStart.center = quad.center;
+        PositionStart.index = quad.index;
+        transform.position = PositionStart.center;
+
     }
 
     public int[] SpotBrothersID
