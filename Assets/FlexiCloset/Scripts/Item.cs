@@ -5,10 +5,10 @@ using System.Collections.Generic;
 public enum DirectionFace
 {
 
-    PosX,
-    NegX,
-    PosZ,
-    NegZ
+    NegZ = 0,
+    NegX = 1,
+    PosZ = 2,
+    PosX = 3
 }
 
 public class Item : MonoBehaviour
@@ -18,7 +18,7 @@ public class Item : MonoBehaviour
     public int SizeRight = 1;
     public MeshRenderer[] mesh;
     public MeshRenderer[] planes;
-    public  DirectionFace DirectionForward = DirectionFace.NegZ;
+    protected DirectionFace DirectionForward = DirectionFace.NegZ;
 
     protected QuadInfo PositionStart;
 
@@ -51,9 +51,30 @@ public class Item : MonoBehaviour
         isDropped = false;
     }
 
-    public void Rotate(DirectionFace toDirection)
+    public void Rotate(int dir)
     {
-        brothers.Clear();
+        DirectionFace storeDirectionForward = DirectionForward;
+        Quaternion storeRotation = transform.rotation;
+
+        ManagerItemGrid.Instance.RemoveItem(this);
+
+        DirectionForward = DirectionForward - dir;
+        if ((int)DirectionForward >= 4)
+            DirectionForward = DirectionFace.NegZ;
+        else if ((int)DirectionForward < 0)
+            DirectionForward = DirectionFace.PosX;
+
+        transform.Rotate(Vector3.up, 90 * dir);
+
+        if (!ManagerItemGrid.Instance.isEmptySpot(PositionStart, this))
+        {
+            DirectionForward = storeDirectionForward;
+            transform.rotation = storeRotation;
+        }
+
+        ManagerItemGrid.Instance.AddItem(PositionStart, this);
+
+
     }
 
 
@@ -267,6 +288,8 @@ public class Item : MonoBehaviour
 
     protected virtual void LogicOnClicked()
     {
+        GUI_ItemController.Instance.ActivateGUI(this);
+
     }
 
     public void OnCancel()
@@ -281,6 +304,8 @@ public class Item : MonoBehaviour
 
     protected virtual void LogicOnCancel()
     {
+        GUI_ItemController.Instance.DeActivateGUI();
+
     }
 
     #endregion

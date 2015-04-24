@@ -39,14 +39,14 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 
     public void RemoveItem(Item item)
     {
+
         items.Remove(item.SpotID);
+
         int[] bros = item.SpotBrothersID;
         for (int i = 0; i < bros.Length; ++i)
         {
             items.Remove(bros[i]);
-
         }
-
         if (item is Wall)
         {
             itemsWall.Remove(item.SpotID);
