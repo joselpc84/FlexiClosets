@@ -69,13 +69,13 @@ public class Item : MonoBehaviour
             switch (face)
             {
                 case DirectionFace.PosZ:
-                    newBro = ManagerGrid.Instance.getIndexUp(pastIndex);
+                    newBro = ManagerGrid.Instance.getIndexDown(pastIndex);
                     break;
                 case DirectionFace.PosX:
                     newBro = ManagerGrid.Instance.getIndexRight(pastIndex);
                     break;
                 case DirectionFace.NegZ:
-                    newBro = ManagerGrid.Instance.getIndexDown(pastIndex);
+                    newBro = ManagerGrid.Instance.getIndexUp(pastIndex);
                     break;
                 case DirectionFace.NegX:
                     newBro = ManagerGrid.Instance.getIndexLeft(pastIndex);

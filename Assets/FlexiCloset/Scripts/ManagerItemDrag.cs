@@ -18,7 +18,7 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
         itemSpawned = item.Spawn();
         if (ManagerMouseControl.Instance.CurrentMousePos().HasValue)
         {
-            itemSpawned.SetQuad(ManagerMouseControl.Instance.CurrentMousePos().Value);
+            itemSpawned.SetPos(ManagerMouseControl.Instance.CurrentMousePos().Value);
         }
         itemSpawned.OnDrag();
     }
@@ -67,7 +67,7 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
             if (ManagerMouseControl.Instance.CurrentMousePos().HasValue)
             {
                
-                itemSpawned.SetQuad(ManagerMouseControl.Instance.CurrentMousePos().Value);
+                itemSpawned.SetPos(ManagerMouseControl.Instance.CurrentMousePos().Value);
                 if (ManagerItemGrid.Instance.isEmptySpot(ManagerMouseControl.Instance.CurrentMousePos().Value, itemSpawned))
                 {
                     itemSpawned.ChangueColorPlane(Color.green);
