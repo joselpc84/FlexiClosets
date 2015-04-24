@@ -20,6 +20,10 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
         {
             itemSpawned.SetPos(ManagerMouseControl.Instance.CurrentMousePos().Value);
         }
+        else
+        {
+            itemSpawned.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
         itemSpawned.OnDrag();
     }
 
