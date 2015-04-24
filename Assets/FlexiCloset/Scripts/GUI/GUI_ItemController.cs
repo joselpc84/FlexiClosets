@@ -9,6 +9,8 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
     {
         if (item != null)
         {
+            StopCoroutine("ResetClick");
+            StartCoroutine("ResetClick", false);
             item.Rotate(-1);
         }
     }
@@ -17,22 +19,44 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
     {
         if (item != null)
         {
+            StopCoroutine("ResetClick");
+            StartCoroutine("ResetClick", false);
             item.Rotate(1);
         }
     }
 
+    public void Remove()
+    {
+        if (item != null)
+        {
+            item.Remove();
+        }
+    }
+
+    public void SetNoInput()
+    {
+        StopCoroutine("ResetClick");
+        ManagerInputItem.Instance.isClickOnGUI = true;
+
+    }
+
+    IEnumerator ResetClick(bool value)
+    {
+
+        yield return new WaitForSeconds(0.2f);
+        ManagerInputItem.Instance.isClickOnGUI = value;
+
+    }
 
     public void ActivateGUI(Item item)
     {
         this.item = item;
-        ManagerInputItem.Instance.isClickOnGUI = true;
-
     }
 
     public void DeActivateGUI()
     {
         this.item = null;
-        ManagerInputItem.Instance.isClickOnGUI = false;
-
     }
+        
+
 }

@@ -26,6 +26,22 @@ public class Item : MonoBehaviour
 
     protected bool isDropped = false;
 
+    protected Collider _coll;
+
+    public Collider _collider
+    {
+    
+        get
+        {
+            if (_coll == null)
+            {
+                _coll = GetComponent<Collider>();
+
+            }
+            return _coll;
+        }
+    }
+
     public int SpotID
     {
 
@@ -49,6 +65,13 @@ public class Item : MonoBehaviour
         DirectionForward = DirectionFace.NegZ;
 
         isDropped = false;
+    }
+
+    public void Remove()
+    {
+        ManagerItemGrid.Instance.RemoveItem(this);
+        OnCancel();
+        this.Recycle();
     }
 
     public void Rotate(int dir)

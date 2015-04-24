@@ -61,12 +61,17 @@ public class ManagerInputItem : PersistentSingleton<ManagerInputItem>
         {
             if (Input.GetMouseButtonDown(0))
             {
-                ResetAll();
-
+                if (!isClickOnGUI)
+                {
+                    // ResetAll();
+                }
             }
             else if (Input.GetMouseButtonUp(0))
             {
-                ResetAll();
+                if (!isClickOnGUI)
+                {
+                    ResetAll();
+                }
 
             }
         }
