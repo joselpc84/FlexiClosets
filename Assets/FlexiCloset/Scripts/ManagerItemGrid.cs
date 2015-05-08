@@ -11,6 +11,8 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
     Dictionary<int,Item> items = new Dictionary<int,Item>();
     Dictionary<int,Wall> itemsWall = new Dictionary<int,Wall>();
 
+    HashSet<Item> allItems = new HashSet<Item>();
+
     public Wall wallPrefab;
 
     public void AddItem(QuadInfo info, Item item)
@@ -35,6 +37,8 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 
             }
         }
+
+        allItems.Add(item);
     }
 
     public void RemoveItem(Item item)
@@ -57,6 +61,8 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
             }
 
         }
+
+        allItems.Remove(item);
     }
 
     public bool isEmptySpot(QuadInfo quad, Item info)
