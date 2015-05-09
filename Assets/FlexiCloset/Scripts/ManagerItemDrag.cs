@@ -42,11 +42,19 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
 
 	public void OnDrop ()
 	{
+		Item test;
+
 		if (ManagerMouseControl.Instance.CurrentMousePos ().HasValue) {
 			if (ManagerItemGrid.Instance.isEmptySpot (ManagerMouseControl.Instance.CurrentMousePos ().Value, itemSpawned)) {
+				itemSpawned.SetPos (ManagerMouseControl.Instance.CurrentMousePos ().Value);
+				itemSpawned.OnDrop ();
+				ManagerItemGrid.Instance.AddItem (ManagerMouseControl.Instance.CurrentMousePos ().Value, itemSpawned);
+			} else if ((test = ManagerItemGrid.Instance.CanPutUp (ManagerMouseControl.Instance.CurrentMousePos ().Value, itemSpawned)) != null) {
+				itemSpawned.SetPos (ManagerMouseControl.Instance.CurrentMousePos ().Value);
+				itemSpawned.transform.position = itemSpawned.transform.position + Vector3.up * test.High;
 				itemSpawned.OnDrop ();
 
-				ManagerItemGrid.Instance.AddItem (ManagerMouseControl.Instance.CurrentMousePos ().Value, itemSpawned);
+
 
 			} else {
 				itemSpawned.Recycle ();
@@ -79,14 +87,17 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
 
 	void Update ()
 	{
-
 		if (itemSpawned != null) {
 			if (ManagerMouseControl.Instance.CurrentMousePos ().HasValue) {
-               
+				Item test;
 				itemSpawned.SetPos (ManagerMouseControl.Instance.CurrentMousePos ().Value);
 				if (ManagerItemGrid.Instance.isEmptySpot (ManagerMouseControl.Instance.CurrentMousePos ().Value, itemSpawned)) {
 					itemSpawned.ChangueColorPlane (Color.green);
 					//Aqui CAmbio las texturas etc, etc
+				} else if ((test = ManagerItemGrid.Instance.CanPutUp (ManagerMouseControl.Instance.CurrentMousePos ().Value, itemSpawned)) != null) {
+					itemSpawned.transform.position = itemSpawned.transform.position + Vector3.up * test.High;
+					itemSpawned.ChangueColorPlane (Color.green);
+
 				} else {
 					itemSpawned.transform.position = itemSpawned.transform.position + Vector3.up * OffSetY;
 					itemSpawned.ChangueColorPlane (Color.red);

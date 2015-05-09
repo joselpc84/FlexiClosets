@@ -22,7 +22,21 @@ public class Item : MonoBehaviour
 
 	protected QuadInfo PositionStart;
 
+	public float High = 0.1f;
+
+	public int getStartPosition {
+		get {
+			return PositionStart.index;
+		}
+	}
+
 	protected List<int> brothers = new List<int> ();
+
+	public List<int> getBrothers {
+		get {
+			return brothers;
+		}
+	}
 
 	protected bool isDropped = false;
 

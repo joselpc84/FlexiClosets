@@ -8,148 +8,159 @@ using System.Collections.Generic;
 public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 {
 
-    Dictionary<int,Item> items = new Dictionary<int,Item>();
-    Dictionary<int,Wall> itemsWall = new Dictionary<int,Wall>();
+	Dictionary<int,Item> items = new Dictionary<int,Item> ();
+	Dictionary<int,Wall> itemsWall = new Dictionary<int,Wall> ();
 
-    public Wall wallPrefab;
+	public Wall wallPrefab;
 
-    public void AddItem(QuadInfo info, Item item)
-    {
-        item.SetQuad(info);
-        items.Add(item.SpotID, item);
+	public void AddItem (QuadInfo info, Item item)
+	{
+		item.SetQuad (info);
+		items.Add (item.SpotID, item);
 
-        int[] bros = item.SpotBrothersID;
-        for (int i = 0; i < bros.Length; ++i)
-        {
-            items.Add(bros[i], item);
+		int[] bros = item.SpotBrothersID;
+		for (int i = 0; i < bros.Length; ++i) {
+			items.Add (bros [i], item);
 
-        }
+		}
 
-        if (item is Wall)
-        {
-            itemsWall.Add(item.SpotID, item as Wall);
+		if (item is Wall) {
+			itemsWall.Add (item.SpotID, item as Wall);
 
-            for (int i = 0; i < bros.Length; ++i)
-            {
-                itemsWall.Add(bros[i], item as Wall);
+			for (int i = 0; i < bros.Length; ++i) {
+				itemsWall.Add (bros [i], item as Wall);
 
-            }
-        }
-    }
+			}
+		}
+	}
 
-    public void RemoveItem(Item item)
-    {
+	public void RemoveItem (Item item)
+	{
 
-        items.Remove(item.SpotID);
+		items.Remove (item.SpotID);
 
-        int[] bros = item.SpotBrothersID;
-        for (int i = 0; i < bros.Length; ++i)
-        {
-            items.Remove(bros[i]);
-        }
-        if (item is Wall)
-        {
-            itemsWall.Remove(item.SpotID);
-            for (int i = 0; i < bros.Length; ++i)
-            {
-                itemsWall.Remove(bros[i]);
+		int[] bros = item.SpotBrothersID;
+		for (int i = 0; i < bros.Length; ++i) {
+			items.Remove (bros [i]);
+		}
+		if (item is Wall) {
+			itemsWall.Remove (item.SpotID);
+			for (int i = 0; i < bros.Length; ++i) {
+				itemsWall.Remove (bros [i]);
 
-            }
+			}
 
-        }
-    }
+		}
+	}
 
-    public bool isEmptySpot(QuadInfo quad, Item info)
-    {
-        bool isEmpty = true;
-        List<int> posiblePosition = info.getPosibleBrothers(quad.index);
-        foreach (var spot in items)
-        {
-            if (spot.Key == quad.index)
-            {
+	public bool isEmptySpot (QuadInfo quad, Item info)
+	{
+		bool isEmpty = true;
+		List<int> posiblePosition = info.getPosibleBrothers (quad.index);
+		foreach (var spot in items) {
+			if (spot.Key == quad.index) {
                 
-                isEmpty = false;
-            }
-            else
-            {
-                for (int i = 0; i < posiblePosition.Count; ++i)
-                {
+				isEmpty = false;
+			} else {
+				for (int i = 0; i < posiblePosition.Count; ++i) {
 
-                    if (spot.Key == posiblePosition[i])
-                    {
-                        isEmpty = false;
-                    }
-                }
-            }
-            if (!isEmpty)
-                break;
-        }
-        return isEmpty;
-    }
+					if (spot.Key == posiblePosition [i]) {
+						isEmpty = false;
+					}
+				}
+			}
+			if (!isEmpty) {
+				break;
+			}
+		}
+		return isEmpty;
+	}
 
-    public Wall getWallIfInSpot(QuadInfo quad, Wall info)
-    {
+	public Item CanPutUp (QuadInfo quad, Item info)
+	{
+		Item baseItem = null;
+		bool isEmpty = false;
+		List<int> posiblePosition = info.getPosibleBrothers (quad.index);
+		posiblePosition.Sort ();
+		foreach (var spot in items) {
+			if (spot.Key == quad.index && spot.Value.getStartPosition == quad.index) {
+				baseItem = spot.Value;
+				isEmpty = true;
+			} 
+			if (isEmpty) {
+				List<int> bro = spot.Value.getBrothers;
+				bro.Sort ();
+				if (bro.Count == posiblePosition.Count) {
+					for (int i = 0; i < bro.Count && isEmpty; ++i) {
+						if (bro [i] == posiblePosition [i]) {
+							isEmpty = true;
+						}
+					}
+				} else {
+					isEmpty = false;
+				}
+				if (isEmpty)
+					break;
+			}
+		}
+		if (isEmpty)
+			return baseItem;
+
+		return null;
+	}
+
+	public Wall getWallIfInSpot (QuadInfo quad, Wall info)
+	{
     
-        if (!isEmptySpot(quad, info))
-        {
-            if (items[quad.index] is Wall)
-                return items[quad.index] as Wall;
-        }
-        return null;
+		if (!isEmptySpot (quad, info)) {
+			if (items [quad.index] is Wall)
+				return items [quad.index] as Wall;
+		}
+		return null;
 
-    }
+	}
 
-    public List< List<int>> getDistance()
-    {
-        List< List<int>> muros = new List< List<int>>();
-        List<int> firstRow = new List<int>();
+	public List< List<int>> getDistance ()
+	{
+		List< List<int>> muros = new List< List<int>> ();
+		List<int> firstRow = new List<int> ();
 
-        foreach (var wall in itemsWall)
-        {
-            bool isInAnyOne = false;
-            while (!isInAnyOne)
-            {
-                foreach (List<int> listi in muros)
-                {
-                    if (listi.Contains(wall.Value.SpotID))
-                    {
-                        isInAnyOne = true;
-                    }
-                }
-                break;
-            }
+		foreach (var wall in itemsWall) {
+			bool isInAnyOne = false;
+			while (!isInAnyOne) {
+				foreach (List<int> listi in muros) {
+					if (listi.Contains (wall.Value.SpotID)) {
+						isInAnyOne = true;
+					}
+				}
+				break;
+			}
 
-            if (!isInAnyOne)
-            {
+			if (!isInAnyOne) {
                 
-                firstRow.Add(wall.Value.SpotID);
-                Wall right = wall.Value.rightWall;
-                while (right != null)
-                {
+				firstRow.Add (wall.Value.SpotID);
+				Wall right = wall.Value.rightWall;
+				while (right != null) {
                         
-                    firstRow.Add(right.SpotID);
-                    right = right.rightWall;
-                }
+					firstRow.Add (right.SpotID);
+					right = right.rightWall;
+				}
 
-                Wall left = wall.Value.leftWall;
-                while (true)
-                {
-                    if (left == null)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        firstRow.Add(left.SpotID);
-                        left = left.leftWall;
-                    }
+				Wall left = wall.Value.leftWall;
+				while (true) {
+					if (left == null) {
+						break;
+					} else {
+						firstRow.Add (left.SpotID);
+						left = left.leftWall;
+					}
 
-                }
-                muros.Add(firstRow);
-                firstRow = new List<int>();
+				}
+				muros.Add (firstRow);
+				firstRow = new List<int> ();
 
-            }
-        }
-        return muros;
-    }
+			}
+		}
+		return muros;
+	}
 }
