@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -11,7 +11,9 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 	Dictionary<int,Item> items = new Dictionary<int,Item> ();
 	Dictionary<int,Wall> itemsWall = new Dictionary<int,Wall> ();
 
-	public Wall wallPrefab;
+    HashSet<Item> allItems = new HashSet<Item>();
+
+    public Wall wallPrefab;
 
 	public void AddItem (QuadInfo info, Item item)
 	{
@@ -30,9 +32,11 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 			for (int i = 0; i < bros.Length; ++i) {
 				itemsWall.Add (bros [i], item as Wall);
 
-			}
-		}
-	}
+            }
+        }
+
+        allItems.Add(item);
+    }
 
 	public void RemoveItem (Item item)
 	{
@@ -50,8 +54,10 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 
 			}
 
-		}
-	}
+        }
+
+        allItems.Remove(item);
+    }
 
 	public bool isEmptySpot (QuadInfo quad, Item info)
 	{

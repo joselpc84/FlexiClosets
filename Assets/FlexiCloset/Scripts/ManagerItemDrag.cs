@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 /// <summary>
@@ -8,37 +8,31 @@ using System.Collections;
 public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
 {
 
-	protected Item itemSpawned = null;
-	public float OffSetY = 0.01f;
-	bool NotSpawned = false;
+    protected Item itemSpawned = null;
+    public float OffSetY = 0.01f;
+    bool NotSpawned = false;
 
-	public void OnDrag (Item item)
-	{
-		ManagerInputItem.Instance.isClickOnGUI = true;
-		NotSpawned = false;
-		itemSpawned = item.Spawn ();
-		if (ManagerMouseControl.Instance.CurrentMousePos ().HasValue) {
-			itemSpawned.SetPos (ManagerMouseControl.Instance.CurrentMousePos ().Value);
-		} else {
-			itemSpawned.transform.position = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-		}
-		itemSpawned.OnDrag ();
-	}
+    public void OnDrag(Item item)
+    {
+        InGameUI.Instance.OffPanel();
 
-	public void OnDragWhitoutSpawn (Item item)
-	{
-		ManagerInputItem.Instance.isClickOnGUI = true;
+        ManagerInputItem.Instance.isClickOnGUI = true;
+        NotSpawned = false;
+        itemSpawned = item.Spawn();
+        if (ManagerMouseControl.Instance.CurrentMousePos().HasValue)
+        {
+            itemSpawned.SetPos(ManagerMouseControl.Instance.CurrentMousePos().Value);
+        }
+        else
+        {
+            itemSpawned.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
+        itemSpawned.OnDrag();
+    }
 
-		itemSpawned = item;
-		StopCoroutine ("WaitSetNotSpawned");
-		StartCoroutine ("WaitSetNotSpawned", true);
-		if (ManagerMouseControl.Instance.CurrentMousePos ().HasValue) {
-			itemSpawned.SetPos (ManagerMouseControl.Instance.CurrentMousePos ().Value);
-		} else {
-			itemSpawned.transform.position = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-		}
-		itemSpawned.OnDrag ();
-	}
+    public void OnDragWhitoutSpawn(Item item)
+    {
+        ManagerInputItem.Instance.isClickOnGUI = true;
 
 	public void OnDrop ()
 	{
@@ -59,31 +53,34 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
 			} else {
 				itemSpawned.Recycle ();
 
-			}
-		} else {
-			itemSpawned.Recycle ();
+            }
+            else
+            {
+                itemSpawned.Recycle();
 
-		}
-		NotSpawned = false;
-		itemSpawned = null;
-		StopCoroutine ("ResetClick");
-		StartCoroutine ("ResetClick", false);
+            }
+        }
+        else
+        {
+            itemSpawned.Recycle();
 
-	}
+        }
+        NotSpawned = false;
+        itemSpawned = null;
+        StopCoroutine("ResetClick");
+        StartCoroutine("ResetClick", false);
 
-	IEnumerator WaitSetNotSpawned (bool value)
-	{
+    }
 
-		yield return new WaitForSeconds (0.2f);
-		NotSpawned = value;
-	}
+    IEnumerator WaitSetNotSpawned(bool value)
+    {
 
-	IEnumerator ResetClick (bool value)
-	{
+        yield return new WaitForSeconds(0.2f);
+        NotSpawned = value;
+    }
 
-		yield return new WaitForSeconds (0.2f);
-		ManagerInputItem.Instance.isClickOnGUI = value;
-	}
+    IEnumerator ResetClick(bool value)
+    {
 
 	void Update ()
 	{
@@ -102,12 +99,13 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
 					itemSpawned.transform.position = itemSpawned.transform.position + Vector3.up * OffSetY;
 					itemSpawned.ChangueColorPlane (Color.red);
 
-				}
+                }
 
-				if (NotSpawned && Input.GetMouseButtonDown (0)) {
-					OnDrop ();
-				}
-			}
-		}
-	}
+                if (NotSpawned && Input.GetMouseButtonDown(0))
+                {
+                    OnDrop();
+                }
+            }
+        }
+    }
 }
