@@ -14,7 +14,7 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
 
 	public void OnDrag (Item item)
 	{
-		InGameUI.Instance.OffPanel ();
+		InGameUI.Instance.OffPanel ();//Hago que se enconda el panel
 
 		ManagerInputItem.Instance.isClickOnGUI = true;
 		NotSpawned = false;
@@ -30,6 +30,16 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
 	public void OnDragWhitoutSpawn (Item item)
 	{
 		ManagerInputItem.Instance.isClickOnGUI = true;
+
+		itemSpawned = item;
+		StopCoroutine ("WaitSetNotSpawned");
+		StartCoroutine ("WaitSetNotSpawned", true);
+		/*	if (ManagerMouseControl.Instance.CurrentMousePos ().HasValue) {
+			itemSpawned.SetPos (ManagerMouseControl.Instance.CurrentMousePos ().Value);
+		} else {
+			itemSpawned.transform.position = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+		}*/
+		itemSpawned.OnDrag ();
 	}
 
 	public void OnDrop ()

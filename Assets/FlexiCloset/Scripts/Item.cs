@@ -78,8 +78,8 @@ public class Item : MonoBehaviour
 
 	public void Remove ()
 	{
+		ManagerInputItem.Instance.ResetCurrentSelected ();
 		ManagerItemGrid.Instance.RemoveItem (this);
-		OnCancel ();
 		this.Recycle ();
 	}
 
@@ -110,8 +110,8 @@ public class Item : MonoBehaviour
 
 	public void Move ()
 	{
+		ManagerInputItem.Instance.ResetCurrentSelected ();
 		ManagerItemGrid.Instance.RemoveItem (this);
-		OnCancel ();
 		ManagerItemDrag.Instance.OnDragWhitoutSpawn (this);
 	}
 
