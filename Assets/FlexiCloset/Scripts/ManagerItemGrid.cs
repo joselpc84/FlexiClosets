@@ -11,9 +11,9 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 	Dictionary<int,Item> items = new Dictionary<int,Item> ();
 	Dictionary<int,Wall> itemsWall = new Dictionary<int,Wall> ();
 
-    HashSet<Item> allItems = new HashSet<Item>();
+	HashSet<Item> allItems = new HashSet<Item> ();
 
-    public Wall wallPrefab;
+	public Wall wallPrefab;
 
 	public void AddItem (QuadInfo info, Item item)
 	{
@@ -32,11 +32,11 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 			for (int i = 0; i < bros.Length; ++i) {
 				itemsWall.Add (bros [i], item as Wall);
 
-            }
-        }
+			}
+		}
 
-        allItems.Add(item);
-    }
+		allItems.Add (item);
+	}
 
 	public void RemoveItem (Item item)
 	{
@@ -54,23 +54,29 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 
 			}
 
-        }
+		}
 
-        allItems.Remove(item);
-    }
+		allItems.Remove (item);
+	}
 
 	public bool isEmptySpot (QuadInfo quad, Item info)
 	{
 		bool isEmpty = true;
 		List<int> posiblePosition = info.getPosibleBrothers (quad.index);
+		//Si algn puesto es -1
+		for (int i = 0; i < posiblePosition.Count; ++i) {
+			if (posiblePosition [i] == -1) {
+				isEmpty = false;
+				break;
+			}
+		}
 		foreach (var spot in items) {
 			if (spot.Key == quad.index) {
                 
 				isEmpty = false;
 			} else {
 				for (int i = 0; i < posiblePosition.Count; ++i) {
-
-					if (spot.Key == posiblePosition [i]) {
+					if (spot.Key == posiblePosition [i] || posiblePosition [i] == -1) {
 						isEmpty = false;
 					}
 				}
@@ -79,6 +85,8 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 				break;
 			}
 		}
+
+
 		return isEmpty;
 	}
 
