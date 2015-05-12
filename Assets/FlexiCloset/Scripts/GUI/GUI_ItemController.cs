@@ -4,6 +4,12 @@ using System.Collections;
 public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
 {
 	public Item item;
+	public GameObject[] Buttons;
+
+	void Awake ()
+	{
+		GUI_ItemController.Instance.DeActivateGUI ();
+	}
 
 	public void RotaeLeft ()
 	{
@@ -45,11 +51,15 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
 	public void ActivateGUI (Item item)
 	{
 		this.item = item;
+		for (int i = 0; i < Buttons.Length; ++i)
+			Buttons [i].SetActive (true);
 	}
 
 	public void DeActivateGUI ()
 	{
 		this.item = null;
+		for (int i = 0; i < Buttons.Length; ++i)
+			Buttons [i].SetActive (false);
 	}
         
 
