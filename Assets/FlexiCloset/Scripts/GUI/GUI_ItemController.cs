@@ -30,7 +30,7 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
 		if (item != null) {
 			//StopCoroutine ("ResetClick");
 			//StartCoroutine ("ResetClick", false);
-			item.Move ();
+			item.Move (true);
 		}
 	}
 

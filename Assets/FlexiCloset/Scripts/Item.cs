@@ -108,11 +108,11 @@ public class Item : MonoBehaviour
 
 	}
 
-	public void Move ()
+	public void Move (bool useDropDown)
 	{
 		ManagerInputItem.Instance.ResetCurrentSelected ();
 		ManagerItemGrid.Instance.RemoveItem (this);
-		ManagerItemDrag.Instance.OnDragWhitoutSpawn (this);
+		ManagerItemDrag.Instance.OnDragWhitoutSpawn (this, useDropDown);
 	}
 
 

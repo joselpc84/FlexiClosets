@@ -11,6 +11,7 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
 	protected Item itemSpawned = null;
 	public float OffSetY = 0.01f;
 	bool NotSpawned = false;
+	bool useDropDown = false;
 
 	public void OnDrag (Item item)
 	{
@@ -27,18 +28,13 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
 		itemSpawned.OnDrag ();
 	}
 
-	public void OnDragWhitoutSpawn (Item item)
+	public void OnDragWhitoutSpawn (Item item, bool useDropDown)
 	{
 		ManagerInputItem.Instance.isClickOnGUI = true;
-
+		this.useDropDown = useDropDown;
 		itemSpawned = item;
-		StopCoroutine ("WaitSetNotSpawned");
-		StartCoroutine ("WaitSetNotSpawned", true);
-		/*	if (ManagerMouseControl.Instance.CurrentMousePos ().HasValue) {
-			itemSpawned.SetPos (ManagerMouseControl.Instance.CurrentMousePos ().Value);
-		} else {
-			itemSpawned.transform.position = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-		}*/
+		NotSpawned = true;
+
 		itemSpawned.OnDrag ();
 	}
 
@@ -104,8 +100,17 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
 
 				}
 
-				if (NotSpawned && Input.GetMouseButtonDown (0)) {
-					OnDrop ();
+				if (NotSpawned) {
+					if (useDropDown) {
+						if (Input.GetMouseButtonDown (0)) {
+							OnDrop ();
+
+						}	
+					} else {
+						if (Input.GetMouseButtonUp (0)) {
+							OnDrop ();
+						}
+					}
 				}
 			}
 		}
