@@ -8,111 +8,139 @@ using System.Collections;
 public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
 {
 
-	protected Item itemSpawned = null;
-	public float OffSetY = 0.01f;
-	bool NotSpawned = false;
-	bool useDropDown = false;
+    protected Item itemSpawned = null;
+    public float OffSetY = 0.01f;
+    bool NotSpawned = false;
+    bool useDropDown = false;
 
-	public void OnDrag (Item item)
-	{
-		InGameUI.Instance.OffPanel ();//Hago que se enconda el panel
+    public void OnDrag(Item item)
+    {
+        InGameUI.Instance.OffPanel();//Hago que se enconda el panel
 
-		ManagerInputItem.Instance.isClickOnGUI = true;
-		NotSpawned = false;
-		itemSpawned = item.Spawn ();
-		if (ManagerMouseControl.Instance.CurrentMousePos ().HasValue) {
-			itemSpawned.SetPos (ManagerMouseControl.Instance.CurrentMousePos ().Value);
-		} else {
-			itemSpawned.transform.position = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-		}
-		itemSpawned.OnDrag ();
-	}
+        ManagerInputItem.Instance.isClickOnGUI = true;
+        NotSpawned = false;
+        itemSpawned = item.Spawn();
+        if (ManagerMouseControl.Instance.CurrentMousePos().HasValue)
+        {
+            itemSpawned.SetPos(ManagerMouseControl.Instance.CurrentMousePos().Value);
+        }
+        else
+        {
+            itemSpawned.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
+        itemSpawned.OnDrag();
+    }
 
-	public void OnDragWhitoutSpawn (Item item, bool useDropDown)
-	{
-		ManagerInputItem.Instance.isClickOnGUI = true;
-		this.useDropDown = useDropDown;
-		itemSpawned = item;
-		NotSpawned = true;
+    public void OnDragWhitoutSpawn(Item item, bool useDropDown)
+    {
+        ManagerInputItem.Instance.isClickOnGUI = true;
+        this.useDropDown = useDropDown;
+        itemSpawned = item;
+        NotSpawned = true;
 
-		itemSpawned.OnDrag ();
-	}
+        itemSpawned.OnDrag();
+    }
 
-	public void OnDrop ()
-	{
-		Item test;
+    public void OnDrop()
+    {
+        Item test;
 
-		if (ManagerMouseControl.Instance.CurrentMousePos ().HasValue) {
-			if (ManagerItemGrid.Instance.isEmptySpot (ManagerMouseControl.Instance.CurrentMousePos ().Value, itemSpawned)) {
-				itemSpawned.SetPos (ManagerMouseControl.Instance.CurrentMousePos ().Value);
-				itemSpawned.OnDrop ();
-				ManagerItemGrid.Instance.AddItem (ManagerMouseControl.Instance.CurrentMousePos ().Value, itemSpawned);
+        if (ManagerMouseControl.Instance.CurrentMousePos().HasValue)
+        {
+            if (ManagerItemGrid.Instance.isEmptySpot(ManagerMouseControl.Instance.CurrentMousePos().Value, itemSpawned))
+            {
+                itemSpawned.SetPos(ManagerMouseControl.Instance.CurrentMousePos().Value);
+                itemSpawned.OnDrop();
+                ManagerItemGrid.Instance.AddItem(ManagerMouseControl.Instance.CurrentMousePos().Value, itemSpawned);
 
-			} else if ((test = ManagerItemGrid.Instance.CanPutUp (ManagerMouseControl.Instance.CurrentMousePos ().Value, itemSpawned)) != null) {
-				itemSpawned.SetPos (ManagerMouseControl.Instance.CurrentMousePos ().Value);
-				itemSpawned.transform.position = itemSpawned.transform.position + Vector3.up * test.High;
-				itemSpawned.OnDrop ();
-			} else {
-				itemSpawned.Recycle ();
+            }
+            else if ((test = ManagerItemGrid.Instance.CanPutUp(ManagerMouseControl.Instance.CurrentMousePos().Value, itemSpawned)) != null)
+            {
+                itemSpawned.SetPos(ManagerMouseControl.Instance.CurrentMousePos().Value);
+                itemSpawned.OnDrop(true);
+                ManagerItemGrid.Instance.AddItem(ManagerMouseControl.Instance.CurrentMousePos().Value, itemSpawned, true);
+                itemSpawned.transform.position = itemSpawned.transform.position + Vector3.up * test.getMaxHeighPut();
+                test.AddItemUp(itemSpawned);
 
-			}
 
-		} else {
-			itemSpawned.Recycle ();
+            }
+            else
+            {
+                itemSpawned.Recycle();
 
-		}
-		NotSpawned = false;
-		itemSpawned = null;
-		StopCoroutine ("ResetClick");
-		StartCoroutine ("ResetClick", false);
+            }
 
-	}
+        }
+        else
+        {
+            itemSpawned.Recycle();
 
-	IEnumerator WaitSetNotSpawned (bool value)
-	{
+        }
+        NotSpawned = false;
+        itemSpawned = null;
+        StopCoroutine("ResetClick");
+        StartCoroutine("ResetClick", false);
 
-		yield return new WaitForSeconds (0.2f);
-		NotSpawned = value;
-	}
+    }
 
-	IEnumerator ResetClick (bool value)
-	{
-		yield return new WaitForSeconds (0.2f);
-		ManagerInputItem.Instance.isClickOnGUI = value;
-	}
+    IEnumerator WaitSetNotSpawned(bool value)
+    {
 
-	void Update ()
-	{
-		if (itemSpawned != null) {
-			if (ManagerMouseControl.Instance.CurrentMousePos ().HasValue) {
-				Item test;
-				itemSpawned.SetPos (ManagerMouseControl.Instance.CurrentMousePos ().Value);
-				if (ManagerItemGrid.Instance.isEmptySpot (ManagerMouseControl.Instance.CurrentMousePos ().Value, itemSpawned)) {
-					itemSpawned.ChangueColorPlane (Color.green);
-					//Aqui CAmbio las texturas etc, etc
-				} else if ((test = ManagerItemGrid.Instance.CanPutUp (ManagerMouseControl.Instance.CurrentMousePos ().Value, itemSpawned)) != null) {
-					itemSpawned.transform.position = itemSpawned.transform.position + Vector3.up * test.High;
-					itemSpawned.ChangueColorPlane (Color.green);
+        yield return new WaitForSeconds(0.2f);
+        NotSpawned = value;
+    }
 
-				} else {
-					itemSpawned.transform.position = itemSpawned.transform.position;//+ Vector3.up * OffSetY;
-					itemSpawned.ChangueColorPlane (Color.red);
+    IEnumerator ResetClick(bool value)
+    {
+        yield return new WaitForSeconds(0.2f);
+        ManagerInputItem.Instance.isClickOnGUI = value;
+    }
 
-				}
+    void Update()
+    {
+        if (itemSpawned != null)
+        {
+            if (ManagerMouseControl.Instance.CurrentMousePos().HasValue)
+            {
+                Item test;
+                itemSpawned.SetPos(ManagerMouseControl.Instance.CurrentMousePos().Value);
+                if (ManagerItemGrid.Instance.isEmptySpot(ManagerMouseControl.Instance.CurrentMousePos().Value, itemSpawned))
+                {
+                    itemSpawned.ChangueColorPlane(Color.green);
+                    //Aqui CAmbio las texturas etc, etc
+                }
+                else if ((test = ManagerItemGrid.Instance.CanPutUp(ManagerMouseControl.Instance.CurrentMousePos().Value, itemSpawned)) != null)
+                {
+                    itemSpawned.transform.position = itemSpawned.transform.position + Vector3.up * test.getMaxHeighPut();
+                    itemSpawned.ChangueColorPlane(Color.green);
 
-				if (NotSpawned) {
-					if (useDropDown) {
-						if (Input.GetMouseButtonDown (0)) {
-							OnDrop ();
+                }
+                else
+                {
+                    itemSpawned.transform.position = itemSpawned.transform.position;//+ Vector3.up * OffSetY;
+                    itemSpawned.ChangueColorPlane(Color.red);
 
-						}	
-					} else {
-						if (Input.GetMouseButtonUp (0)) {
-							OnDrop ();
-						}
-					}
-				}
-			}
-		}
-	}
+                }
+
+                if (NotSpawned)
+                {
+                    if (useDropDown)
+                    {
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            OnDrop();
+
+                        }	
+                    }
+                    else
+                    {
+                        if (Input.GetMouseButtonUp(0))
+                        {
+                            OnDrop();
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

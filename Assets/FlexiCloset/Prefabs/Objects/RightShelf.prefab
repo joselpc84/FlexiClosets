@@ -1946,6 +1946,12 @@ MonoBehaviour:
   - {fileID: 2333664}
   - {fileID: 2396538}
   - {fileID: 2348228}
+  typeForniture: 2
+  HighValue: .100000001
+  HighNumber: 3
+  isUp: 0
+  typesCanUp: 0100000002000000
+  itemUp: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

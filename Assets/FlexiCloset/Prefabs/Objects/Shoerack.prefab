@@ -1238,8 +1238,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .0599999987, y: .099999994, z: .0399999991}
-  m_Center: {x: .0250000004, y: .050999999, z: .0140000004}
+  m_Size: {x: .0599999987, y: .0333307721, z: .0399999991}
+  m_Center: {x: .0250000004, y: .0166346114, z: .0140000004}
 --- !u!114 &11467156
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1271,6 +1271,12 @@ MonoBehaviour:
   - {fileID: 2363732}
   - {fileID: 2316368}
   - {fileID: 2377414}
+  typeForniture: 6
+  HighValue: .0329999998
+  HighNumber: 1
+  isUp: 0
+  typesCanUp: 06000000
+  itemUp: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

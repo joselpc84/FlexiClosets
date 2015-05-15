@@ -35,7 +35,7 @@ public class Wall : Item
         downWall = null;
     }
 
-    public override void OnDrop()
+    public override void OnDrop(bool isUp = false)
     {
         base.OnDrop();
         AddWallVecinos();
