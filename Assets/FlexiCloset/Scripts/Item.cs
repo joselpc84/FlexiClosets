@@ -342,6 +342,15 @@ public class Item : MonoBehaviour
         }
     }
 
+
+    public void SetMaterial(Material mat)
+    {
+        for (int i = 0; i < mesh.Length; ++i)
+        {
+            mesh[i].sharedMaterial = mat;
+        }
+    }
+
     #endregion
 
     public virtual void OnDrop(bool isUp = false)

@@ -7,78 +7,90 @@ using System.Collections;
 public class ManagerInputItem : PersistentSingleton<ManagerInputItem>
 {
 
-	public LayerMask ItemLayer;
+    public LayerMask ItemLayer;
 
 
-	#region AuxVars:
+    #region AuxVars:
 
-	RaycastHit hitInfo;
-	Ray ray;
+    RaycastHit hitInfo;
+    Ray ray;
 
-	#endregion
+    #endregion
 
-	Item currentSelected;
+    Item currentSelected;
 
-	public bool isClickOnGUI = false;
+    public bool isClickOnGUI = false;
 
-	Vector3 MouseDown;
+    Vector3 MouseDown;
 
-	// Update is called once per frame
-	void LateUpdate ()
-	{
-		if (!isClickOnGUI) {
+    // Update is called once per frame
+    void LateUpdate()
+    {
+        if (!isClickOnGUI)
+        {
 
-			ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-			if (Physics.Raycast (ray, out hitInfo, Mathf.Infinity, ItemLayer)) {
-				if (Input.GetMouseButtonDown (0)) {
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, ItemLayer))
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
 
-					ResetAll ();
+                    ResetAll();
 
-					currentSelected = hitInfo.collider.GetComponent<Item> ();
-					if (!currentSelected.OnClicked ()) {
-						currentSelected = null;
-					} else {
-						MouseDown = Input.mousePosition;
-					}
-				} 
-			} else {
-				if (Input.GetMouseButtonDown (0)) {
-					ResetAll ();
-				}
-			}
+                    currentSelected = hitInfo.collider.GetComponent<Item>();
+                    if (!currentSelected.OnClicked())
+                    {
+                        currentSelected = null;
+                    }
+                    else
+                    {
+                        MouseDown = Input.mousePosition;
+                    }
+                } 
+            }
+            else
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    ResetAll();
+                }
+            }
 
-			if (Input.GetMouseButton (0)) {
-				if (currentSelected != null) {
-					if (Vector3.Distance (MouseDown, Input.mousePosition) > 14) {
-						Item aux = currentSelected;
-						ResetAll ();
-						aux.Move (false);
-					}
+            if (Input.GetMouseButton(0))
+            {
+                if (currentSelected != null && !(currentSelected is Wall))
+                {
+                    if (Vector3.Distance(MouseDown, Input.mousePosition) > 14)
+                    {
+                        Item aux = currentSelected;
+                        ResetAll();
+                        aux.Move(false);
+                    }
+                }
+            }
+        }
 
-				}
-			}
-		}
+    }
 
-	}
+    void ResetAll()
+    {
+        ResetCurrentSelected();
+    }
 
-	void ResetAll ()
-	{
-		ResetCurrentSelected ();
-	}
+    public void ResetCurrentSelected()
+    {
+        if (currentSelected)
+        {
+            currentSelected.OnCancel();
+            currentSelected = null;
 
-	public void ResetCurrentSelected ()
-	{
-		if (currentSelected) {
-			currentSelected.OnCancel ();
-			currentSelected = null;
+        }
+    }
 
-		}
-	}
-
-	public void HardReset ()
-	{
-		if (currentSelected)
-			currentSelected.OnCancel ();
-		currentSelected = null;
-	}
+    public void HardReset()
+    {
+        if (currentSelected)
+            currentSelected.OnCancel();
+        currentSelected = null;
+    }
 }

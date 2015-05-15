@@ -39,10 +39,10 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
                     itemsWall.Add(bros[i], item as Wall);
 
                 }
+                ModuloUI.Instance.EnableObjects(true);
             }
         }
         allItems.Add(item);
-
     }
 
     public void RemoveItem(Item item)
