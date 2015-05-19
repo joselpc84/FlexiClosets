@@ -35,17 +35,8 @@ public class ManagerInputItem : PersistentSingleton<ManagerInputItem>
                 if (Input.GetMouseButtonDown(0))
                 {
 
-                    ResetAll();
+                    SelectItem(hitInfo.collider.GetComponent<Item>());
 
-                    currentSelected = hitInfo.collider.GetComponent<Item>();
-                    if (!currentSelected.OnClicked())
-                    {
-                        currentSelected = null;
-                    }
-                    else
-                    {
-                        MouseDown = Input.mousePosition;
-                    }
                 } 
             }
             else
@@ -74,17 +65,7 @@ public class ManagerInputItem : PersistentSingleton<ManagerInputItem>
 
     void ResetAll()
     {
-        ResetCurrentSelected();
-    }
-
-    public void ResetCurrentSelected()
-    {
-        if (currentSelected)
-        {
-            currentSelected.OnCancel();
-            currentSelected = null;
-
-        }
+        HardReset();
     }
 
     public void HardReset()
@@ -92,5 +73,26 @@ public class ManagerInputItem : PersistentSingleton<ManagerInputItem>
         if (currentSelected)
             currentSelected.OnCancel();
         currentSelected = null;
+    }
+
+    public void SelectItem(Item item)
+    {
+        ResetAll();
+
+        currentSelected = item;
+        if (currentSelected == null)
+        {
+            Debug.LogError("Loco No hay currentSelected");
+            return;
+        }
+        if (!currentSelected.OnClicked())
+        {
+            currentSelected = null;
+        }
+        else
+        {
+            MouseDown = Input.mousePosition;
+        }
+
     }
 }

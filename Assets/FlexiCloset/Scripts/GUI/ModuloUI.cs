@@ -47,6 +47,12 @@ public class ModuloUI : PersistentSingleton<ModuloUI>
         HidePopUp();
     }
 
+    public void OnPointerDown2(Item Item)
+    {
+        currentSelected = Item;
+        OnPointerDown();
+    }
+
     public void EnableObjects(bool value)
     {
         for (int i = 0; i < objects.Length; ++i)

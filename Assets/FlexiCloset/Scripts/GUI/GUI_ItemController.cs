@@ -9,6 +9,8 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
     public Transform piso;
     public MouseOrbit CameraOrbit;
 
+    public CanvasGroup WallItem;
+
     void Awake()
     {
         GUI_ItemController.Instance.DeActivateGUI();
@@ -44,7 +46,22 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
     {
         if (item != null)
         {
+            if (CameraOrbit.target == item.transform)
+            {
+                CameraOrbit.target = piso;
+            }
+
             item.Remove();
+            BlockInput(false);
+        }
+    }
+
+    public void RemoveWall()
+    {
+        if (item != null && item is Wall)
+        {
+            item.Remove();
+            item = null;
             BlockInput(false);
         }
     }

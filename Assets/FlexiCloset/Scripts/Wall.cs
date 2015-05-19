@@ -7,9 +7,13 @@ public class Wall : Item
 
     public UiArrowActivator GUI;
 
+    [HideInInspector]
     public Wall leftWall;
+    [HideInInspector]
     public Wall rightWall;
+    [HideInInspector]
     public Wall upWall;
+    [HideInInspector]
     public Wall downWall;
 
     protected override void OnDisable()
@@ -88,6 +92,20 @@ public class Wall : Item
     {
         GUI.DeActivateBotons();
 
+    }
+
+    IEnumerator ResetClick(bool value)
+    {
+
+        yield return new WaitForSeconds(0.1f);
+        ManagerInputItem.Instance.isClickOnGUI = value;
+        //   gameObject.SetActive(false);
+    }
+
+    public void ResetGUI()
+    {
+        StopCoroutine("ResetClick");
+        StartCoroutine("ResetClick", false);
     }
 
 }

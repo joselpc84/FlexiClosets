@@ -34,7 +34,7 @@ public class BotonGuiWall : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, LayerGUI))
@@ -46,15 +46,6 @@ public class BotonGuiWall : MonoBehaviour
                 }
             }
         }
-        /*    else if (Input.GetMouseButtonUp(0))
-        {
-            if (isCliked)
-            {
-                StopCoroutine("ResetClick");
-                StartCoroutine("ResetClick", false);
-
-            }
-        }*/
 
     }
 
@@ -63,8 +54,7 @@ public class BotonGuiWall : MonoBehaviour
     
         yield return new WaitForSeconds(0.1f);
         ManagerInputItem.Instance.isClickOnGUI = value;
-        gameObject.SetActive(false);
-
+        //   gameObject.SetActive(false);
     }
 
 
@@ -77,19 +67,21 @@ public class BotonGuiWall : MonoBehaviour
         ManagerGrid.getCenterNear(wall.transform.position + direction.normalized * ManagerGrid.Instance.Size, out quad);
         if (ManagerItemGrid.Instance.isEmptySpot(quad, ManagerItemGrid.Instance.wallPrefab))
         {
+
+
             Item itemSpawned = ManagerItemGrid.Instance.wallPrefab.Spawn();
             itemSpawned.OnDrag();
             ManagerItemGrid.Instance.AddItem(quad, itemSpawned);
             itemSpawned.OnDrop();
+            ManagerInputItem.Instance.HardReset();
 
-            StopCoroutine("ResetClick");
-            StartCoroutine("ResetClick", false);
+            ManagerInputItem.Instance.SelectItem(itemSpawned);
+            ((Wall)itemSpawned).ResetGUI();
+
 
         }
-        else
-        {
-            Debug.LogError("No hay espacio");
-        }
+        //    StopCoroutine("ResetClick");
+        //    StartCoroutine("ResetClick", false);
         
     }
 

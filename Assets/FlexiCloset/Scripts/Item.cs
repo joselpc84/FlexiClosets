@@ -116,7 +116,7 @@ public class Item : MonoBehaviour
 
     public void Remove()
     {
-        ManagerInputItem.Instance.ResetCurrentSelected();
+        ManagerInputItem.Instance.HardReset();
         ManagerItemGrid.Instance.RemoveItem(this);
         if (itemUp != null)
         {
@@ -164,7 +164,7 @@ public class Item : MonoBehaviour
     {
         if (itemUp == null)
         {
-            ManagerInputItem.Instance.ResetCurrentSelected();
+            ManagerInputItem.Instance.HardReset();
             ManagerItemGrid.Instance.RemoveItem(this);
             ManagerItemDrag.Instance.OnDragWhitoutSpawn(this, useDropDown);
             //Quitarle el hijo
