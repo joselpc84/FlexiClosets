@@ -11,10 +11,16 @@ public class InGameUI : PersistentSingleton<InGameUI>
     public void ClickPanel()
     {
         LeftPanel.SetBool("Open", !LeftPanel.GetBool("Open"));
+        if (!LeftPanel.GetBool("Open"))
+        {
+            ModuloUI.Instance.HidePopUp();
+        }
+
     }
     // Update is called once per frame
     public void OffPanel()
     {
         LeftPanel.SetBool("Open", false);
+        ModuloUI.Instance.HidePopUp();
     }
 }

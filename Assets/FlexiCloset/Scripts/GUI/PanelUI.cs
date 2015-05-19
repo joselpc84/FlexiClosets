@@ -7,7 +7,7 @@ public class PanelUI : MonoBehaviour
     protected bool lastActive = true;
 
     public GameObject[] childs;
-
+    /*
     void Update()
     {
         if (active != lastActive)
@@ -20,5 +20,5 @@ public class PanelUI : MonoBehaviour
             lastActive = active;
         }
         
-    }
+    }*/
 }

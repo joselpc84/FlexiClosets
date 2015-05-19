@@ -12,23 +12,21 @@ public class ModuloUI : PersistentSingleton<ModuloUI>
     [HideInInspector]
     public Item currentSelected;
 
-    public RectTransform PopUp;
+    public CanvasGroup PopUp;
 
     public Text textColor;
 
     void Start()
     {
-        PopUp.gameObject.transform.localScale = Vector3.zero;
         //   EnableObjects(false);
-
+        HidePopUp();
     }
 
     public void ShowPersonalization(Item prefab)
     {
         currentSelected = prefab;
         textColor.text = currentSelected.mesh[0].sharedMaterial.name;
-
-        PopUp.gameObject.transform.localScale = new Vector3(1, 1, 1);
+        ShowPopUp();
 
     }
 
@@ -46,8 +44,7 @@ public class ModuloUI : PersistentSingleton<ModuloUI>
     public void OnPointerDown()
     {
         ManagerItemDrag.Instance.OnDrag(currentSelected);
-        PopUp.gameObject.transform.localScale = Vector3.zero;
-
+        HidePopUp();
     }
 
     public void EnableObjects(bool value)
@@ -56,5 +53,21 @@ public class ModuloUI : PersistentSingleton<ModuloUI>
         {
             objects[i].interactable = value;
         }
+    }
+
+    public void ShowPopUp()
+    {
+        // PopUp.gameObject.transform.localScale = new Vector3(1, 1, 1);
+        PopUp.alpha = 1;
+        PopUp.blocksRaycasts = true;
+        PopUp.interactable = true;
+    }
+
+    public void HidePopUp()
+    {
+        //PopUp.gameObject.transform.localScale = Vector3.zero;
+        PopUp.alpha = 0;
+        PopUp.blocksRaycasts = false;
+        PopUp.interactable = false;
     }
 }

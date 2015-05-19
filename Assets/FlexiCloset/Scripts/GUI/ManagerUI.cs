@@ -3,23 +3,24 @@ using System.Collections;
 
 public class ManagerUI : PersistentSingleton<ManagerUI>
 {
+    public Animator Menus_Intro;
 
-    protected Animator _anim;
+    public Animator Menus_InGame;
 
-    public Animator animator
+    public string InTrigger = "In";
+    public string OutTrigger = "Out";
+
+    void Start()
     {
-    
-        get
-        {
-            if (_anim == null)
-                _anim = GetComponent<Animator>();
-            return _anim;
-        }
+        // Menus_Intro.SetTrigger(InTrigger);
+        Menus_InGame.SetTrigger(InTrigger);
+
     }
 
     public void ChangueToInGame()
     {
-        animator.SetTrigger("InGame");
-        animator.SetTrigger("Out");
+        Menus_Intro.SetTrigger(OutTrigger);
+        Menus_InGame.SetTrigger(InTrigger);
     }
+        
 }
