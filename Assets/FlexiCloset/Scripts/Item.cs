@@ -30,6 +30,15 @@ public class Item : MonoBehaviour
     public int SizeRight = 1;
     public MeshRenderer[] mesh;
     public MeshRenderer[] planes;
+
+    [HideInInspector]
+    public int MatPosition = 0;
+    public Material[] Materials;
+    public Material[] SelectedMaterial;
+    [HideInInspector]
+    public Dictionary<string,int> dictMaterial = new Dictionary<string,int>();
+     
+
     protected DirectionFace DirectionForward = DirectionFace.NegZ;
 
     protected QuadInfo PositionStart;
@@ -97,6 +106,7 @@ public class Item : MonoBehaviour
         }
     }
 
+
     protected virtual void OnEnable()
     {
 
@@ -112,6 +122,7 @@ public class Item : MonoBehaviour
         isUp = false;
         isDropped = false;
         itemDown = null;
+        MatPosition = 0;
     }
 
     public void Remove()
@@ -307,7 +318,10 @@ public class Item : MonoBehaviour
     protected void SelectedMesh()
     {
         for (int i = 0; i < mesh.Length; ++i)
+        {
+            mesh[i].material = SelectedMaterial[MatPosition];
             LeanTween.color(mesh[i].gameObject, new Color(0.5f, 0.5f, 0.5f, 0.5f), 1.0f).setLoopPingPong(); 
+        }
 
         for (int i = 0; i < planes.Length; ++i)
         {
@@ -318,9 +332,11 @@ public class Item : MonoBehaviour
     protected void DeSelectedMesh()
     {
         for (int i = 0; i < mesh.Length; ++i)
+        {
             LeanTween.cancel(mesh[i].gameObject);
-
+        }
         for (int i = 0; i < mesh.Length; ++i)
+        {
             foreach (Material mat in mesh[i].materials)
             {
                 if (mat.HasProperty("_Color"))
@@ -329,12 +345,12 @@ public class Item : MonoBehaviour
                 }
                 else if (mat.HasProperty("_TintColor"))
                 {
-//                    Color col = mat.GetColor("_TintColor");
                     mat.SetColor("_TintColor", new Color(1, 1, 1, 1));
                 }
-
             }
+            mesh[i].material = Materials[MatPosition];
 
+        }
 
         for (int i = 0; i < planes.Length; ++i)
         {

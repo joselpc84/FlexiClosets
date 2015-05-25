@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 using System.Collections;
+using System.Collections.Generic;
+
 
 public class ModuloUI : PersistentSingleton<ModuloUI>
 {
@@ -16,27 +18,44 @@ public class ModuloUI : PersistentSingleton<ModuloUI>
 
     public Text textColor;
 
+    public string[] MaterialsName;
+
     void Start()
     {
         //   EnableObjects(false);
         HidePopUp();
+
     }
 
     public void ShowPersonalization(Item prefab)
     {
         currentSelected = prefab;
-        textColor.text = currentSelected.mesh[0].sharedMaterial.name;
+        currentSelected.dictMaterial.Clear();
+        for (int i = 0; i < currentSelected.Materials.Length; ++i)
+        {
+            currentSelected.dictMaterial.Add(MaterialsName[i], i);
+        }
+
+        currentSelected.MatPosition = 0;
+        Material mat = currentSelected.Materials[currentSelected.MatPosition];
+        textColor.text = MaterialsName[currentSelected.MatPosition];
+        currentSelected.SetMaterial(mat);
+
         ShowPopUp();
+
 
     }
 
-    public void ChangueMaterial(Material mat)
+    public void ChangueMaterial(string mattype)
     {
         if (!(currentSelected is Wall))
         {
-            //CAmbiando Material
-            Debug.Log("Cambiando: " + mat);
-            textColor.text = mat.name;
+            Material mat;
+
+            currentSelected.MatPosition = currentSelected.dictMaterial[mattype];
+            mat = currentSelected.Materials[currentSelected.MatPosition];
+
+            textColor.text = MaterialsName[currentSelected.MatPosition];
             currentSelected.SetMaterial(mat);
         }
     }

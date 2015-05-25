@@ -587,6 +587,11 @@ MonoBehaviour:
   - {fileID: 2381938}
   planes:
   - {fileID: 2343828}
+  MatPosition: -1
+  Materials:
+  - {fileID: 2100000, guid: 1aa4e1b8953514669a8c2d0eb327d3b6, type: 2}
+  SelectedMaterial:
+  - {fileID: 2100000, guid: cba2b00c3f84142f49305afe76380614, type: 2}
   typeForniture: 0
   HighValue: .100000001
   HighNumber: 1

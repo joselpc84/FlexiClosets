@@ -175,7 +175,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 38444420}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: .489954352, w: .87174809}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -184,7 +184,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -42.5180016, y: -22.6000004}
+  m_AnchoredPosition: {x: -43.4000015, y: -22.6000004}
   m_SizeDelta: {x: -84.935997, y: -45.2000008}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &38444422
@@ -202,7 +202,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Sprite: {fileID: 21300000, guid: 25ee30edf766d458d8bbc740c7c99c20, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -267,15 +267,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1470171030}
         m_MethodName: ChangueMaterial
-        m_Mode: 2
+        m_Mode: 5
         m_Arguments:
-          m_ObjectArgument: {fileID: 2100000, guid: 44f89184cd85944caba3670d294230e0,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine, Version=0.0.0.0,
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Negro
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1051,7 +1050,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2012746553}
   m_Direction: 2
   m_Value: 1
-  m_Size: .597660184
+  m_Size: .597932696
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1116,8 +1115,8 @@ RectTransform:
   - {fileID: 1861230230}
   m_Father: {fileID: 802351160}
   m_RootOrder: 3
-  m_AnchorMin: {x: .0898438245, y: .190843076}
-  m_AnchorMax: {x: .868666708, y: .634071529}
+  m_AnchorMin: {x: .179326907, y: .158694237}
+  m_AnchorMax: {x: .958149791, y: .601922691}
   m_AnchoredPosition: {x: -9.53674316e-07, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -3090,7 +3089,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 815169493}
-  m_LocalRotation: {x: 0, y: 0, z: -.931637645, w: .363388747}
+  m_LocalRotation: {x: 0, y: 0, z: -.501034498, w: .865427315}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3099,7 +3098,7 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.79999995, y: 29.1000004}
+  m_AnchoredPosition: {x: -18.7000008, y: 26.6000004}
   m_SizeDelta: {x: -84.935997, y: -45.2000008}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &815169495
@@ -3140,7 +3139,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Sprite: {fileID: 21300000, guid: 25ee30edf766d458d8bbc740c7c99c20, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -3187,15 +3186,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1470171030}
         m_MethodName: ChangueMaterial
-        m_Mode: 2
+        m_Mode: 5
         m_Arguments:
-          m_ObjectArgument: {fileID: 2100000, guid: 8f2e93f9e806c4cf287b4f730a61a6fb,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine, Version=0.0.0.0,
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Marron
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -6656,6 +6654,10 @@ MonoBehaviour:
   currentSelected: {fileID: 0}
   PopUp: {fileID: 802351161}
   textColor: {fileID: 1861230231}
+  MaterialsName:
+  - Marron
+  - Blanco
+  - Negro
 --- !u!1 &1495529602
 GameObject:
   m_ObjectHideFlags: 0
@@ -8308,10 +8310,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 250571677}
   m_RootOrder: 3
-  m_AnchorMin: {x: .239000008, y: .365199119}
-  m_AnchorMax: {x: .698374987, y: .563000023}
-  m_AnchoredPosition: {x: 0, y: 9.53674316e-07}
-  m_SizeDelta: {x: 0, y: 1.90734863e-06}
+  m_AnchorMin: {x: .0988129899, y: .349412948}
+  m_AnchorMax: {x: .658312559, y: .563000023}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1861230231
 MonoBehaviour:
@@ -8373,16 +8375,16 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1916792426}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -.999996603, w: -.00262591639}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1212549642}
   m_Father: {fileID: 250571677}
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 22.0799751, y: -22.5999985}
+  m_AnchoredPosition: {x: 11.1000004, y: -19.7000008}
   m_SizeDelta: {x: -84.935997, y: -45.2000008}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1916792428
@@ -8423,7 +8425,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Sprite: {fileID: 21300000, guid: 25ee30edf766d458d8bbc740c7c99c20, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -8470,15 +8472,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1470171030}
         m_MethodName: ChangueMaterial
-        m_Mode: 2
+        m_Mode: 5
         m_Arguments:
-          m_ObjectArgument: {fileID: 2100000, guid: d564cb0528f9046d2a4b63601b4f3b83,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine, Version=0.0.0.0,
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Blanco
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,

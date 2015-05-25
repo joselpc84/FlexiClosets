@@ -841,7 +841,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: d564cb0528f9046d2a4b63601b4f3b83, type: 2}
+  - {fileID: 2100000, guid: 8f2e93f9e806c4cf287b4f730a61a6fb, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1946,6 +1946,15 @@ MonoBehaviour:
   - {fileID: 2373784}
   - {fileID: 2353406}
   - {fileID: 2337478}
+  MatPosition: 0
+  Materials:
+  - {fileID: 2100000, guid: 8f2e93f9e806c4cf287b4f730a61a6fb, type: 2}
+  - {fileID: 2100000, guid: d564cb0528f9046d2a4b63601b4f3b83, type: 2}
+  - {fileID: 2100000, guid: 44f89184cd85944caba3670d294230e0, type: 2}
+  SelectedMaterial:
+  - {fileID: 2100000, guid: 4c19d8c1dbc474ea9809adb5c1a70a64, type: 2}
+  - {fileID: 2100000, guid: ff30a341030f0477881e7f4c0db96a5e, type: 2}
+  - {fileID: 2100000, guid: 91efd7945e4194d4390fb821e3b6f21c, type: 2}
   typeForniture: 1
   HighValue: .100000001
   HighNumber: 3
