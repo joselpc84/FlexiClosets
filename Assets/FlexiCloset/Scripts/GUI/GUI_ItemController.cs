@@ -9,7 +9,29 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
     public Transform piso;
     public MouseOrbit CameraOrbit;
 
-    public CanvasGroup WallItem;
+    public CanvasGroup[] WallItem;
+
+    public void TurnOnWall()
+    {
+        for (int i = 0; i < WallItem.Length; ++i)
+        {
+            GUI_ItemController.Instance.WallItem[i].alpha = 1;
+            GUI_ItemController.Instance.WallItem[i].blocksRaycasts = true;
+            GUI_ItemController.Instance.WallItem[i].interactable = true;
+        }
+
+    }
+
+    public void TurnOffWall()
+    {
+        for (int i = 0; i < WallItem.Length; ++i)
+        {
+            GUI_ItemController.Instance.WallItem[i].alpha = 0;
+            GUI_ItemController.Instance.WallItem[i].blocksRaycasts = false;
+            GUI_ItemController.Instance.WallItem[i].interactable = false;
+        }
+
+    }
 
     void Awake()
     {
@@ -52,6 +74,17 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
             }
 
             item.Remove();
+            BlockInput(false);
+        }
+    }
+
+    public void RemoveAllWall()
+    {
+        if (item != null && item is Wall)
+        {
+            ((Wall)item).EraseAll = true;
+            item.Remove();
+            item = null;
             BlockInput(false);
         }
     }

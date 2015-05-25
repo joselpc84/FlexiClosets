@@ -109,7 +109,7 @@ public class Item : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-
+        MatPosition = 0;
     }
 
     protected virtual void OnDisable()
@@ -125,7 +125,7 @@ public class Item : MonoBehaviour
         MatPosition = 0;
     }
 
-    public void Remove()
+    public virtual void Remove()
     {
         ManagerInputItem.Instance.HardReset();
         ManagerItemGrid.Instance.RemoveItem(this);

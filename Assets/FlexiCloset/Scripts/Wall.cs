@@ -7,14 +7,17 @@ public class Wall : Item
 
     public UiArrowActivator GUI;
 
-    [HideInInspector]
+    //   [HideInInspector]
     public Wall leftWall;
-    [HideInInspector]
+    //  [HideInInspector]
     public Wall rightWall;
-    [HideInInspector]
+    //  [HideInInspector]
     public Wall upWall;
-    [HideInInspector]
+    //   [HideInInspector]
     public Wall downWall;
+
+    [HideInInspector]
+    public bool EraseAll = false;
 
     protected override void OnDisable()
     {
@@ -37,6 +40,7 @@ public class Wall : Item
         rightWall = null;
         upWall = null;
         downWall = null;
+        EraseAll = false;
     }
 
     public override void OnDrop(bool isUp = false)
@@ -50,7 +54,7 @@ public class Wall : Item
         QuadInfo _quad;
         ManagerGrid.getCenterNear(transform.position + Vector3.left * ManagerGrid.Instance.Size, out _quad);
         Wall vecino = ManagerItemGrid.Instance.getWallIfInSpot(_quad, this);
-        if (vecino != null)
+        if (vecino != null && vecino != this)
         {
             leftWall = vecino;
             vecino.rightWall = this;
@@ -58,7 +62,7 @@ public class Wall : Item
 
         ManagerGrid.getCenterNear(transform.position + Vector3.right * ManagerGrid.Instance.Size, out _quad);
         vecino = ManagerItemGrid.Instance.getWallIfInSpot(_quad, this);
-        if (vecino != null)
+        if (vecino != null && vecino != this)
         {
             rightWall = vecino;
             vecino.leftWall = this;
@@ -66,7 +70,7 @@ public class Wall : Item
 
         ManagerGrid.getCenterNear(transform.position + Vector3.forward * ManagerGrid.Instance.Size, out _quad);
         vecino = ManagerItemGrid.Instance.getWallIfInSpot(_quad, this);
-        if (vecino != null)
+        if (vecino != null && vecino != this)
         {
             upWall = vecino;
             vecino.downWall = this;
@@ -74,7 +78,7 @@ public class Wall : Item
 
         ManagerGrid.getCenterNear(transform.position - Vector3.forward * ManagerGrid.Instance.Size, out _quad);
         vecino = ManagerItemGrid.Instance.getWallIfInSpot(_quad, this);
-        if (vecino != null)
+        if (vecino != null && vecino != this)
         {
             downWall = vecino;
             vecino.upWall = this;
@@ -86,6 +90,57 @@ public class Wall : Item
         GUI.ActivateBotons();
     }
 
+    public override void Remove()
+    {
+
+
+        if (EraseAll)
+        {
+            if (leftWall != null)
+                leftWall.RemoveVeci(0);
+
+            if (rightWall != null)
+                rightWall.RemoveVeci(1);
+        
+            if (upWall != null)
+                upWall.RemoveVeci(2);
+        
+            if (downWall != null)
+                downWall.RemoveVeci(3);
+        }
+        ManagerInputItem.Instance.HardReset();
+        ManagerItemGrid.Instance.RemoveItem(this);
+        this.Recycle();
+    }
+
+    public  void RemoveVeci(int dir)
+    {
+
+
+        switch (dir)
+        {
+            case 0:
+                if (leftWall != null)
+                    leftWall.RemoveVeci(dir);
+                break;
+            case 1:
+                if (rightWall != null)
+                    rightWall.RemoveVeci(dir);
+                break;
+            case 2:
+                if (upWall != null)
+                    upWall.RemoveVeci(dir);
+                break;
+            case 3:
+                if (downWall != null)
+                    downWall.RemoveVeci(dir);
+                break;
+        }
+
+        ManagerInputItem.Instance.HardReset();
+        ManagerItemGrid.Instance.RemoveItem(this);       
+        this.Recycle();
+    }
 
 
     protected override void LogicOnCancel()

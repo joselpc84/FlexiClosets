@@ -30,17 +30,21 @@ public class ModuloUI : PersistentSingleton<ModuloUI>
     public void ShowPersonalization(Item prefab)
     {
         currentSelected = prefab;
-        currentSelected.dictMaterial.Clear();
-        for (int i = 0; i < currentSelected.Materials.Length; ++i)
+
+        if (!(currentSelected is Wall))
         {
-            currentSelected.dictMaterial.Add(MaterialsName[i], i);
+            
+            currentSelected.dictMaterial.Clear();
+            for (int i = 0; i < currentSelected.Materials.Length; ++i)
+            {
+                currentSelected.dictMaterial.Add(MaterialsName[i], i);
+            }
+
+            currentSelected.MatPosition = 0;
+            Material mat = currentSelected.Materials[currentSelected.MatPosition];
+            textColor.text = MaterialsName[currentSelected.MatPosition];
+            currentSelected.SetMaterial(mat);
         }
-
-        currentSelected.MatPosition = 0;
-        Material mat = currentSelected.Materials[currentSelected.MatPosition];
-        textColor.text = MaterialsName[currentSelected.MatPosition];
-        currentSelected.SetMaterial(mat);
-
         ShowPopUp();
 
 
