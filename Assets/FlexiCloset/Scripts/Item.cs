@@ -32,7 +32,7 @@ public class Item : MonoBehaviour
     public MeshRenderer[] planes;
 
     [HideInInspector]
-    public int MatPosition = 0;
+    public int MaterialIndex = 0;
     public Material[] Materials;
     public Material[] SelectedMaterial;
     [HideInInspector]
@@ -109,7 +109,6 @@ public class Item : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        MatPosition = 0;
     }
 
     protected virtual void OnDisable()
@@ -122,7 +121,7 @@ public class Item : MonoBehaviour
         isUp = false;
         isDropped = false;
         itemDown = null;
-        MatPosition = 0;
+        MaterialIndex = 0;
     }
 
     public virtual void Remove()
@@ -319,7 +318,7 @@ public class Item : MonoBehaviour
     {
         for (int i = 0; i < mesh.Length; ++i)
         {
-            mesh[i].material = SelectedMaterial[MatPosition];
+            mesh[i].material = SelectedMaterial[MaterialIndex];
             LeanTween.color(mesh[i].gameObject, new Color(0.5f, 0.5f, 0.5f, 0.5f), 1.0f).setLoopPingPong(); 
         }
 
@@ -348,7 +347,7 @@ public class Item : MonoBehaviour
                     mat.SetColor("_TintColor", new Color(1, 1, 1, 1));
                 }
             }
-            mesh[i].material = Materials[MatPosition];
+            mesh[i].material = Materials[MaterialIndex];
 
         }
 

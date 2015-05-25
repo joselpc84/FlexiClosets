@@ -40,9 +40,9 @@ public class ModuloUI : PersistentSingleton<ModuloUI>
                 currentSelected.dictMaterial.Add(MaterialsName[i], i);
             }
 
-            currentSelected.MatPosition = 0;
-            Material mat = currentSelected.Materials[currentSelected.MatPosition];
-            textColor.text = MaterialsName[currentSelected.MatPosition];
+            currentSelected.MaterialIndex = 0;
+            Material mat = currentSelected.Materials[currentSelected.MaterialIndex];
+            textColor.text = MaterialsName[currentSelected.MaterialIndex];
             currentSelected.SetMaterial(mat);
         }
         ShowPopUp();
@@ -56,10 +56,10 @@ public class ModuloUI : PersistentSingleton<ModuloUI>
         {
             Material mat;
 
-            currentSelected.MatPosition = currentSelected.dictMaterial[mattype];
-            mat = currentSelected.Materials[currentSelected.MatPosition];
+            currentSelected.MaterialIndex = currentSelected.dictMaterial[mattype];
+            mat = currentSelected.Materials[currentSelected.MaterialIndex];
 
-            textColor.text = MaterialsName[currentSelected.MatPosition];
+            textColor.text = MaterialsName[currentSelected.MaterialIndex];
             currentSelected.SetMaterial(mat);
         }
     }
