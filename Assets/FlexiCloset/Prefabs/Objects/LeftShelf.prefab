@@ -841,7 +841,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 44f89184cd85944caba3670d294230e0, type: 2}
+  - {fileID: 2100000, guid: 8f2e93f9e806c4cf287b4f730a61a6fb, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1959,7 +1959,7 @@ MonoBehaviour:
   HighValue: .100000001
   HighNumber: 3
   isUp: 0
-  typesCanUp: 0100000002000000
+  typesCanUp: 01000000020000000600000003000000
   itemUp: {fileID: 0}
   itemDown: {fileID: 0}
 --- !u!1001 &100100000

@@ -112,64 +112,88 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
         return isEmpty;
     }
 
+    Item CheckIsUpIsIn(Item baseI, int index)
+    {
+        Item toReturn = null;
+
+        for (int i = 0; i < baseI.itemUp.Count; ++i)
+        {
+            if (baseI.itemUp[i].isInIdex(index))
+            {
+                toReturn = CheckIsUpIsIn(baseI.itemUp[i], index);
+
+            }
+            if (toReturn != null)
+                break;
+        }
+        if (toReturn != null)
+            return toReturn;
+        
+        return baseI;
+    }
+
     public Item CanPutUp(QuadInfo quad, Item info)
     {
-        Item baseItem = null;
         bool isNotEmpty = false;
         List<int> posiblePosition = info.getPosibleBrothers(quad.index);
         posiblePosition.Sort();
-        int currentHeigh = 0;
-        bool canPutUp = false;
         foreach (var spot in items)
         {
-            Item MaxUp = spot.Value.itemUp;
-            bool haveUp = MaxUp != null;
-            currentHeigh = spot.Value.HighNumber;
-            canPutUp = spot.Value.isTypeForPutUp(info.typeForniture);
-            if (haveUp)
+            //Y hay q revisar es con el Maxup no con el hijo.
+            //Aqui no necesariamente el key tiene q ser el quad index, y si no lo es ajuro hay q chequear
+            //los hermanos y ver si todos coinciden.
+            if (spot.Key == quad.index && spot.Value.itemDown == null)
             {
-                while (MaxUp != null)
-                {
-                    currentHeigh += MaxUp.HighNumber;
-                    canPutUp = MaxUp.isTypeForPutUp(info.typeForniture);
-                    MaxUp = MaxUp.itemUp;
-                }
-            }
-            if (spot.Key == quad.index && spot.Value.getStartPosition == quad.index)
-            {
-                baseItem = spot.Value;
-                isNotEmpty = true;
-            } 
-            if (isNotEmpty)
-            {
-                List<int> bro = spot.Value.getBrothers;
+                Item toCheck = null;
+                toCheck = CheckIsUpIsIn(spot.Value, quad.index);
+
+                //Aqui checo q todos los hermanos y la posicion de info esten dentro de spot y q no halla alguien ahi
+                List<int> bro = toCheck.getBrothers;
                 bro.Sort();
-                if (bro.Count == posiblePosition.Count)
-                {
-                    for (int i = 0; i < bro.Count && isNotEmpty; ++i)
-                    {
-                        if (bro[i] == posiblePosition[i])
-                        {
-                            isNotEmpty = true;
-                        }
-                    }
-                }
-                else
+                for (int i = -1; i < posiblePosition.Count; ++i)
                 {
                     isNotEmpty = false;
+                    for (int j = 0; j < bro.Count; ++j)
+                    {
+                        if (i == -1)
+                        {
+                            if (bro[j] == info.getStartPosition || toCheck.getStartPosition == info.getStartPosition)
+                            {
+                                isNotEmpty = true;
+                            }
+                            else
+                            {
+                                isNotEmpty = false;
+                            }
+                        }
+                        else
+                        {
+                            if (bro[j] == posiblePosition[i] || toCheck.getStartPosition == posiblePosition[i])
+                            {
+                                isNotEmpty = true;
+                            }
+                            else
+                            {
+                                isNotEmpty = false;
+                            }
+                        }
+                        if (isNotEmpty)
+                            break;
+                    }
+                    if (!isNotEmpty)
+                        break;
                 }
                 if (isNotEmpty)
-                    break;
-            }
-        }
-        if (isNotEmpty)
-        {
-            //Aqui checo que este entre los ti[ops que pued eir arriba
-            if (currentHeigh + info.HighNumber <= MaxNumberHeigh && canPutUp)
-            {
-                
-                return baseItem;
-            }
+                {
+                    if (toCheck.getMaxHeighNumberPut() + info.HighNumber <= MaxNumberHeigh && toCheck.isTypeForPutUp(info.typeForniture))
+                    {
+
+                        return toCheck;
+                    }
+
+                }
+
+            } 
                 
         }
         return null;

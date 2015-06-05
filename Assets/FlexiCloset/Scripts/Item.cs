@@ -54,11 +54,26 @@ public class Item : MonoBehaviour
 
     public TypeForniture[] typesCanUp;
     [HideInInspector]
-    public Item itemUp;
+    public List<Item> itemUp = new List<Item>();
     [HideInInspector]
     public Item itemDown = null;
 
     #endregion
+
+    public bool isInIdex(int index)
+    {
+        bool not = false;
+        for (int i = 0; i < getBrothers.Count; ++i)
+        {
+            not = index == getBrothers[i];
+            if (not)
+                break;
+        }
+        if (!not)
+            not = index == getStartPosition;
+        
+        return not;
+    }
 
     public int getStartPosition
     {
@@ -117,7 +132,7 @@ public class Item : MonoBehaviour
         PositionStart.index = -1;
         PositionStart.center = Vector3.zero;
         DirectionForward = DirectionFace.NegZ;
-        itemUp = null;
+        itemUp.Clear();
         isUp = false;
         isDropped = false;
         itemDown = null;
@@ -128,10 +143,12 @@ public class Item : MonoBehaviour
     {
         ManagerInputItem.Instance.HardReset();
         ManagerItemGrid.Instance.RemoveItem(this);
-        if (itemUp != null)
+        if (itemUp.Count > 0)
         {
-            itemUp.Remove();
-            itemUp = null;
+            for (int i = 0; i < itemUp.Count; ++i)
+                itemUp[i].Remove();
+            //   itemUp.Remove();
+            itemUp.Clear();
 
         }
         if (itemDown != null)
@@ -143,7 +160,7 @@ public class Item : MonoBehaviour
 
     public void Rotate(int dir)
     {
-        if (!isUp && itemUp == null)
+        if (!isUp && itemUp.Count == 0)
         {
             DirectionFace storeDirectionForward = DirectionForward;
             Quaternion storeRotation = transform.rotation;
@@ -172,7 +189,7 @@ public class Item : MonoBehaviour
 
     public void Move(bool useDropDown)
     {
-        if (itemUp == null)
+        if (itemUp.Count == 0)
         {
             ManagerInputItem.Instance.HardReset();
             ManagerItemGrid.Instance.RemoveItem(this);
@@ -180,7 +197,7 @@ public class Item : MonoBehaviour
             //Quitarle el hijo
             if (itemDown != null)
             {
-                itemDown.itemUp = null;
+                itemDown.itemUp.Remove(this);
                 itemDown = null;
             }
         }
@@ -464,14 +481,27 @@ public class Item : MonoBehaviour
         return false;
     }
 
+    public float getMaxHeighNumberPut()
+    {
+        Item MaxDown = this.itemDown;
+        float altura = this.HighNumber;
+        while (MaxDown != null)
+        {
+            altura += MaxDown.HighNumber;
+            MaxDown = MaxDown.itemDown;
+        }
+
+        return altura;
+    }
+
     public float getMaxHeighPut()
     {
-        Item MaxUp = this.itemUp;
+        Item MaxDown = this.itemDown;
         float altura = this.HighValue;
-        while (MaxUp != null)
+        while (MaxDown != null)
         {
-            altura += MaxUp.HighValue;
-            MaxUp = MaxUp.itemUp;
+            altura += MaxDown.HighValue;
+            MaxDown = MaxDown.itemDown;
         }
 
         return altura;
@@ -479,6 +509,9 @@ public class Item : MonoBehaviour
 
     public void AddItemUp(Item up)
     {
+        itemUp.Add(up);
+        up.itemDown = this;
+        /*
         Item MaxUp = this;
         while (MaxUp.itemUp != null)
         {
@@ -487,6 +520,7 @@ public class Item : MonoBehaviour
         MaxUp.itemUp = up;
 
         up.itemDown = MaxUp;
+        */
     }
 
     #endregion
