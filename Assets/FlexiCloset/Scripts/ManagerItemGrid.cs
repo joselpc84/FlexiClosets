@@ -112,7 +112,7 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
         return isEmpty;
     }
 
-    Item CheckIsUpIsIn(Item baseI, int index)
+    Item CheckIsUpIsIn(Item baseI, int index, List<int> posiblePosition)
     {
         Item toReturn = null;
 
@@ -120,8 +120,19 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
         {
             if (baseI.itemUp[i].isInIdex(index))
             {
-                toReturn = CheckIsUpIsIn(baseI.itemUp[i], index);
+                toReturn = CheckIsUpIsIn(baseI.itemUp[i], index, posiblePosition);
 
+            }
+            else
+            {
+                for (int j = 0; j < posiblePosition.Count; ++j)
+                {
+                    if (baseI.itemUp[i].isInIdex(posiblePosition[j]))
+                    {
+                        toReturn = CheckIsUpIsIn(baseI.itemUp[i], index, posiblePosition);
+                        break;
+                    }
+                }
             }
             if (toReturn != null)
                 break;
@@ -145,7 +156,7 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
             if (spot.Key == quad.index && spot.Value.itemDown == null)
             {
                 Item toCheck = null;
-                toCheck = CheckIsUpIsIn(spot.Value, quad.index);
+                toCheck = CheckIsUpIsIn(spot.Value, quad.index, posiblePosition);
 
                 //Aqui checo q todos los hermanos y la posicion de info esten dentro de spot y q no halla alguien ahi
                 List<int> bro = toCheck.getBrothers;

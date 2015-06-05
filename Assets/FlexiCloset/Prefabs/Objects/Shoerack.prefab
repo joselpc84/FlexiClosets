@@ -1285,7 +1285,7 @@ MonoBehaviour:
   HighNumber: 1
   isUp: 0
   typesCanUp: 06000000
-  itemUp: {fileID: 0}
+  itemUp: []
   itemDown: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
