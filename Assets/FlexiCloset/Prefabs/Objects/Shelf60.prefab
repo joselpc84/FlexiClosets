@@ -1271,7 +1271,7 @@ MonoBehaviour:
   - {fileID: 2374556}
   - {fileID: 2358856}
   - {fileID: 2352400}
-  MatPosition: 0
+  MaterialIndex: 0
   Materials:
   - {fileID: 2100000, guid: 8f2e93f9e806c4cf287b4f730a61a6fb, type: 2}
   - {fileID: 2100000, guid: d564cb0528f9046d2a4b63601b4f3b83, type: 2}
@@ -1285,7 +1285,8 @@ MonoBehaviour:
   HighNumber: 3
   isUp: 0
   typesCanUp: 04000000
-  itemUp: {fileID: 0}
+  itemUp:
+  - {fileID: 0}
   itemDown: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:

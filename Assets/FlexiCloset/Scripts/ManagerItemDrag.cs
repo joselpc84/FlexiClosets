@@ -13,6 +13,8 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
     bool NotSpawned = false;
     bool useDropDown = false;
 
+    bool canDrop = false;
+
     public void OnDrag(Item item)
     {
         InGameUI.Instance.OffPanel();//Hago que se enconda el panel
@@ -31,6 +33,8 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
         //NuevaForma para dar click
         this.useDropDown = true;
         NotSpawned = true;
+        canDrop = false;
+        StartCoroutine("ResetDrop");
         //
         itemSpawned.OnDrag();
     }
@@ -41,8 +45,16 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
         this.useDropDown = useDropDown;
         itemSpawned = item;
         NotSpawned = true;
-
+        canDrop = false;
+        StartCoroutine("ResetDrop");
         itemSpawned.OnDrag();
+    }
+
+    IEnumerator ResetDrop()
+    {
+        yield return new WaitForSeconds(0.2f);
+        canDrop = true;
+
     }
 
     public void OnDrop()
@@ -126,7 +138,7 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
 
                 }
 
-                if (NotSpawned)
+                if (NotSpawned && canDrop)
                 {
                     if (useDropDown)
                     {
