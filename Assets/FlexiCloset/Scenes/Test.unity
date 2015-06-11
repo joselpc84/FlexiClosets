@@ -3293,6 +3293,72 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 700859995}
+--- !u!1001 &744522669
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 317ec51f39f334996b5209508ad58970, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 317ec51f39f334996b5209508ad58970, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 317ec51f39f334996b5209508ad58970, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 317ec51f39f334996b5209508ad58970, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 317ec51f39f334996b5209508ad58970, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 317ec51f39f334996b5209508ad58970, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 317ec51f39f334996b5209508ad58970, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 317ec51f39f334996b5209508ad58970, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 317ec51f39f334996b5209508ad58970, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 317ec51f39f334996b5209508ad58970, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 317ec51f39f334996b5209508ad58970, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 317ec51f39f334996b5209508ad58970, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 317ec51f39f334996b5209508ad58970, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 317ec51f39f334996b5209508ad58970, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ace0855e0dd1245dcbab4d1f16e21368, type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 317ec51f39f334996b5209508ad58970, type: 3}
+  m_IsPrefabParent: 0
 --- !u!1 &746656012
 GameObject:
   m_ObjectHideFlags: 0
@@ -4344,7 +4410,6 @@ GameObject:
   - 124: {fileID: 1016170088}
   - 81: {fileID: 1016170087}
   - 114: {fileID: 1016170092}
-  - 45: {fileID: 1016170093}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4445,14 +4510,6 @@ MonoBehaviour:
   AxisY: Mouse Y
   InputX: 0
   InputY: 0
---- !u!45 &1016170093
-Skybox:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1016170086}
-  m_Enabled: 1
-  m_CustomSkybox: {fileID: 2100000, guid: 9a1615b096ebd402bb5c3af8cc17d245, type: 2}
 --- !u!1 &1023975414
 GameObject:
   m_ObjectHideFlags: 0
