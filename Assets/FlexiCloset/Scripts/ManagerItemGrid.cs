@@ -153,7 +153,7 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
             //Y hay q revisar es con el Maxup no con el hijo.
             //Aqui no necesariamente el key tiene q ser el quad index, y si no lo es ajuro hay q chequear
             //los hermanos y ver si todos coinciden.
-            if (spot.Key == quad.index && spot.Value.itemDown == null)
+            if (spot.Key == quad.index && spot.Value.itemDown == null && !(spot.Value is Wall))
             {
                 Item toCheck = null;
                 toCheck = CheckIsUpIsIn(spot.Value, quad.index, posiblePosition);
