@@ -28,6 +28,10 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
         {
             itemSpawned.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
+        //NuevaForma para dar click
+        this.useDropDown = true;
+        NotSpawned = true;
+        //
         itemSpawned.OnDrag();
     }
 
