@@ -56,6 +56,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallPrefab: {fileID: 11475114, guid: 02e66142daa9f4b84b76c4e0d6a6b5ca, type: 2}
+  MaxNumberHeigh: 6
+  prefabText: {fileID: 10267402, guid: c9ba04d872b7b4832ac2a8ca8c5c5942, type: 2}
 --- !u!114 &11464518
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -74,7 +76,12 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: prefabText
+      value: 
+      objectReference: {fileID: 10267402, guid: c9ba04d872b7b4832ac2a8ca8c5c5942,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 149018}

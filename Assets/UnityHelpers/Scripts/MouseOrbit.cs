@@ -39,40 +39,37 @@ public class MouseOrbit : MonoBehaviour
         }
     }
 
+    public float ValueY
+    {
+        set
+        {
+            float valueToMove = (yMaxLimit - yMinLimit) * value + yMinLimit;
+            y = valueToMove;
+            UpdateTransform();
+        }
+    }
+
+
     float x = 0.0f;
     float y = 0.0f;
 
     public string AxisX = "Mouse X";
     public string AxisY = "Mouse Y";
 
-    public float InputX = 0;
-    public float InputY = 0;
 
     void Start()
     {
         Vector3 angles = transform.eulerAngles;
-        x = angles.y;
-        y = angles.x;
-        distance = MaxDistance;
+        ValueX = 0.5f;
+        ValueY = 0.5f;
+        Value = 0.5f;
     }
 
-    public void SetInputX(float value)
-    {
-        InputX = value;
-    }
-
-    public void SetInputY(float value)
-    {
-        InputY = value;
-    }
 
     void LateUpdate()
     {
         if (target)
         {
-            x += InputX * xSpeed * Time.deltaTime;
-            y -= InputY * ySpeed * Time.deltaTime;
-
             UpdateTransform();
 
         }

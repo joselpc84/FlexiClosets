@@ -222,7 +222,61 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 
     }
 
-    public List< List<int>> getDistance()
+    public List< List<int>> getRowsOfWallUD()
+    {
+        List< List<int>> muros = new List< List<int>>();
+        List<int> firstRow = new List<int>();
+
+        foreach (var wall in itemsWall)
+        {
+            bool isInAnyOne = false;
+            while (!isInAnyOne)
+            {
+                foreach (List<int> listi in muros)
+                {
+                    if (listi.Contains(wall.Value.SpotID))
+                    {
+                        isInAnyOne = true;
+                    }
+                }
+                break;
+            }
+
+            if (!isInAnyOne)
+            {
+
+                firstRow.Add(wall.Value.SpotID);
+                Wall up = wall.Value.upWall;
+                while (up != null)
+                {
+
+                    firstRow.Add(up.SpotID);
+                    up = up.upWall;
+                }
+
+                Wall down = wall.Value.downWall;
+                while (true)
+                {
+                    if (down == null)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        firstRow.Add(down.SpotID);
+                        down = down.downWall;
+                    }
+
+                }
+                muros.Add(firstRow);
+                firstRow = new List<int>();
+
+            }
+        }
+        return muros;
+    }
+
+    public List< List<int>> getRowsOfWallLR()
     {
         List< List<int>> muros = new List< List<int>>();
         List<int> firstRow = new List<int>();
@@ -274,5 +328,83 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
             }
         }
         return muros;
+    }
+
+
+    void Start()
+    {
+    
+        prefabText.CreatePool(10);
+    }
+
+    public TextMesh prefabText;
+    public float TamanoBloques = 0.5f;
+
+    public void offDistanceWall()
+    {
+        prefabText.RecycleAll();
+
+    }
+
+    public void ShowDistanceWall()
+    {
+        offDistanceWall();
+        List<Vector3> pos = new List<Vector3>();
+        List<float> valuedistance = new List<float>();
+
+        List< List<int>> testWallsLR = getRowsOfWallLR();
+        for (int i = 0; i < testWallsLR.Count; i++)
+        {
+            if (testWallsLR[i].Count == 1)
+                continue;
+            Wall right = itemsWall[testWallsLR[i][0]];
+            Wall rightstore = right;
+            while (right != null)
+            {
+                rightstore = right;
+                right = right.rightWall;
+            }
+            Wall left = itemsWall[testWallsLR[i][0]];
+            Wall leftstore = left;
+            while (left != null)
+            {
+                leftstore = left;
+                left = left.leftWall;
+            }
+            valuedistance.Add(testWallsLR[i].Count * TamanoBloques);
+            Vector3 dir = leftstore.transform.position - rightstore.transform.position;
+            Vector3 poosAux = (rightstore.transform.position + dir.normalized * dir.magnitude * 0.5f) + Vector3.up * rightstore.HighValue;
+            pos.Add(poosAux);
+        }
+
+        List< List<int>> testWallUD = getRowsOfWallUD();
+        for (int i = 0; i < testWallUD.Count; i++)
+        {
+            if (testWallUD[i].Count == 1)
+                continue;
+            Wall up = itemsWall[testWallUD[i][0]];
+            Wall upstore = up;
+            while (up != null)
+            {
+                upstore = up;
+                up = up.upWall;
+            }
+            Wall down = itemsWall[testWallUD[i][0]];
+            Wall downstore = down;
+            while (down != null)
+            {
+                downstore = down;
+                down = down.downWall;
+            }
+            valuedistance.Add(testWallUD[i].Count * TamanoBloques);
+            Vector3 dir = downstore.transform.position - upstore.transform.position;
+            Vector3 poosAux = (upstore.transform.position + dir.normalized * dir.magnitude * 0.5f) + Vector3.up * upstore.HighValue;
+            pos.Add(poosAux);
+        }
+        for (int i = 0; i < pos.Count; ++i)
+        {
+            TextMesh obj = prefabText.Spawn(pos[i]);
+            obj.text = valuedistance[i].ToString() + " m";
+        }
     }
 }

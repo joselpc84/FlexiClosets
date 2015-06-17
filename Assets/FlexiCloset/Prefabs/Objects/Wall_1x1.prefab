@@ -587,23 +587,25 @@ MonoBehaviour:
   - {fileID: 2381938}
   planes:
   - {fileID: 2343828}
-  MatPosition: -1
+  MaterialIndex: 0
   Materials:
   - {fileID: 2100000, guid: 1aa4e1b8953514669a8c2d0eb327d3b6, type: 2}
   SelectedMaterial:
   - {fileID: 2100000, guid: cba2b00c3f84142f49305afe76380614, type: 2}
   typeForniture: 0
-  HighValue: .100000001
+  HighValue: .200000003
   HighNumber: 1
   isUp: 0
   typesCanUp: 
-  itemUp: {fileID: 0}
+  itemUp:
+  - {fileID: 0}
   itemDown: {fileID: 0}
   GUI: {fileID: 11416014}
   leftWall: {fileID: 0}
   rightWall: {fileID: 0}
   upWall: {fileID: 0}
   downWall: {fileID: 0}
+  EraseAll: 0
 --- !u!114 &11490476
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -626,7 +628,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: HighValue
+      value: .200000003
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 140912}
