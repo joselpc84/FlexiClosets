@@ -7399,9 +7399,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Shelf60
-
-'
+  m_Text: Shelf60
 --- !u!222 &1284669637
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -143,14 +143,14 @@ public class Item : MonoBehaviour
     {
         ManagerInputItem.Instance.HardReset();
         ManagerItemGrid.Instance.RemoveItem(this);
-        if (itemUp.Count > 0)
+        for (int i = 0; i < itemUp.Count; ++i)
         {
-            for (int i = 0; i < itemUp.Count; ++i)
+            if (itemUp[i] != null)
                 itemUp[i].Remove();
-            //   itemUp.Remove();
-            itemUp.Clear();
-
         }
+
+        itemUp.Clear();
+
         if (itemDown != null)
         {
             itemDown = null;
