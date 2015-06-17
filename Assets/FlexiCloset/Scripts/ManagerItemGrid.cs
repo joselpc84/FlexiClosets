@@ -40,6 +40,7 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 
                 }
                 ModuloUI.Instance.EnableObjects(true);
+                ShowDistanceWall();
             }
         }
         allItems.Add(item);
