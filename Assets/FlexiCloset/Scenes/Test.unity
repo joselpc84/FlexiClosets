@@ -1043,7 +1043,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 359334135}
           m_MethodName: RotaeRigth
           m_Mode: 1
           m_Arguments:
@@ -1060,7 +1060,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 359334135}
           m_MethodName: BlockInput
           m_Mode: 6
           m_Arguments:
@@ -1077,7 +1077,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 359334135}
           m_MethodName: BlockInput
           m_Mode: 6
           m_Arguments:
@@ -1095,7 +1095,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 0}
           m_MethodName: RotaeRigth
           m_Mode: 1
           m_Arguments:
@@ -1112,7 +1112,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 0}
           m_MethodName: BlockInput
           m_Mode: 6
           m_Arguments:
@@ -1129,7 +1129,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 0}
           m_MethodName: BlockInput
           m_Mode: 6
           m_Arguments:
@@ -1190,7 +1190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: .960784376, g: .788235366, b: .337254912, a: 1}
   m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
@@ -1544,7 +1544,6 @@ GameObject:
   - 114: {fileID: 265370543}
   - 114: {fileID: 265370542}
   - 114: {fileID: 265370541}
-  - 225: {fileID: 265370540}
   m_Layer: 5
   m_Name: RemoveWall 1
   m_TagString: Untagged
@@ -1563,24 +1562,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1421664939}
-  m_Father: {fileID: 1982344416}
-  m_RootOrder: 5
-  m_AnchorMin: {x: .576174319, y: .00641157199}
-  m_AnchorMax: {x: .649924338, y: .100451253}
-  m_AnchoredPosition: {x: 6.10351562e-05, y: -3.81469727e-06}
+  m_Father: {fileID: 1866184258}
+  m_RootOrder: 1
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
---- !u!225 &265370540
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 265370538}
-  m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
-  m_IgnoreParentGroups: 0
 --- !u!114 &265370541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1597,7 +1585,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 359334135}
           m_MethodName: RemoveAllWall
           m_Mode: 1
           m_Arguments:
@@ -1614,7 +1602,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 359334135}
           m_MethodName: BlockInput
           m_Mode: 6
           m_Arguments:
@@ -1631,7 +1619,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 359334135}
           m_MethodName: BlockInput
           m_Mode: 6
           m_Arguments:
@@ -1649,7 +1637,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 0}
           m_MethodName: RemoveAllWall
           m_Mode: 1
           m_Arguments:
@@ -1666,7 +1654,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 0}
           m_MethodName: BlockInput
           m_Mode: 6
           m_Arguments:
@@ -1683,7 +1671,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 0}
           m_MethodName: BlockInput
           m_Mode: 6
           m_Arguments:
@@ -1744,7 +1732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: .960784376, g: .788235366, b: .337254912, a: 1}
   m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
@@ -2227,6 +2215,99 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 340996546}
+--- !u!1 &359334133
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 359334134}
+  - 222: {fileID: 359334138}
+  - 114: {fileID: 359334137}
+  - 225: {fileID: 359334136}
+  - 114: {fileID: 359334135}
+  m_Layer: 5
+  m_Name: PopUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &359334134
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 359334133}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1154165155}
+  m_Father: {fileID: 1982344416}
+  m_RootOrder: 3
+  m_AnchorMin: {x: .0442125015, y: .515999973}
+  m_AnchorMax: {x: .319186091, y: .967408121}
+  m_AnchoredPosition: {x: -3.81469727e-06, y: 0}
+  m_SizeDelta: {x: -7.62939453e-06, y: 0}
+  m_Pivot: {x: .5, y: .5}
+--- !u!114 &359334135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 359334133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa2e918b9f88642098089e09edb19e53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PopUpCanvas: {fileID: 359334136}
+  item: {fileID: 0}
+  groupCanvas: {fileID: 1664572771}
+  piso: {fileID: 325345750}
+  CameraOrbit: {fileID: 1016170092}
+  WallItem:
+  - {fileID: 1866184259}
+--- !u!225 &359334136
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 359334133}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!114 &359334137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 359334133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &359334138
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 359334133}
 --- !u!1 &370993330
 GameObject:
   m_ObjectHideFlags: 0
@@ -2526,7 +2607,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 359334135}
           m_MethodName: RotaeLeft
           m_Mode: 1
           m_Arguments:
@@ -2543,7 +2624,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 359334135}
           m_MethodName: BlockInput
           m_Mode: 6
           m_Arguments:
@@ -2560,7 +2641,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 359334135}
           m_MethodName: BlockInput
           m_Mode: 6
           m_Arguments:
@@ -2578,7 +2659,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 0}
           m_MethodName: RotaeLeft
           m_Mode: 1
           m_Arguments:
@@ -2595,7 +2676,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 0}
           m_MethodName: BlockInput
           m_Mode: 6
           m_Arguments:
@@ -2612,7 +2693,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 0}
           m_MethodName: BlockInput
           m_Mode: 6
           m_Arguments:
@@ -2673,7 +2754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: .960784376, g: .788235366, b: .337254912, a: 1}
   m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
@@ -4033,7 +4114,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 317ec51f39f334996b5209508ad58970, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 317ec51f39f334996b5209508ad58970, type: 3}
       propertyPath: m_LocalScale.x
@@ -4719,7 +4800,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 469596, guid: f08bc2b77e0484c68b74a4e17b446381, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f08bc2b77e0484c68b74a4e17b446381, type: 2}
@@ -4879,7 +4960,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1982344416}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_AnchorMin: {x: .727500021, y: .833284497}
   m_AnchorMax: {x: 1, y: .999993384}
   m_AnchoredPosition: {x: 0, y: 7.62939453e-06}
@@ -6453,6 +6534,69 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 0
+--- !u!1 &1154165154
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1154165155}
+  - 222: {fileID: 1154165157}
+  - 114: {fileID: 1154165156}
+  m_Layer: 5
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1154165155
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1154165154}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1664572767}
+  - {fileID: 1866184258}
+  m_Father: {fileID: 359334134}
+  m_RootOrder: 0
+  m_AnchorMin: {x: .0175000019, y: .0166666675}
+  m_AnchorMax: {x: .982500017, y: .978333354}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: .5, y: .5}
+--- !u!114 &1154165156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1154165154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1154165157
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1154165154}
 --- !u!1 &1156171776
 GameObject:
   m_ObjectHideFlags: 0
@@ -7663,7 +7807,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 420880, guid: 83fb88123b1704b6aa6b4b209252c5b7, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11439208, guid: 83fb88123b1704b6aa6b4b209252c5b7, type: 2}
       propertyPath: Size
@@ -8563,7 +8707,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1495529603
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8577,10 +8721,10 @@ RectTransform:
   - {fileID: 1818601938}
   m_Father: {fileID: 1664572767}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 39.1600571, y: -146.342834}
+  m_SizeDelta: {x: 58.3600006, y: 45}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1495529604
 MonoBehaviour:
@@ -8598,7 +8742,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 359334135}
           m_MethodName: Move
           m_Mode: 1
           m_Arguments:
@@ -8615,7 +8759,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 359334135}
           m_MethodName: BlockInput
           m_Mode: 6
           m_Arguments:
@@ -8632,7 +8776,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 359334135}
           m_MethodName: BlockInput
           m_Mode: 6
           m_Arguments:
@@ -8650,7 +8794,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 0}
           m_MethodName: Move
           m_Mode: 1
           m_Arguments:
@@ -8667,7 +8811,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 0}
           m_MethodName: BlockInput
           m_Mode: 6
           m_Arguments:
@@ -8684,7 +8828,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 0}
           m_MethodName: BlockInput
           m_Mode: 6
           m_Arguments:
@@ -8745,7 +8889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: .960784376, g: .788235366, b: .337254912, a: 1}
   m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
@@ -9018,7 +9162,6 @@ GameObject:
   - 114: {fileID: 1529424348}
   - 114: {fileID: 1529424347}
   - 114: {fileID: 1529424346}
-  - 225: {fileID: 1529424345}
   m_Layer: 5
   m_Name: RemoveWall
   m_TagString: Untagged
@@ -9037,24 +9180,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1313929565}
-  m_Father: {fileID: 1982344416}
-  m_RootOrder: 4
-  m_AnchorMin: {x: .492500007, y: .00641156454}
-  m_AnchorMax: {x: .566250026, y: .100451246}
+  m_Father: {fileID: 1866184258}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
---- !u!225 &1529424345
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1529424343}
-  m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
-  m_IgnoreParentGroups: 0
 --- !u!114 &1529424346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9071,7 +9203,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 359334135}
           m_MethodName: RemoveWall
           m_Mode: 1
           m_Arguments:
@@ -9088,7 +9220,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 359334135}
           m_MethodName: BlockInput
           m_Mode: 6
           m_Arguments:
@@ -9105,7 +9237,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 359334135}
           m_MethodName: BlockInput
           m_Mode: 6
           m_Arguments:
@@ -9123,7 +9255,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 0}
           m_MethodName: RemoveWall
           m_Mode: 1
           m_Arguments:
@@ -9140,7 +9272,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 0}
           m_MethodName: BlockInput
           m_Mode: 6
           m_Arguments:
@@ -9157,7 +9289,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 0}
           m_MethodName: BlockInput
           m_Mode: 6
           m_Arguments:
@@ -9218,7 +9350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: .960784376, g: .788235366, b: .337254912, a: 1}
   m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
@@ -9817,7 +9949,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 359334135}
           m_MethodName: Remove
           m_Mode: 1
           m_Arguments:
@@ -9834,7 +9966,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 359334135}
           m_MethodName: BlockInput
           m_Mode: 6
           m_Arguments:
@@ -9851,7 +9983,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 359334135}
           m_MethodName: BlockInput
           m_Mode: 6
           m_Arguments:
@@ -9869,7 +10001,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 0}
           m_MethodName: Remove
           m_Mode: 1
           m_Arguments:
@@ -9886,7 +10018,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 0}
           m_MethodName: BlockInput
           m_Mode: 6
           m_Arguments:
@@ -9903,7 +10035,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 0}
           m_MethodName: BlockInput
           m_Mode: 6
           m_Arguments:
@@ -9964,7 +10096,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: .960784376, g: .788235366, b: .337254912, a: 1}
   m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
@@ -10188,7 +10320,6 @@ GameObject:
   m_Component:
   - 224: {fileID: 1664572767}
   - 114: {fileID: 1664572768}
-  - 114: {fileID: 1664572770}
   - 225: {fileID: 1664572771}
   m_Layer: 5
   m_Name: Item_Panel
@@ -10212,10 +10343,10 @@ RectTransform:
   - {fileID: 470686087}
   - {fileID: 232517226}
   - {fileID: 2009584342}
-  m_Father: {fileID: 1982344416}
-  m_RootOrder: 3
-  m_AnchorMin: {x: .390000015, y: 0}
-  m_AnchorMax: {x: .838750124, y: .106862813}
+  m_Father: {fileID: 1154165155}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -10242,24 +10373,6 @@ MonoBehaviour:
   m_Spacing: {x: 10, y: 10}
   m_Constraint: 0
   m_ConstraintCount: 1
---- !u!114 &1664572770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1664572766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa2e918b9f88642098089e09edb19e53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: {fileID: 0}
-  groupCanvas: {fileID: 1664572771}
-  piso: {fileID: 325345750}
-  CameraOrbit: {fileID: 1016170092}
-  WallItem:
-  - {fileID: 1529424345}
-  - {fileID: 265370540}
 --- !u!225 &1664572771
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -10267,9 +10380,9 @@ CanvasGroup:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1664572766}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &1699427011
 GameObject:
@@ -10760,7 +10873,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 448846, guid: 78586930c92f24cbc9422180e82e1236, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78586930c92f24cbc9422180e82e1236, type: 2}
@@ -10831,6 +10944,76 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1861230229}
+--- !u!1 &1866184257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1866184258}
+  - 114: {fileID: 1866184260}
+  - 225: {fileID: 1866184259}
+  m_Layer: 5
+  m_Name: Wall_Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1866184258
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1866184257}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1529424344}
+  - {fileID: 265370539}
+  m_Father: {fileID: 1154165155}
+  m_RootOrder: 1
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: .5, y: .5}
+--- !u!225 &1866184259
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1866184257}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!114 &1866184260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1866184257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -2095666955, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 58.3600006, y: 45}
+  m_Spacing: {x: 10, y: 10}
+  m_Constraint: 0
+  m_ConstraintCount: 1
 --- !u!1 &1916792426
 GameObject:
   m_ObjectHideFlags: 0
@@ -11357,9 +11540,7 @@ RectTransform:
   - {fileID: 2112116528}
   - {fileID: 1699427012}
   - {fileID: 1470171027}
-  - {fileID: 1664572767}
-  - {fileID: 1529424344}
-  - {fileID: 265370539}
+  - {fileID: 359334134}
   - {fileID: 935933978}
   m_Father: {fileID: 1534712179}
   m_RootOrder: 1
@@ -11640,7 +11821,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 359334135}
           m_MethodName: CenterCamera
           m_Mode: 1
           m_Arguments:
@@ -11657,7 +11838,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 359334135}
           m_MethodName: BlockInput
           m_Mode: 6
           m_Arguments:
@@ -11674,7 +11855,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 359334135}
           m_MethodName: BlockInput
           m_Mode: 6
           m_Arguments:
@@ -11692,7 +11873,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 0}
           m_MethodName: CenterCamera
           m_Mode: 1
           m_Arguments:
@@ -11709,7 +11890,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 0}
           m_MethodName: BlockInput
           m_Mode: 6
           m_Arguments:
@@ -11726,7 +11907,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1664572770}
+        - m_Target: {fileID: 0}
           m_MethodName: BlockInput
           m_Mode: 6
           m_Arguments:
@@ -11787,7 +11968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: .960784376, g: .788235366, b: .337254912, a: 1}
   m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0

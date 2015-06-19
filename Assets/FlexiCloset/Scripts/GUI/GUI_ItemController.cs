@@ -3,6 +3,8 @@ using System.Collections;
 
 public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
 {
+    public CanvasGroup PopUpCanvas;
+    [HideInInspector]
     public Item item;
     //  public GameObject[] Buttons;
     public CanvasGroup groupCanvas;
@@ -11,27 +13,6 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
 
     public CanvasGroup[] WallItem;
 
-    public void TurnOnWall()
-    {
-        for (int i = 0; i < WallItem.Length; ++i)
-        {
-            GUI_ItemController.Instance.WallItem[i].alpha = 1;
-            GUI_ItemController.Instance.WallItem[i].blocksRaycasts = true;
-            GUI_ItemController.Instance.WallItem[i].interactable = true;
-        }
-
-    }
-
-    public void TurnOffWall()
-    {
-        for (int i = 0; i < WallItem.Length; ++i)
-        {
-            GUI_ItemController.Instance.WallItem[i].alpha = 0;
-            GUI_ItemController.Instance.WallItem[i].blocksRaycasts = false;
-            GUI_ItemController.Instance.WallItem[i].interactable = false;
-        }
-
-    }
 
     void Awake()
     {
@@ -123,25 +104,72 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
 
     public void ActivateGUI(Item item)
     {
+        ShowPop();
         this.item = item;
-        /*
-        for (int i = 0; i < Buttons.Length; ++i)
-            Buttons[i].SetActive(true);
-            */
+
         groupCanvas.alpha = 1;
         groupCanvas.interactable = true;
+        groupCanvas.blocksRaycasts = true;
+
     }
 
     public void DeActivateGUI()
     {
-        this.item = null;
+        HidePop();
         /*
-        for (int i = 0; i < Buttons.Length; ++i)
-            Buttons[i].SetActive(false);
-*/
+        this.item = null;
         groupCanvas.alpha = 0;
         groupCanvas.interactable = false;
-    }
-        
+        groupCanvas.blocksRaycasts = false;*/
 
+    }
+
+    public void TurnOnWall()
+    {
+        ShowPop();
+        for (int i = 0; i < WallItem.Length; ++i)
+        {
+            GUI_ItemController.Instance.WallItem[i].alpha = 1;
+            GUI_ItemController.Instance.WallItem[i].blocksRaycasts = true;
+            GUI_ItemController.Instance.WallItem[i].interactable = true;
+        }
+
+    }
+
+    public void TurnOffWall()
+    {
+        HidePop();
+        /*  for (int i = 0; i < WallItem.Length; ++i)
+        {
+            GUI_ItemController.Instance.WallItem[i].alpha = 0;
+            GUI_ItemController.Instance.WallItem[i].blocksRaycasts = false;
+            GUI_ItemController.Instance.WallItem[i].interactable = false;
+        }*/
+    }
+
+    public void ShowPop()
+    {
+        PopUpCanvas.alpha = 1;
+        PopUpCanvas.interactable = true;
+        PopUpCanvas.blocksRaycasts = true;
+    }
+
+    public void HidePop()
+    {
+        PopUpCanvas.alpha = 0;
+        PopUpCanvas.interactable = false;
+        PopUpCanvas.blocksRaycasts = false;
+
+        for (int i = 0; i < WallItem.Length; ++i)
+        {
+            GUI_ItemController.Instance.WallItem[i].alpha = 0;
+            GUI_ItemController.Instance.WallItem[i].blocksRaycasts = false;
+            GUI_ItemController.Instance.WallItem[i].interactable = false;
+        }
+
+        this.item = null;
+        groupCanvas.alpha = 0;
+        groupCanvas.interactable = false;
+        groupCanvas.blocksRaycasts = false;
+    }
 }
