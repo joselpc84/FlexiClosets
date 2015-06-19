@@ -99,4 +99,5 @@ public class ModuloUI : PersistentSingleton<ModuloUI>
         PopUp.blocksRaycasts = false;
         PopUp.interactable = false;
     }
+        
 }
