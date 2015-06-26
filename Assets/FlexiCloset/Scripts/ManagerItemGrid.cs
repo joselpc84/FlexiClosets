@@ -41,6 +41,7 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
                 }
                 ModuloUI.Instance.EnableObjects(true);
                 ShowDistanceWall();
+
             }
         }
         allItems.Add(item);
@@ -64,9 +65,9 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
                 for (int i = 0; i < bros.Length; ++i)
                 {
                     itemsWall.Remove(bros[i]);
-
                 }
-
+                //Apagar y prender de acuerdo si es muro sus distancias
+                ShowDistanceWall();
             }
         }
 
@@ -331,6 +332,7 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
         return muros;
     }
 
+    #region Wall Distance:
 
     void Start()
     {
@@ -340,6 +342,25 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 
     public TextMesh prefabText;
     public float TamanoBloques = 0.5f;
+    bool _isShowDistanceWall = true;
+
+    public bool isShowDistanceWall
+    {
+    
+        get
+        {
+        
+            return _isShowDistanceWall;
+        }
+        set
+        {
+            _isShowDistanceWall = !_isShowDistanceWall;
+            if (!_isShowDistanceWall)
+                offDistanceWall();
+            else
+                ShowDistanceWall();
+        }
+    }
 
     public void offDistanceWall()
     {
@@ -350,6 +371,9 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
     public void ShowDistanceWall()
     {
         offDistanceWall();
+        if (isShowDistanceWall == false)
+            return;
+        
         List<Vector3> pos = new List<Vector3>();
         List<float> valuedistance = new List<float>();
 
@@ -408,4 +432,6 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
             obj.text = valuedistance[i].ToString() + " m";
         }
     }
+
+    #endregion
 }
