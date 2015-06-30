@@ -605,6 +605,7 @@ MonoBehaviour:
   rightWall: {fileID: 0}
   upWall: {fileID: 0}
   downWall: {fileID: 0}
+  TransparentWall: {fileID: 2100000, guid: 710bc26c1aa534c0582befd7510b9a4d, type: 2}
   EraseAll: 0
 --- !u!114 &11490476
 MonoBehaviour:
@@ -649,6 +650,10 @@ Prefab:
       propertyPath: HighNumber
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: TransparentWall
+      value: 
+      objectReference: {fileID: 2100000, guid: 710bc26c1aa534c0582befd7510b9a4d, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 140912}

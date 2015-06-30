@@ -345,7 +345,7 @@ public class Item : MonoBehaviour
         }
     }
 
-    protected void DeSelectedMesh()
+    protected virtual void DeSelectedMesh()
     {
         for (int i = 0; i < mesh.Length; ++i)
         {

@@ -434,4 +434,28 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
     }
 
     #endregion
+
+    public bool isShowWalls = true;
+
+    public void ShowWalls()
+    {
+        isShowWalls = !isShowWalls;
+        if (isShowWalls)
+        {
+            foreach (KeyValuePair<int,Wall> pair in itemsWall)
+            {
+                pair.Value.SeeWall();
+
+            }
+        }
+        else
+        {
+            foreach (KeyValuePair<int,Wall> pair in itemsWall)
+            {
+                pair.Value.DontSeeWall();
+
+            }
+        }
+
+    }
 }

@@ -16,6 +16,8 @@ public class Wall : Item
     //   [HideInInspector]
     public Wall downWall;
 
+    public Material TransparentWall;
+
     [HideInInspector]
     public bool EraseAll = false;
 
@@ -47,6 +49,11 @@ public class Wall : Item
     {
         base.OnDrop();
         AddWallVecinos();
+        if (!ManagerItemGrid.Instance.isShowWalls)
+        {
+            DontSeeWall();
+
+        }
     }
 
     protected void AddWallVecinos()
@@ -163,4 +170,41 @@ public class Wall : Item
         StartCoroutine("ResetClick", false);
     }
 
+    public void DontSeeWall()
+    {
+        for (int i = 0; i < mesh.Length; ++i)
+        {
+            mesh[i].material = TransparentWall;
+        }
+    }
+
+    public void SeeWall()
+    {
+        for (int i = 0; i < mesh.Length; ++i)
+        {
+            foreach (Material mat in mesh[i].materials)
+            {
+                if (mat.HasProperty("_Color"))
+                {
+                    mat.color = new Color(1, 1, 1, 1);
+                }
+                else if (mat.HasProperty("_TintColor"))
+                {
+                    mat.SetColor("_TintColor", new Color(1, 1, 1, 1));
+                }
+            }
+            mesh[i].material = Materials[MaterialIndex];
+
+        }
+    }
+
+    protected override void DeSelectedMesh()
+    {
+        base.DeSelectedMesh();
+        if (!ManagerItemGrid.Instance.isShowWalls)
+        {
+            DontSeeWall();
+
+        }
+    }
 }
