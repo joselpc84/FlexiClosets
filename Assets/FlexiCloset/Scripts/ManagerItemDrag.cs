@@ -21,7 +21,7 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
 
         ManagerInputItem.Instance.isClickOnGUI = true;
         NotSpawned = false;
-        itemSpawned = item.Spawn();
+        itemSpawned = item.Spawn(item.transform.position, item.transform.rotation);
         if (ManagerMouseControl.Instance.CurrentMousePos().HasValue)
         {
             itemSpawned.SetPos(ManagerMouseControl.Instance.CurrentMousePos().Value);

@@ -39,7 +39,7 @@ public class Item : MonoBehaviour
     public Dictionary<string,int> dictMaterial = new Dictionary<string,int>();
      
 
-    protected DirectionFace DirectionForward = DirectionFace.NegZ;
+    public DirectionFace DirectionForward = DirectionFace.NegZ;
 
     protected QuadInfo PositionStart;
 
@@ -191,6 +191,9 @@ public class Item : MonoBehaviour
     {
         if (itemUp.Count == 0)
         {
+            if (GUI_ItemController.Instance.CameraOrbit.target == transform)
+                GUI_ItemController.Instance.CameraOrbit.target = GUI_ItemController.Instance.piso;
+            
             ManagerInputItem.Instance.HardReset();
             ManagerItemGrid.Instance.RemoveItem(this);
             ManagerItemDrag.Instance.OnDragWhitoutSpawn(this, useDropDown);
@@ -200,6 +203,8 @@ public class Item : MonoBehaviour
                 itemDown.itemUp.Remove(this);
                 itemDown = null;
             }
+
+
         }
     }
 
@@ -448,6 +453,7 @@ public class Item : MonoBehaviour
     protected virtual void LogicOnClicked()
     {
         GUI_ItemController.Instance.ActivateGUI(this);
+        GUI.ActivateBotons();
 
     }
 
@@ -464,7 +470,21 @@ public class Item : MonoBehaviour
     protected virtual void LogicOnCancel()
     {
         GUI_ItemController.Instance.DeActivateGUI();
+        GUI.DeActivateBotons();
+    }
 
+    IEnumerator ResetClick(bool value)
+    {
+
+        yield return new WaitForSeconds(0.1f);
+        ManagerInputItem.Instance.isClickOnGUI = value;
+        //   gameObject.SetActive(false);
+    }
+
+    public void ResetGUI()
+    {
+        StopCoroutine("ResetClick");
+        StartCoroutine("ResetClick", false);
     }
 
     #endregion
@@ -524,4 +544,7 @@ public class Item : MonoBehaviour
     }
 
     #endregion
+
+    public UiArrowActivator GUI;
+
 }

@@ -6,7 +6,7 @@ public class UiArrowActivator : MonoBehaviour
     public Item wallItem;
     public BotonGuiWall[] botons;
 
-    public void ActivateBotons()
+    public virtual void ActivateBotons()
     {
         for (int i = 0; i < botons.Length; ++i)
         {
@@ -17,7 +17,7 @@ public class UiArrowActivator : MonoBehaviour
 
     }
 
-    public void DeActivateBotons()
+    public virtual void DeActivateBotons()
     {
         for (int i = 0; i < botons.Length; ++i)
         {

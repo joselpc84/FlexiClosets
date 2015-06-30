@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class Wall : Item
 {
 
-    public UiArrowActivator GUI;
 
     //   [HideInInspector]
     public Wall leftWall;
@@ -156,19 +155,9 @@ public class Wall : Item
 
     }
 
-    IEnumerator ResetClick(bool value)
-    {
 
-        yield return new WaitForSeconds(0.1f);
-        ManagerInputItem.Instance.isClickOnGUI = value;
-        //   gameObject.SetActive(false);
-    }
 
-    public void ResetGUI()
-    {
-        StopCoroutine("ResetClick");
-        StartCoroutine("ResetClick", false);
-    }
+
 
     public void DontSeeWall()
     {

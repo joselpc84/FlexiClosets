@@ -32,7 +32,7 @@ public class BotonGuiWall : MonoBehaviour
 
     }
 
-    void Update()
+    protected virtual void Update()
     {
         if (Input.GetMouseButton(0))
         {
@@ -49,7 +49,7 @@ public class BotonGuiWall : MonoBehaviour
 
     }
 
-    IEnumerator ResetClick(bool value)
+    protected IEnumerator ResetClick(bool value)
     {
     
         yield return new WaitForSeconds(0.1f);
@@ -59,7 +59,7 @@ public class BotonGuiWall : MonoBehaviour
 
 
 
-    void OnClick()
+    protected virtual void OnClick()
     {
         Vector3 direction = gameObject.transform.position - wall.transform.position;
         direction.y = 0;
