@@ -88,10 +88,12 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
             {
                 CameraOrbit.target = item.transform;
             }
-            else
-            {
-                CameraOrbit.target = piso;
-            }
+
+        }
+        else
+        {
+            CameraOrbit.target = piso;
+
         }
     }
 

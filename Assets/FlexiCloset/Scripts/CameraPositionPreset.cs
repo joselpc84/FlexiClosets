@@ -275,4 +275,20 @@ public class CameraPositionPreset : MonoBehaviour
             OrbitController_Y.value = storeOrbitY;
         }
     }
+
+
+    public void CenterCamera()
+    {
+        if (!isReaching)
+        {
+            Camera.main.orthographic = false;
+            controller.enabled = true;
+            ZoomController.value = 0.5f;   
+            OrbitController_X.value = 0.5f;   
+            OrbitController_Y.value = 0.5f;
+        }
+    }
+
+
+
 }
