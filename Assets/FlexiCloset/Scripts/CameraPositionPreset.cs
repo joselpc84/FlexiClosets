@@ -65,8 +65,12 @@ public class CameraPositionPreset : MonoBehaviour
     LTDescr pos;
     LTDescr rot;
 
+    bool isReaching = false;
+
     public void GoToLeft()
     {
+        if (isReaching)
+            return;
 
         //C = 0,0.25 
         //B = 0.75, 1
@@ -102,8 +106,6 @@ public class CameraPositionPreset : MonoBehaviour
         }
         else if ((posB.RotationValue <= OrbitController_Y.value) && (OrbitController_Y.value <= 1.0f))
         {
-            Debug.Log("Este Giro da problema de B a C");
-
             currentPreset = posC;
         }
 
@@ -113,15 +115,18 @@ public class CameraPositionPreset : MonoBehaviour
         if (rot != null)
             rot.pause();
         pos = LeanTween.value(gameObject, OnPosChanged, transform.position, currentPreset.Position, TimeToReach);
-        pos = pos.setEase(LeanTweenType.linear);
         pos.onComplete = OnCompelteAll;
-        rot = LeanTween.value(gameObject, OnRotChanged, transform.rotation.eulerAngles, currentPreset.Rotation, TimeToReach);
-        rot = rot.setEase(LeanTweenType.linear);
+        isReaching = true;
+        // rot = LeanTween.value(gameObject, OnRotChanged, transform.rotation.eulerAngles, currentPreset.Rotation, TimeToReach);
+        // rot = rot.setEase(LeanTweenType.linear);
 
     }
 
     public void GoToRight()
     {
+        if (isReaching)
+            return;
+        
         if ((0 <= OrbitController_Y.value) && (OrbitController_Y.value < posC.RotationValue))
         {
             currentPreset = posB;
@@ -162,15 +167,16 @@ public class CameraPositionPreset : MonoBehaviour
         if (rot != null)
             rot.pause();
         pos = LeanTween.value(gameObject, OnPosChanged, transform.position, currentPreset.Position, TimeToReach);
-        pos = pos.setEase(LeanTweenType.linear);
         pos.onComplete = OnCompelteAll;
-        rot = LeanTween.value(gameObject, OnRotChanged, transform.rotation.eulerAngles, currentPreset.Rotation, TimeToReach);
-        rot = rot.setEase(LeanTweenType.linear);
+        isReaching = true;
+        //    rot = LeanTween.value(gameObject, OnRotChanged, transform.rotation.eulerAngles, currentPreset.Rotation, TimeToReach);
+        //    rot = rot.setEase(LeanTweenType.linear);
 
     }
 
     void OnCompelteAll()
     {
+        isReaching = false;
         controller.enabled = true;
 
         ZoomController.value = currentPreset.Zoom;   
@@ -181,7 +187,7 @@ public class CameraPositionPreset : MonoBehaviour
     void OnPosChanged(Vector3 pos)
     {
         transform.position = pos;
-              
+        Camera.main.transform.LookAt(controller.target);         
     }
 
     void OnRotChanged(Vector3 rot)
@@ -189,5 +195,84 @@ public class CameraPositionPreset : MonoBehaviour
         transform.rotation = Quaternion.Euler(rot);
 
     }
-        
+
+    // A 0,6,100  - 0,180,0
+    // B 100,6,0 - 0,270,0
+    // C 0,6,-100 - 0,0,0
+    // D -100,6,0 - 0,90,0
+
+    float storeZoom = 0;
+    float storeOrbitY = 0;
+    float storeOrbitX = 0;
+
+    public void GoToLeftOrto()
+    {
+        Camera.main.orthographic = !Camera.main.orthographic;
+        controller.enabled = !Camera.main.orthographic;
+        if (Camera.main.orthographic)
+        {
+            Camera.main.orthographicSize = 22;
+            Quaternion quat = Quaternion.Euler(0, 180, 0);
+            Vector3 pos = new Vector3(Camera.main.transform.position.x, 6, Camera.main.transform.position.z);
+
+            if ((Camera.main.transform.position.x <= 10 && -10 <= Camera.main.transform.position.x) && (Camera.main.transform.position.z >= 10))
+            {
+                pos = new Vector3(0, 6, 100);
+                quat = Quaternion.Euler(0, 180, 0);
+
+            }
+            else if ((Camera.main.transform.position.x >= 10) && (Camera.main.transform.position.z <= 10 && -10 <= Camera.main.transform.position.z))
+            {
+                pos = new Vector3(100, 6, 0);
+                quat = Quaternion.Euler(0, 270, 0);
+            }
+            else if ((Camera.main.transform.position.x <= 10 && -10 <= Camera.main.transform.position.x) && (Camera.main.transform.position.z <= -10))
+            {
+                pos = new Vector3(0, 6, -100);
+                quat = Quaternion.Euler(0, 0, 0);
+            }
+            else if ((Camera.main.transform.position.x <= -10) && (Camera.main.transform.position.z <= 10 && -10 <= Camera.main.transform.position.z))
+            {
+                pos = new Vector3(-100, 6, 0);
+                quat = Quaternion.Euler(0, 90, 0);
+            }
+            else if ((Camera.main.transform.position.x >= 10) && (Camera.main.transform.position.z >= 10))
+            {
+                pos = new Vector3(100, 6, 0);
+                quat = Quaternion.Euler(0, 270, 0);
+            }
+            else if ((Camera.main.transform.position.x >= 10) && (Camera.main.transform.position.z <= -10))
+            {
+                pos = new Vector3(0, 6, -100);
+                quat = Quaternion.Euler(0, 0, 0);
+            }
+            else if ((Camera.main.transform.position.x <= -10) && (Camera.main.transform.position.z >= 10))
+            {
+                pos = new Vector3(0, 6, 100);
+                quat = Quaternion.Euler(0, 180, 0);
+            }
+            else if ((Camera.main.transform.position.x <= -10) && (Camera.main.transform.position.z <= -10))
+            {
+                pos = new Vector3(-100, 6, 0);
+                quat = Quaternion.Euler(0, 90, 0);
+            }
+            else
+            {
+                Debug.Log("Otro Caso");
+            }
+
+            Camera.main.transform.rotation = quat;
+            Camera.main.transform.position = pos;
+
+            storeZoom = ZoomController.value;
+            storeOrbitY = OrbitController_Y.value;
+            storeOrbitX = OrbitController_X.value;
+        }
+        else
+        {
+            ZoomController.value = storeZoom;   
+            OrbitController_X.value = storeOrbitX;   
+            OrbitController_Y.value = storeOrbitY;
+        }
+    }
 }
