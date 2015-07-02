@@ -24,6 +24,10 @@ public class CameraPositionPreset : MonoBehaviour
     public Scrollbar OrbitController_X;
     public Scrollbar OrbitController_Y;
 
+    public Button CameraControls;
+    public ChangeCanvasButton canvasCameraControls;
+    public ChangeColorButton colorCameraControls;
+
     public float PosXLeft;
     public float PosYLeft;
     public float PosXRigth;
@@ -126,7 +130,8 @@ public class CameraPositionPreset : MonoBehaviour
     {
         if (isReaching)
             return;
-        
+        isReaching = true;
+
         if ((0 <= OrbitController_Y.value) && (OrbitController_Y.value < posC.RotationValue))
         {
             currentPreset = posB;
@@ -168,7 +173,6 @@ public class CameraPositionPreset : MonoBehaviour
             rot.pause();
         pos = LeanTween.value(gameObject, OnPosChanged, transform.position, currentPreset.Position, TimeToReach);
         pos.onComplete = OnCompelteAll;
-        isReaching = true;
         //    rot = LeanTween.value(gameObject, OnRotChanged, transform.rotation.eulerAngles, currentPreset.Rotation, TimeToReach);
         //    rot = rot.setEase(LeanTweenType.linear);
 
@@ -207,11 +211,16 @@ public class CameraPositionPreset : MonoBehaviour
 
     public void GoToLeftOrto()
     {
+        if (isReaching && !Camera.main.orthographic)
+            return;
         
         Camera.main.orthographic = !Camera.main.orthographic;
         controller.enabled = !Camera.main.orthographic;
         if (Camera.main.orthographic)
         {
+            CameraControls.interactable = false;
+            canvasCameraControls.SetIsShow(false);
+            colorCameraControls.SetIsShow(false);
             isReaching = true;
             Camera.main.orthographicSize = 22;
             Quaternion quat = Quaternion.Euler(0, 180, 0);
@@ -276,6 +285,7 @@ public class CameraPositionPreset : MonoBehaviour
             OrbitController_X.value = storeOrbitX;   
             OrbitController_Y.value = storeOrbitY;
             isReaching = false;
+            CameraControls.interactable = true;
         }
     }
 
@@ -284,6 +294,8 @@ public class CameraPositionPreset : MonoBehaviour
     {
         if (!isReaching)
         {
+            CameraControls.interactable = true;
+            isReaching = false;
             Camera.main.orthographic = false;
             controller.enabled = true;
             ZoomController.value = 0.5f;   

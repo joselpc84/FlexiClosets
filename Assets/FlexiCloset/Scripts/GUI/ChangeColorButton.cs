@@ -32,4 +32,18 @@ public class ChangeColorButton : MonoBehaviour
             }
         }
     }
+
+    public void SetIsShow(bool value)
+    {
+        _isShow = value;
+        if (_isShow)
+        {
+            img.color = On;
+        }
+        else
+            img.color = Off;
+
+    }
 }
+    
+

@@ -1188,7 +1188,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2012746553}
   m_Direction: 2
   m_Value: 1
-  m_Size: .655745268
+  m_Size: .655745327
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5799,6 +5799,9 @@ MonoBehaviour:
   ZoomController: {fileID: 694251488}
   OrbitController_X: {fileID: 252175973}
   OrbitController_Y: {fileID: 106731497}
+  CameraControls: {fileID: 590879050}
+  canvasCameraControls: {fileID: 590879052}
+  colorCameraControls: {fileID: 590879051}
   PosXLeft: 0
   PosYLeft: 0
   PosXRigth: 0

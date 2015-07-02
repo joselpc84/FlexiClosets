@@ -429,7 +429,7 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
         for (int i = 0; i < pos.Count; ++i)
         {
             TextMesh obj = prefabText.Spawn(pos[i]);
-            obj.text = valuedistance[i].ToString() + " m";
+            obj.text = valuedistance[i].ToString() + " cm";
         }
     }
 

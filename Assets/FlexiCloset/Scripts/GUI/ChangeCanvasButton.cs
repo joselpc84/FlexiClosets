@@ -31,4 +31,19 @@ public class ChangeCanvasButton : MonoBehaviour
             }
         }
     }
+
+    public void SetIsShow(bool value)
+    {
+        _isShow = value;
+        if (_isShow)
+        {
+            canvas.alpha = 1;
+            canvas.blocksRaycasts = true;
+        }
+        else
+        {
+            canvas.alpha = 0;
+            canvas.blocksRaycasts = false;
+        }
+    }
 }
