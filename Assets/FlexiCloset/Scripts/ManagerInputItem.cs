@@ -55,7 +55,7 @@ public class ManagerInputItem : PersistentSingleton<ManagerInputItem>
                     {
                         Item aux = currentSelected;
                         ResetAll();
-                        aux.Move(false);
+                        aux.Move(true);
                     }
                 }
             }

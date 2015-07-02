@@ -11,7 +11,7 @@ public class BillboardRotation : MonoBehaviour
     {
         Vector3 heading = Camera.main.transform.position - transform.position;
         transform.LookAt(transform.position - heading);
-
+        /*
         Vector3 from = (transform.position - Camera.main.transform.position).normalized;
         Vector3 to = (center.position - Camera.main.transform.position).normalized;
 
@@ -23,7 +23,7 @@ public class BillboardRotation : MonoBehaviour
 
         Vector3 localTarget = transform.InverseTransformPoint(to);
         float targetAngle = Mathf.Atan2(localTarget.x, localTarget.z) * Mathf.Rad2Deg;
-        transform.RotateAround(center.position, Vector3.up, -targetAngle); 
+        transform.RotateAround(center.position, Vector3.up, -targetAngle); */
 
     }
 
