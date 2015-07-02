@@ -920,7 +920,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: f2b9c1e4ce967495c929f5f54fac4dad, type: 2}
+  - {fileID: 2100000, guid: 0da5a43d108dd43fbad04eca5637246d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1486,7 +1486,7 @@ MonoBehaviour:
   - {fileID: 2399728}
   - {fileID: 2329398}
   - {fileID: 2352344}
-  MaterialIndex: 1
+  MaterialIndex: 0
   Materials:
   - {fileID: 2100000, guid: 0da5a43d108dd43fbad04eca5637246d, type: 2}
   - {fileID: 2100000, guid: f2b9c1e4ce967495c929f5f54fac4dad, type: 2}
@@ -1500,7 +1500,7 @@ MonoBehaviour:
   HighValue: 10
   HighNumber: 3
   isUp: 0
-  typesCanUp: 0600000000000000
+  typesCanUp: 04000000
   itemUp: []
   itemDown: {fileID: 0}
   GUI: {fileID: 11434782}
@@ -1541,6 +1541,10 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: typesCanUp.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: m_LocalScale.x
       value: 100
       objectReference: {fileID: 0}
@@ -1555,6 +1559,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: HighValue
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: typesCanUp.Array.data[0]
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

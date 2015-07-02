@@ -1511,7 +1511,7 @@ MonoBehaviour:
   HighValue: 3.29999995
   HighNumber: 1
   isUp: 0
-  typesCanUp: 06000000
+  typesCanUp: 0600000004000000
   itemUp: []
   itemDown: {fileID: 0}
   GUI: {fileID: 11495682}
@@ -1541,6 +1541,10 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: typesCanUp.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: m_LocalScale.x
       value: 100
       objectReference: {fileID: 0}
@@ -1555,6 +1559,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: HighValue
       value: 3.29999995
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: typesCanUp.Array.data[1]
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
