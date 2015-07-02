@@ -4,7 +4,6 @@ using System.Collections;
 public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
 {
     public CanvasGroup PopUpCanvas;
-    [HideInInspector]
     public Item item;
     //  public GameObject[] Buttons;
     public CanvasGroup groupCanvas;

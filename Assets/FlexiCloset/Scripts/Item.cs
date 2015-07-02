@@ -160,8 +160,12 @@ public class Item : MonoBehaviour
 
     public void Rotate(int dir)
     {
+        Debug.Log("!isUp :" + !isUp);
+        Debug.Log("itemUp.Count :" + itemUp.Count);
+
         if (!isUp && itemUp.Count == 0)
         {
+
             DirectionFace storeDirectionForward = DirectionForward;
             Quaternion storeRotation = transform.rotation;
 
