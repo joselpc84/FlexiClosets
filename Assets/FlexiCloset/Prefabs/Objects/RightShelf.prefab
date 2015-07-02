@@ -1031,7 +1031,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 8f2e93f9e806c4cf287b4f730a61a6fb, type: 2}
+  - {fileID: 2100000, guid: d564cb0528f9046d2a4b63601b4f3b83, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -2173,7 +2173,7 @@ MonoBehaviour:
   - {fileID: 2333664}
   - {fileID: 2396538}
   - {fileID: 2348228}
-  MaterialIndex: 0
+  MaterialIndex: 1
   Materials:
   - {fileID: 2100000, guid: 8f2e93f9e806c4cf287b4f730a61a6fb, type: 2}
   - {fileID: 2100000, guid: d564cb0528f9046d2a4b63601b4f3b83, type: 2}

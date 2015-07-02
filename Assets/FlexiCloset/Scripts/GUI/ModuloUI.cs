@@ -20,6 +20,8 @@ public class ModuloUI : PersistentSingleton<ModuloUI>
 
     public string[] MaterialsName;
 
+    public Toggle DefaultMaterial;
+
     void Start()
     {
         //   EnableObjects(false);
@@ -33,6 +35,7 @@ public class ModuloUI : PersistentSingleton<ModuloUI>
 
         if (!(currentSelected is Wall))
         {
+
             
             currentSelected.dictMaterial.Clear();
             for (int i = 0; i < currentSelected.Materials.Length; ++i)
@@ -44,6 +47,9 @@ public class ModuloUI : PersistentSingleton<ModuloUI>
             Material mat = currentSelected.Materials[currentSelected.MaterialIndex];
             textColor.text = MaterialsName[currentSelected.MaterialIndex];
             currentSelected.SetMaterial(mat);
+
+            DefaultMaterial.isOn = true;
+
         }
         ShowPopUp();
 
