@@ -207,10 +207,12 @@ public class CameraPositionPreset : MonoBehaviour
 
     public void GoToLeftOrto()
     {
+        
         Camera.main.orthographic = !Camera.main.orthographic;
         controller.enabled = !Camera.main.orthographic;
         if (Camera.main.orthographic)
         {
+            isReaching = true;
             Camera.main.orthographicSize = 22;
             Quaternion quat = Quaternion.Euler(0, 180, 0);
             Vector3 pos = new Vector3(Camera.main.transform.position.x, 6, Camera.main.transform.position.z);
@@ -273,6 +275,7 @@ public class CameraPositionPreset : MonoBehaviour
             ZoomController.value = storeZoom;   
             OrbitController_X.value = storeOrbitX;   
             OrbitController_Y.value = storeOrbitY;
+            isReaching = false;
         }
     }
 

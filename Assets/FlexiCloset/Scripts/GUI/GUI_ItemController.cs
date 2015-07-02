@@ -22,7 +22,7 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
     {
         if (item != null)
         {
-            item.Rotate(-1);
+            item.Rotate(1);
         }
     }
 
@@ -30,7 +30,7 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
     {
         if (item != null)
         {
-            item.Rotate(1);
+            item.Rotate(-1);
         }
     }
 
