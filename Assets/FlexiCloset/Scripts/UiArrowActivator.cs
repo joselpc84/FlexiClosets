@@ -3,27 +3,38 @@ using System.Collections;
 
 public class UiArrowActivator : MonoBehaviour
 {
-    public Item wallItem;
-    public BotonGuiWall[] botons;
+	public Item wallItem;
+	public BotonGuiWall[] botons;
 
-    public virtual void ActivateBotons()
-    {
-        for (int i = 0; i < botons.Length; ++i)
-        {
-            botons[i].CheckIfEnable();
-        }
-        GUI_ItemController.Instance.item = wallItem;
-        GUI_ItemController.Instance.TurnOnWall();
+	public virtual void ActivateBotons ()
+	{
+		StopCoroutine ("Hide");
+		StartCoroutine ("Show");
+	}
 
-    }
+	public virtual void DeActivateBotons ()
+	{
+		StopCoroutine ("Show");
+		StartCoroutine ("Hide");
 
-    public virtual void DeActivateBotons()
-    {
-        for (int i = 0; i < botons.Length; ++i)
-        {
-            botons[i].gameObject.SetActive(false);
-        }
-        GUI_ItemController.Instance.TurnOffWall();
+	}
 
-    }
+	protected virtual IEnumerator Show ()
+	{
+		yield return new WaitForSeconds (0.1f);
+		for (int i = 0; i < botons.Length; ++i) {
+			botons [i].CheckIfEnable ();
+		}
+		GUI_ItemController.Instance.item = wallItem;
+		GUI_ItemController.Instance.TurnOnWall ();
+	}
+
+	protected virtual IEnumerator Hide ()
+	{
+		yield return new WaitForSeconds (0);
+		for (int i = 0; i < botons.Length; ++i) {
+			botons [i].gameObject.SetActive (false);
+		}
+		GUI_ItemController.Instance.TurnOffWall ();
+	}
 }
