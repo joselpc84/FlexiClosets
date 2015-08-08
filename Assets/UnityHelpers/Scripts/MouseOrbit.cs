@@ -54,12 +54,16 @@ public class MouseOrbit : MonoBehaviour
 	public float InitialPosX = 0.5f;
 	public float InitialPosY = 0.5f;
 
-	void Start ()
+	public void ResetPos ()
 	{
-		Vector3 angles = transform.eulerAngles;
 		ValueX = InitialPosX;
 		ValueY = InitialPosY;
 		Value = InitialZoom;
+	}
+
+	void Start ()
+	{
+		ResetPos ();
 	}
 
 

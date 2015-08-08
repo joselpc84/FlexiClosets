@@ -17,6 +17,12 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
 
 	public void OnDrag (Item item)
 	{
+		if (itemSpawned != null) {
+			itemSpawned.Recycle ();
+			NotSpawned = false;
+			itemSpawned = null;
+		}
+
 		InGameUI.Instance.OffPanel ();//Hago que se enconda el panel
 
 		ManagerInputItem.Instance.isClickOnGUI = true;
@@ -38,6 +44,12 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
 
 	public void OnDragWhitoutSpawn (Item item, bool useDropDown)
 	{
+		if (itemSpawned != null) {
+			itemSpawned.Recycle ();
+			NotSpawned = false;
+			itemSpawned = null;
+		}
+
 		ManagerInputItem.Instance.isClickOnGUI = true;
 		this.useDropDown = useDropDown;
 		itemSpawned = item;
@@ -65,6 +77,9 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
 				ManagerItemGrid.Instance.AddItem (ManagerMouseControl.Instance.CurrentMousePos ().Value, itemSpawned);
 
 			} else if ((test = ManagerItemGrid.Instance.CanPutUp (ManagerMouseControl.Instance.CurrentMousePos ().Value, itemSpawned)) != null) {
+				while (test.DirectionForward != itemSpawned.DirectionForward) {
+					itemSpawned.RotatePreview (1);
+				}
 				itemSpawned.SetPos (test.PositionStart);
 				itemSpawned.OnDrop (true);
 				ManagerItemGrid.Instance.AddItem (test.PositionStart, itemSpawned, true);
@@ -114,6 +129,11 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
 					itemSpawned.transform.position = test.PositionStart.center;
 					itemSpawned.transform.position = itemSpawned.transform.position + Vector3.up * test.getMaxHeighPut ();
 					itemSpawned.ChangueColorPlane (Color.green);
+
+					while (test.DirectionForward != itemSpawned.DirectionForward) {
+						itemSpawned.RotatePreview (1);
+					}
+
 
 				} else {
 					itemSpawned.transform.position = itemSpawned.transform.position;//+ Vector3.up * OffSetY;

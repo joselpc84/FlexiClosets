@@ -147,11 +147,20 @@ public class Item : MonoBehaviour
 		this.Recycle ();
 	}
 
+	public void RotatePreview (int dir)
+	{
+
+		DirectionForward = DirectionForward - dir;
+		if ((int)DirectionForward >= 4)
+			DirectionForward = DirectionFace.NegZ;
+		else if ((int)DirectionForward < 0)
+			DirectionForward = DirectionFace.PosX;
+
+		transform.Rotate (Vector3.up, 90 * dir);
+	}
+
 	public void Rotate (int dir)
 	{
-		Debug.Log ("!isUp :" + !isUp);
-		Debug.Log ("itemUp.Count :" + itemUp.Count);
-
 		if (!isUp && itemUp.Count == 0) {
 
 			DirectionFace storeDirectionForward = DirectionForward;
@@ -174,8 +183,6 @@ public class Item : MonoBehaviour
 
 			ManagerItemGrid.Instance.AddItem (PositionStart, this);
 		}
-
-
 	}
 
 	public void Move (bool useDropDown)
