@@ -36,11 +36,12 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 
 				}
 				ModuloUI.Instance.EnableObjects (true);
-				ShowDistanceWall ();
 
 			}
 		}
 		allItems.Add (item);
+
+		Invoke ("ShowDistanceWall", 0.1f);
 	}
 
 	public void RemoveItem (Item item)
@@ -58,12 +59,19 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 				for (int i = 0; i < bros.Length; ++i) {
 					itemsWall.Remove (bros [i]);
 				}
-				//Apagar y prender de acuerdo si es muro sus distancias
-				ShowDistanceWall ();
+		
 			}
 		}
 
 		allItems.Remove (item);
+		//Apagar y prender de acuerdo si es muro sus distancias
+		Invoke ("ShowDistanceWall", 0.1f);
+	}
+
+	void FixedShowDistanceofWall ()
+	{
+		ShowDistanceWall ();
+
 	}
 
 	public bool isEmptySpot (QuadInfo quad, Item info)

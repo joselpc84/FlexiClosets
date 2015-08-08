@@ -177,8 +177,11 @@ public class Item : MonoBehaviour
 			transform.Rotate (Vector3.up, 90 * dir);
 
 			if (!ManagerItemGrid.Instance.isEmptySpot (PositionStart, this)) {
-				DirectionForward = storeDirectionForward;
-				transform.rotation = storeRotation;
+				
+				//	DirectionForward = storeDirectionForward;
+				//	transform.rotation = storeRotation;
+				Move (true);
+				return;
 			}
 
 			ManagerItemGrid.Instance.AddItem (PositionStart, this);
