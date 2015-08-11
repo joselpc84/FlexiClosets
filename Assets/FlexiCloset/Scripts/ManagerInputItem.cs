@@ -48,7 +48,7 @@ public class ManagerInputItem : PersistentSingleton<ManagerInputItem>
 					    && !GUI_ItemController.Instance.waitInput) {
 						Item aux = currentSelected;
 						ResetAll ();
-						aux.Move (true);
+						aux.Move (false);
 					}
 				}
 			}
