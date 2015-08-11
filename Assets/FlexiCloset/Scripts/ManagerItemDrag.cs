@@ -33,8 +33,8 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
 		} else {
 			itemSpawned.transform.position = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 		}
-		//NuevaForma para dar click
-		this.useDropDown = true;
+		this.useDropDown = false;//NuevaForma para dar click
+
 		NotSpawned = true;
 		canDrop = false;
 		StartCoroutine ("ResetDrop");
