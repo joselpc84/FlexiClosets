@@ -31,7 +31,6 @@ public class Item : MonoBehaviour
 	public MeshRenderer[] mesh;
 	public MeshRenderer[] planes;
 
-	[HideInInspector]
 	public int MaterialIndex = 0;
 	public Material[] Materials;
 	public Material[] SelectedMaterial;
@@ -330,11 +329,13 @@ public class Item : MonoBehaviour
 
 	#region Visual MEsh
 
-	protected void SelectedMesh ()
+	public void SelectedMesh (bool useLeantween = true)
 	{
 		for (int i = 0; i < mesh.Length; ++i) {
 			mesh [i].material = SelectedMaterial [MaterialIndex];
-			LeanTween.color (mesh [i].gameObject, new Color (0.5f, 0.5f, 0.5f, 0.5f), 1.0f).setLoopPingPong (); 
+			if (useLeantween) {
+				LeanTween.color (mesh [i].gameObject, new Color (0.5f, 0.5f, 0.5f, 0.5f), 1.0f).setLoopPingPong (); 
+			}
 		}
 
 		for (int i = 0; i < planes.Length; ++i) {
@@ -342,7 +343,7 @@ public class Item : MonoBehaviour
 		}
 	}
 
-	protected virtual void DeSelectedMesh ()
+	public virtual void DeSelectedMesh ()
 	{
 		for (int i = 0; i < mesh.Length; ++i) {
 			LeanTween.cancel (mesh [i].gameObject);

@@ -73,6 +73,7 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
 			item.Remove ();
 			item = null;
 			BlockInput (false);
+			HidePop ();
 		}
 	}
 
@@ -82,6 +83,7 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
 			item.Remove ();
 			item = null;
 			BlockInput (false);
+			HidePop ();
 		}
 	}
 
@@ -154,6 +156,7 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
 		PopUpCanvas.alpha = 1;
 		PopUpCanvas.interactable = true;
 		PopUpCanvas.blocksRaycasts = true;
+		ModuloUI.Instance.HidePopUp ();
 	}
 
 	public void HidePop ()
