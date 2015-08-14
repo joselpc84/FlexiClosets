@@ -7,40 +7,43 @@ using System.Collections;
 public class ManagerMouseControl : PersistentSingleton<ManagerMouseControl>
 {
 
-    public LayerMask Planelayer;
+	public LayerMask Planelayer;
 
 
-    #region AuxVars:
+	#region AuxVars:
 
-    RaycastHit hitInfo;
-    QuadInfo quad;
-    Ray ray;
+	RaycastHit hitInfo;
+	QuadInfo quad;
+	Ray ray;
 
-    #endregion
+	#endregion
 
-    public QuadInfo? CurrentMousePos()
-    {
-        if (quad.index > -1)
-            return quad;
-        else
-            return null;
-    }
+	public QuadInfo? CurrentMousePos ()
+	{
+		if (quad.index > -1)
+			return quad;
+		else
+			return null;
+	}
+
+	public  QuadInfo? CurrentMousePos (int index)
+	{
+		ManagerGrid.getCenterNear (index, out quad);
+		return CurrentMousePos ();
+	}
 	
-    // Update is called once per frame
-    void LateUpdate()
-    {
+	// Update is called once per frame
+	void LateUpdate ()
+	{
 	
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, Planelayer))
-        {
+		ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+		if (Physics.Raycast (ray, out hitInfo, Mathf.Infinity, Planelayer)) {
 		
-            ManagerGrid.getCenterNear(hitInfo.point, out quad);
-            //  Debug.Log("Posicion Actual Grid: " + quad.index);
-        }
-        else
-        {
-            quad.index = -1; 
-            quad.center = Vector3.zero;
-        }
-    }
+			ManagerGrid.getCenterNear (hitInfo.point, out quad);
+//			Debug.Log ("Posicion Actual Grid: " + quad.index);
+		} else {
+			quad.index = -1; 
+			quad.center = Vector3.zero;
+		}
+	}
 }

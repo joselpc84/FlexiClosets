@@ -432,8 +432,15 @@ public class Item : MonoBehaviour
 
 	protected virtual void LogicOnClicked ()
 	{
-		GUI_ItemController.Instance.ActivateGUI (this);
+		StartCoroutine ("ActivateGUI");
 		GUI.ActivateBotons ();
+
+	}
+
+	IEnumerator ActivateGUI ()
+	{
+		yield return new WaitForSeconds (0.2f);
+		GUI_ItemController.Instance.ActivateGUI (this);
 
 	}
 
@@ -449,6 +456,7 @@ public class Item : MonoBehaviour
 
 	protected virtual void LogicOnCancel ()
 	{
+		StopCoroutine ("ActivateGUI");
 		GUI_ItemController.Instance.DeActivateGUI ();
 		GUI.DeActivateBotons ();
 	}

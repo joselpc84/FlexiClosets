@@ -15,6 +15,38 @@ public class ManagerItemDrag : PersistentSingleton<ManagerItemDrag>
 
 	bool canDrop = false;
 
+	public void OnSpawn (Item item, int posGrid)
+	{
+		QuadInfo? infoQ = ManagerMouseControl.Instance.CurrentMousePos (posGrid);
+		#region OnDrag/Spawn Logic:
+		if (itemSpawned != null) {
+			itemSpawned.Recycle ();
+			NotSpawned = false;
+			itemSpawned = null;
+		}
+		InGameUI.Instance.OffPanel ();//Hago que se enconda el panel
+		NotSpawned = false;
+		itemSpawned = item.Spawn (item.transform.position, item.transform.rotation);
+
+		itemSpawned.SetPos (infoQ.Value);
+		this.useDropDown = false;
+		NotSpawned = true;
+		canDrop = false;
+		itemSpawned.OnDrag ();
+		#endregion
+		#region OnDrop:
+		if (ManagerItemGrid.Instance.isEmptySpot (infoQ.Value, itemSpawned)) {
+			itemSpawned.SetPos (infoQ.Value);
+			itemSpawned.OnDrop ();
+			ManagerItemGrid.Instance.AddItem (infoQ.Value, itemSpawned);
+		} else {
+			itemSpawned.Recycle ();
+		}
+		NotSpawned = false;
+		itemSpawned = null;
+		#endregion
+	}
+
 	public void OnDrag (Item item)
 	{
 		if (itemSpawned != null) {
