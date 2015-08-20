@@ -11,6 +11,7 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
 	public CanvasGroup groupCanvas;
 	public Transform piso;
 	public MouseOrbit CameraOrbit;
+	public CameraPositionPreset CameraPreset;
 
 	public CanvasGroup[] WallItem;
 
@@ -94,6 +95,7 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
 	public void CenterCamera ()
 	{
 		if (!waitInput) {
+			CameraPreset.ResetPan ();
 			if (item != null) {
 				if (CameraOrbit.target != item.transform) {
 					CameraOrbit.target = item.transform;

@@ -21,6 +21,8 @@ public class CameraPositionPreset : MonoBehaviour
 	public Scrollbar ZoomController;
 	public Scrollbar OrbitController_X;
 	public Scrollbar OrbitController_Y;
+	public Scrollbar PanController_X;
+	public Scrollbar PanController_Y;
 
 	public Button CameraControls;
 	public ChangeCanvasButton canvasCameraControls;
@@ -75,6 +77,7 @@ public class CameraPositionPreset : MonoBehaviour
 			return;
 
 		controller.target = GUI_ItemController.Instance.piso;
+		ResetPan ();
 
 		//C = 0,0.25 
 		//B = 0.75, 1
@@ -116,8 +119,10 @@ public class CameraPositionPreset : MonoBehaviour
 		if (isReaching)
 			return;
 
+
 		controller.target = GUI_ItemController.Instance.piso;
 		isReaching = true;
+		ResetPan ();
 
 		if ((0 <= OrbitController_Y.value) && (OrbitController_Y.value < posC.RotationValue)) {
 			currentPreset = posB;
@@ -199,6 +204,9 @@ public class CameraPositionPreset : MonoBehaviour
 		Camera.main.orthographic = !Camera.main.orthographic;
 		controller.enabled = !Camera.main.orthographic;
 		if (Camera.main.orthographic) {
+			
+			ResetPan ();
+
 			ManagerInputItem.Instance.isClickOnGUI = true;
 			ManagerInputItem.Instance.HardReset ();
 			StopCoroutine ("BlockInputAlways");
@@ -250,6 +258,8 @@ public class CameraPositionPreset : MonoBehaviour
 			storeOrbitY = OrbitController_Y.value;
 			storeOrbitX = OrbitController_X.value;
 		} else {
+			ResetPan ();
+
 			ZoomController.value = storeZoom;   
 			OrbitController_X.value = storeOrbitX;   
 			OrbitController_Y.value = storeOrbitY;
@@ -275,9 +285,15 @@ public class CameraPositionPreset : MonoBehaviour
 			ZoomController.value = controller.InitialZoom;   
 			OrbitController_X.value = controller.InitialPosY;   
 			OrbitController_Y.value = controller.InitialPosX;
+
+			ResetPan ();
+
 		}
 	}
 
-
-
+	public void ResetPan ()
+	{
+		PanController_X.value = 0.5f;
+		PanController_Y.value = 0.5f;
+	}
 }

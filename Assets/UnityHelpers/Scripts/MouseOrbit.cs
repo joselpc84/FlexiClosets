@@ -59,6 +59,8 @@ public class MouseOrbit : MonoBehaviour
 		ValueX = InitialPosX;
 		ValueY = InitialPosY;
 		Value = InitialZoom;
+		ValueDistanceX = 0.5f;
+		ValueDistanceY = 0.5f;
 	}
 
 	void Start ()
@@ -76,13 +78,37 @@ public class MouseOrbit : MonoBehaviour
 
 	}
 
+	protected float distanceX = 0;
+	protected float distanceY = 0;
+	public float MaxDistanceX = 50;
+	public float MaxDistanceY = 50;
+
+	public float ValueDistanceX {
+		set {
+			float minDistanceX = (-1 * MaxDistanceX);
+			float valueToMove = (MaxDistanceX - minDistanceX) * value + minDistanceX;
+
+			distanceX = valueToMove;
+		}
+	}
+
+	public float ValueDistanceY {
+		set {
+			float minDistanceY = (-1 * MaxDistanceY);
+			float valueToMove = (MaxDistanceY - minDistanceY) * value + minDistanceY;
+
+			distanceY = valueToMove;
+		}
+	}
+
+
 	protected void UpdateTransform ()
 	{
 		y = ClampAngle (y, yMinLimit, yMaxLimit);
 
 		Quaternion rotation = Quaternion.Euler (y, x, 0);
 		transform.rotation = rotation;
-		transform.position = rotation * (new Vector3 (0, 0, -distance)) + target.position;
+		transform.position = rotation * (new Vector3 (distanceX, distanceY, -distance)) + target.position;
 	}
 
 	public static float ClampAngle (float angle, float min, float max)
