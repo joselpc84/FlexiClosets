@@ -180,6 +180,16 @@ public class CameraPositionPreset : MonoBehaviour
 	float storeZoom = 0;
 	float storeOrbitY = 0;
 	float storeOrbitX = 0;
+	public PopUpMessage tipOrto;
+
+	IEnumerator BlockInputAlways ()
+	{
+	
+		while (Camera.main.orthographic) {
+			ManagerInputItem.Instance.isClickOnGUI = true;
+			yield return null;
+		}
+	}
 
 	public void GoToLeftOrto ()
 	{
@@ -189,6 +199,13 @@ public class CameraPositionPreset : MonoBehaviour
 		Camera.main.orthographic = !Camera.main.orthographic;
 		controller.enabled = !Camera.main.orthographic;
 		if (Camera.main.orthographic) {
+			ManagerInputItem.Instance.isClickOnGUI = true;
+			ManagerInputItem.Instance.HardReset ();
+			StopCoroutine ("BlockInputAlways");
+			StartCoroutine ("BlockInputAlways");
+			//ShowTip
+			tipOrto.ShowTip ();
+
 			CameraControls.interactable = false;
 			canvasCameraControls.SetIsShow (false);
 			colorCameraControls.SetIsShow (false);
@@ -238,6 +255,10 @@ public class CameraPositionPreset : MonoBehaviour
 			OrbitController_Y.value = storeOrbitY;
 			isReaching = false;
 			CameraControls.interactable = true;
+
+			tipOrto.Stop ();
+			ManagerInputItem.Instance.isClickOnGUI = false;
+			StopCoroutine ("BlockInputAlways");
 		}
 	}
 

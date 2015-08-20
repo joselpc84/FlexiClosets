@@ -307,6 +307,8 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 
 	public TextMesh prefabText;
 	public float TamanoBloques = 0.5f;
+	public int minNumOfWall = 2;
+	public string unitName = " cm";
 	bool _isShowDistanceWall = true;
 
 	public bool isShowDistanceWall {
@@ -341,7 +343,7 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 
 		List< List<int>> testWallsLR = getRowsOfWallLR ();
 		for (int i = 0; i < testWallsLR.Count; i++) {
-			if (testWallsLR [i].Count == 1)
+			if (testWallsLR [i].Count <= minNumOfWall)
 				continue;
 			Wall right = itemsWall [testWallsLR [i] [0]];
 			Wall rightstore = right;
@@ -363,7 +365,7 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 
 		List< List<int>> testWallUD = getRowsOfWallUD ();
 		for (int i = 0; i < testWallUD.Count; i++) {
-			if (testWallUD [i].Count == 1)
+			if (testWallUD [i].Count <= minNumOfWall)
 				continue;
 			Wall up = itemsWall [testWallUD [i] [0]];
 			Wall upstore = up;
@@ -384,7 +386,7 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 		}
 		for (int i = 0; i < pos.Count; ++i) {
 			TextMesh obj = prefabText.Spawn (pos [i]);
-			obj.text = valuedistance [i].ToString () + " cm";
+			obj.text = valuedistance [i].ToString () + unitName;
 		}
 	}
 

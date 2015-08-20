@@ -73,7 +73,6 @@ public class ManagerInputItem : PersistentSingleton<ManagerInputItem>
 
 		currentSelected = item;
 		if (currentSelected == null) {
-			Debug.LogError ("Loco No hay currentSelected");
 			return;
 		}
 		if (!currentSelected.OnClicked ()) {

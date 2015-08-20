@@ -158,6 +158,8 @@ public class Item : MonoBehaviour
 		transform.Rotate (Vector3.up, 90 * dir);
 	}
 
+	public PopUpMessage MessageRotate;
+
 	public void Rotate (int dir)
 	{
 		if (!isUp && itemUp.Count == 0) {
@@ -176,7 +178,7 @@ public class Item : MonoBehaviour
 			transform.Rotate (Vector3.up, 90 * dir);
 
 			if (!ManagerItemGrid.Instance.isEmptySpot (PositionStart, this)) {
-				
+				MessageRotate.ShowError ();
 				//	DirectionForward = storeDirectionForward;
 				//	transform.rotation = storeRotation;
 				Move (true);

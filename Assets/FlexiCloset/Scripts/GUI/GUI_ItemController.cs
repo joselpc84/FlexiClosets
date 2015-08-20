@@ -4,6 +4,8 @@ using System.Collections;
 public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
 {
 	public CanvasGroup PopUpCanvas;
+	public CanvasGroup PopUpEditorCanvas;
+
 	public Item item;
 	//  public GameObject[] Buttons;
 	public CanvasGroup groupCanvas;
@@ -73,7 +75,7 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
 			item.Remove ();
 			item = null;
 			BlockInput (false);
-			HidePop ();
+			HidePopObject ();
 		}
 	}
 
@@ -83,9 +85,11 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
 			item.Remove ();
 			item = null;
 			BlockInput (false);
-			HidePop ();
+			HidePopObject ();
 		}
 	}
+
+	public PopUpMessage popupCenter;
 
 	public void CenterCamera ()
 	{
@@ -93,6 +97,7 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
 			if (item != null) {
 				if (CameraOrbit.target != item.transform) {
 					CameraOrbit.target = item.transform;
+					popupCenter.ShowTip ();
 				}
 			} else {
 				CameraOrbit.target = piso;
@@ -109,7 +114,7 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
 
 	public void ActivateGUI (Item item)
 	{
-		ShowPop ();
+		ShowPopObject ();
 		this.item = item;
 
 		groupCanvas.alpha = 1;
@@ -120,7 +125,7 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
 
 	public void DeActivateGUI ()
 	{
-		HidePop ();
+		HidePopObject ();
 		/*
         this.item = null;
         groupCanvas.alpha = 0;
@@ -131,7 +136,7 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
 
 	public void TurnOnWall ()
 	{
-		ShowPop ();
+		ShowPopObject ();
 		for (int i = 0; i < WallItem.Length; ++i) {
 			GUI_ItemController.Instance.WallItem [i].alpha = 1;
 			GUI_ItemController.Instance.WallItem [i].blocksRaycasts = true;
@@ -142,7 +147,7 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
 
 	public void TurnOffWall ()
 	{
-		HidePop ();
+		HidePopObject ();
 		/*  for (int i = 0; i < WallItem.Length; ++i)
         {
             GUI_ItemController.Instance.WallItem[i].alpha = 0;
@@ -151,7 +156,21 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
         }*/
 	}
 
-	public void ShowPop ()
+	public void ShowPopEditor ()
+	{
+		PopUpEditorCanvas.alpha = 1;
+		PopUpEditorCanvas.interactable = true;
+		PopUpEditorCanvas.blocksRaycasts = true;
+	}
+
+	public void HidePopEditor ()
+	{
+		PopUpEditorCanvas.alpha = 0;
+		PopUpEditorCanvas.interactable = false;
+		PopUpEditorCanvas.blocksRaycasts = false;
+	}
+
+	public void ShowPopObject ()
 	{
 		PopUpCanvas.alpha = 1;
 		PopUpCanvas.interactable = true;
@@ -159,8 +178,10 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
 		ModuloUI.Instance.HidePopUp ();
 	}
 
-	public void HidePop ()
+	public void HidePopObject ()
 	{
+		HidePopEditor ();
+
 		PopUpCanvas.alpha = 0;
 		PopUpCanvas.interactable = false;
 		PopUpCanvas.blocksRaycasts = false;
@@ -175,5 +196,14 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
 		groupCanvas.alpha = 0;
 		groupCanvas.interactable = false;
 		groupCanvas.blocksRaycasts = false;
+	}
+
+	public void TurnEditor ()
+	{
+		if (PopUpEditorCanvas.alpha > 0) {
+			HidePopEditor ();
+		} else {
+			ShowPopEditor ();
+		}
 	}
 }

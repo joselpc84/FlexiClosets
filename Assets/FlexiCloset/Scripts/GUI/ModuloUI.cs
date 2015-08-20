@@ -72,10 +72,11 @@ public class ModuloUI : PersistentSingleton<ModuloUI>
 	public void ShowPersonalizationWall (Item prefab)
 	{
 		currentSelected = prefab;
-		wallT = WallType.Base0;
-		numberOfWall_1 = DefaultValue1;
-		barValue1.value = 0;
-		barValue2.value = 0;
+		//	wallT = WallType.Base0;
+		SetWall (0);
+		//numberOfWall_1 = DefaultValue1;
+		//barValue1.value = 0;
+		//barValue2.value = 0;
 
 		ShowPopUp (false);
 	}
@@ -206,6 +207,7 @@ public class ModuloUI : PersistentSingleton<ModuloUI>
 
 	#region WallLogic:
 
+	[Header ("Wall")]
 	public WallType wallT;
 	public int DefaultValue1 = 1;
 	public int MaxGrid = 50;
@@ -221,6 +223,12 @@ public class ModuloUI : PersistentSingleton<ModuloUI>
 	int numberOfWall_1 = 1;
 	int numberOfWall_2 = 1;
 
+	public Text sliderResult_1;
+	public Text sliderMin_1;
+	public Text sliderMax_1;
+	public Text sliderResult_2;
+	public Text sliderMin_2;
+	public Text sliderMax_2;
 
 	public void SetWall (int type)
 	{
@@ -252,6 +260,13 @@ public class ModuloUI : PersistentSingleton<ModuloUI>
 		numberOfWall_2 = 1;
 		barValue1.value = 0;
 		barValue2.value = 0;
+
+		sliderResult_1.text = numberOfWall_1.ToString ();
+		sliderMin_1.text = "1";
+		sliderMax_1.text = "50";
+		sliderResult_2.text = numberOfWall_2.ToString ();
+		sliderMin_2.text = "1";
+		sliderMax_2.text = "50";
 	}
 
 
@@ -273,7 +288,10 @@ public class ModuloUI : PersistentSingleton<ModuloUI>
 				numberOfWall_1 = (int)((MaxGrid - 1) * value + 1);
 				break;
 			}
+
+			sliderResult_1.text = numberOfWall_1.ToString ();
 		}
+
 	}
 
 	public float SetValueWall2 {
@@ -292,6 +310,8 @@ public class ModuloUI : PersistentSingleton<ModuloUI>
 				numberOfWall_2 = (int)((MaxGrid - 1) * value + 1);
 				break;
 			}
+			sliderResult_2.text = numberOfWall_2.ToString ();
+
 		}
 	}
 	// de 1 en 1 [49,0] y de 50 en 50 [0,2450]
