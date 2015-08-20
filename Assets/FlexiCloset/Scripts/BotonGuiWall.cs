@@ -29,6 +29,8 @@ public class BotonGuiWall : MonoBehaviour
 
 	}
 
+	public WallSpawnArrastre arrastre;
+
 	protected virtual void Update ()
 	{
 		if (Input.GetMouseButton (0)) {
@@ -37,6 +39,11 @@ public class BotonGuiWall : MonoBehaviour
 				if (hitInfo.collider == _collider) {
 					OnClick ();
 					ManagerInputItem.Instance.isClickOnGUI = true;
+					if (arrastre != null) {
+						
+						WallSpawnArrastre spa = arrastre.Spawn (gameObject.transform.position);
+						spa.wall = wall;
+					}
 
 				}
 			}
@@ -49,10 +56,7 @@ public class BotonGuiWall : MonoBehaviour
     
 		yield return new WaitForSeconds (0.1f);
 		ManagerInputItem.Instance.isClickOnGUI = value;
-		//   gameObject.SetActive(false);
 	}
-
-
 
 	protected virtual void OnClick ()
 	{
@@ -63,8 +67,6 @@ public class BotonGuiWall : MonoBehaviour
 		QuadInfo quad;
 		ManagerGrid.getCenterNear (wall.transform.position + direction.normalized * ManagerGrid.Instance.Size, out quad);
 		if (ManagerItemGrid.Instance.isEmptySpot (quad, ManagerItemGrid.Instance.wallPrefab)) {
-
-
 			Item itemSpawned = ManagerItemGrid.Instance.wallPrefab.Spawn ();
 			itemSpawned.OnDrag ();
 			ManagerItemGrid.Instance.AddItem (quad, itemSpawned);
@@ -73,8 +75,6 @@ public class BotonGuiWall : MonoBehaviour
 
 			ManagerInputItem.Instance.SelectItem (itemSpawned);
 			((Wall)itemSpawned).ResetGUI ();
-
-
 		}
 		//    StopCoroutine("ResetClick");
 		//    StartCoroutine("ResetClick", false);

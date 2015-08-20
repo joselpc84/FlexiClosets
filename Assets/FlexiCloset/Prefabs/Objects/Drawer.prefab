@@ -1437,6 +1437,7 @@ MonoBehaviour:
   LayerGUI:
     serializedVersion: 2
     m_Bits: 1024
+  arrastre: {fileID: 0}
   RotateLeft: 1
 --- !u!114 &11434782
 MonoBehaviour:
@@ -1546,6 +1547,7 @@ MonoBehaviour:
   LayerGUI:
     serializedVersion: 2
     m_Bits: 1024
+  arrastre: {fileID: 0}
   RotateLeft: 0
 --- !u!1001 &100100000
 Prefab:

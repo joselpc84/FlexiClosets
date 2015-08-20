@@ -46,4 +46,15 @@ public class ManagerMouseControl : PersistentSingleton<ManagerMouseControl>
 			quad.center = Vector3.zero;
 		}
 	}
+
+	public  Vector3? CurrentMousePosNotQuad ()
+	{
+		ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+		if (Physics.Raycast (ray, out hitInfo, Mathf.Infinity, Planelayer)) {
+			return hitInfo.point;
+		} 
+
+		return null;
+	}
+		
 }
