@@ -148,6 +148,45 @@ public class ModuloUI : PersistentSingleton<ModuloUI>
 			}
 			break;
 		case WallType.Escalonado:
+			int mitad = numberOfWall_2 / 2;
+			int storeI = 25;
+			count = 1;
+			for (int i = 25; i >= 0; i -= (amountWall1 * -1)) {
+				ManagerItemDrag.Instance.OnSpawn (currentSelected, i);
+				++count;
+				storeI = i;
+				if (count >= mitad) {
+					break;
+				}
+			}
+			count = 1;
+			for (int i = storeI + 50; i <= (storeI + 50) * 49; i += amountWall2) {
+				ManagerItemDrag.Instance.OnSpawn (currentSelected, i);
+				++count;
+				if (count >= numberOfWall_1) {
+					break;
+				}
+			}
+
+			count = 1;
+			storeI = 26;
+			for (int i = 26; i <= StartWall1; i += (amountWall1 * -1)) {
+				ManagerItemDrag.Instance.OnSpawn (currentSelected, i);
+				++count;
+				storeI = i;
+				if (count >= mitad) {
+					break;
+				}
+			}
+			count = 1;
+			for (int i = storeI + 50; i <= (storeI + 50) * 49; i += amountWall2) {
+				ManagerItemDrag.Instance.OnSpawn (currentSelected, i);
+				++count;
+				if (count >= numberOfWall_1) {
+					break;
+				}
+			}
+
 			break;
 		}
 
@@ -232,9 +271,6 @@ public class ModuloUI : PersistentSingleton<ModuloUI>
 
 	public void SetWall (int type)
 	{
-
-
-
 		//	wallT = type;
 		switch (type) {
 		case 0:
@@ -268,7 +304,6 @@ public class ModuloUI : PersistentSingleton<ModuloUI>
 		sliderMin_2.text = "1";
 		sliderMax_2.text = "50";
 	}
-
 
 	public float SetValueWall1 {
 		set {

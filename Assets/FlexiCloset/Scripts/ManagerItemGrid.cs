@@ -9,6 +9,8 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 {
 
 	Dictionary<int,Item> items = new Dictionary<int,Item> ();
+	Dictionary<TypeForniture,int> itemsTypeCount = new Dictionary<TypeForniture,int> ();
+
 	Dictionary<int,Wall> itemsWall = new Dictionary<int,Wall> ();
 
 	HashSet<Item> allItems = new HashSet<Item> ();
@@ -40,7 +42,16 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 			}
 		}
 		allItems.Add (item);
+		if (!itemsTypeCount.ContainsKey (item.typeForniture))
+			itemsTypeCount.Add (item.typeForniture, 0);
+		itemsTypeCount [item.typeForniture] = itemsTypeCount [item.typeForniture] + 1;
 
+		if (itemsTypeCount [item.typeForniture] == 1) {
+			//MsotratMensaje
+			if (item.MessageTip != null) {
+				item.MessageTip.ShowTip ();
+			}
+		}
 		Invoke ("ShowDistanceWall", 0.1f);
 	}
 
@@ -64,6 +75,8 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 		}
 
 		allItems.Remove (item);
+		itemsTypeCount [item.typeForniture] -= 1;
+
 		//Apagar y prender de acuerdo si es muro sus distancias
 		Invoke ("ShowDistanceWall", 0.1f);
 	}

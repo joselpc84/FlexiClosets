@@ -28,6 +28,7 @@ GameObject:
   - 65: {fileID: 6570330}
   - 114: {fileID: 11403364}
   - 114: {fileID: 11407904}
+  - 114: {fileID: 11411672}
   m_Layer: 9
   m_Name: Shelf60
   m_TagString: Untagged
@@ -1470,7 +1471,9 @@ MonoBehaviour:
   itemUp: []
   itemDown: {fileID: 0}
   MessageRotate: {fileID: 11407904}
+  MessageMove: {fileID: 11411672}
   GUI: {fileID: 11459270}
+  MessageTip: {fileID: 0}
 --- !u!114 &11407904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1483,6 +1486,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Message: No se puede rotar el objeto en esa posicion, mueva el objeto ahora.
+--- !u!114 &11411672
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc29b6d568a33469b83985f1c29d7e21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Message: No se puede mover el objeto si es la base.
 --- !u!114 &11438772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1499,6 +1514,7 @@ MonoBehaviour:
   LayerGUI:
     serializedVersion: 2
     m_Bits: 1024
+  arrastre: {fileID: 0}
   RotateLeft: 1
 --- !u!114 &11452298
 MonoBehaviour:
@@ -1546,6 +1562,7 @@ MonoBehaviour:
   LayerGUI:
     serializedVersion: 2
     m_Bits: 1024
+  arrastre: {fileID: 0}
   RotateLeft: 0
 --- !u!1001 &100100000
 Prefab:
@@ -1592,12 +1609,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: Message
-      value: No se puede rotar el objeto en esa posicion, mueva el objeto ahora.
+      value: No se puede mover el objeto si es la base.
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: MessageRotate
       value: 
       objectReference: {fileID: 11407904}
+    - target: {fileID: 0}
+      propertyPath: MessageMove
+      value: 
+      objectReference: {fileID: 11411672}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 112092}

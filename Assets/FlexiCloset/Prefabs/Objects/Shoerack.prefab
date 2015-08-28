@@ -119,6 +119,8 @@ GameObject:
   - 65: {fileID: 6517492}
   - 114: {fileID: 11467156}
   - 114: {fileID: 11414868}
+  - 114: {fileID: 11477218}
+  - 114: {fileID: 11440784}
   m_Layer: 9
   m_Name: Shoerack
   m_TagString: Untagged
@@ -1463,6 +1465,18 @@ MonoBehaviour:
     m_Bits: 1024
   arrastre: {fileID: 0}
   RotateLeft: 1
+--- !u!114 &11440784
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 131210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc29b6d568a33469b83985f1c29d7e21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Message: Es buena idea poner 3 zaptaras una encima de la otra.
 --- !u!114 &11450052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1530,7 +1544,21 @@ MonoBehaviour:
   itemUp: []
   itemDown: {fileID: 0}
   MessageRotate: {fileID: 11414868}
+  MessageMove: {fileID: 11477218}
   GUI: {fileID: 11495682}
+  MessageTip: {fileID: 11440784}
+--- !u!114 &11477218
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 131210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc29b6d568a33469b83985f1c29d7e21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Message: No se puede mover el objeto si es la base.
 --- !u!114 &11495682
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1582,12 +1610,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: Message
-      value: No se puede rotar el objeto en esa posicion, mueva el objeto ahora.
+      value: Es buena idea poner 3 zaptaras una encima de la otra.
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: MessageRotate
       value: 
       objectReference: {fileID: 11414868}
+    - target: {fileID: 0}
+      propertyPath: MessageMove
+      value: 
+      objectReference: {fileID: 11477218}
+    - target: {fileID: 0}
+      propertyPath: MessageTip
+      value: 
+      objectReference: {fileID: 11440784}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 131210}

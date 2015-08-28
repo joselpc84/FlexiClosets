@@ -189,6 +189,8 @@ public class Item : MonoBehaviour
 		}
 	}
 
+	public PopUpMessage MessageMove;
+
 	public void Move (bool useDropDown)
 	{
 		if (itemUp.Count == 0) {
@@ -205,6 +207,9 @@ public class Item : MonoBehaviour
 			}
 
 
+		} else {
+			//Mandar Mensaje
+			MessageMove.ShowError ();
 		}
 	}
 
@@ -435,7 +440,8 @@ public class Item : MonoBehaviour
 	protected virtual void LogicOnClicked ()
 	{
 		StartCoroutine ("ActivateGUI");
-		GUI.ActivateBotons ();
+		if (!isUp && itemUp.Count == 0)
+			GUI.ActivateBotons ();
 
 	}
 
@@ -534,4 +540,5 @@ public class Item : MonoBehaviour
 
 	public UiArrowActivator GUI;
 
+	public PopUpMessage MessageTip;
 }
