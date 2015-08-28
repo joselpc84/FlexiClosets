@@ -224,29 +224,28 @@ public class CameraPositionPreset : MonoBehaviour
 
 			if ((Camera.main.transform.position.x <= 10 && -10 <= Camera.main.transform.position.x) && (Camera.main.transform.position.z >= 10)) {
 				pos = new Vector3 (0, 6, 100);
-				quat = Quaternion.Euler (0, 180, 0);
-
+				quat = Quaternion.Euler (0, 180, 0);//1
 			} else if ((Camera.main.transform.position.x >= 10) && (Camera.main.transform.position.z <= 10 && -10 <= Camera.main.transform.position.z)) {
 				pos = new Vector3 (100, 6, 0);
-				quat = Quaternion.Euler (0, 270, 0);
+				quat = Quaternion.Euler (0, 270, 0);//2
 			} else if ((Camera.main.transform.position.x <= 10 && -10 <= Camera.main.transform.position.x) && (Camera.main.transform.position.z <= -10)) {
 				pos = new Vector3 (0, 6, -100);
-				quat = Quaternion.Euler (0, 0, 0);
+				quat = Quaternion.Euler (0, 0, 0);//3
 			} else if ((Camera.main.transform.position.x <= -10) && (Camera.main.transform.position.z <= 10 && -10 <= Camera.main.transform.position.z)) {
 				pos = new Vector3 (-100, 6, 0);
-				quat = Quaternion.Euler (0, 90, 0);
+				quat = Quaternion.Euler (0, 90, 0);//4
 			} else if ((Camera.main.transform.position.x >= 10) && (Camera.main.transform.position.z >= 10)) {
 				pos = new Vector3 (100, 6, 0);
-				quat = Quaternion.Euler (0, 270, 0);
+				quat = Quaternion.Euler (0, 270, 0);//2
 			} else if ((Camera.main.transform.position.x >= 10) && (Camera.main.transform.position.z <= -10)) {
 				pos = new Vector3 (0, 6, -100);
-				quat = Quaternion.Euler (0, 0, 0);
+				quat = Quaternion.Euler (0, 0, 0);//3
 			} else if ((Camera.main.transform.position.x <= -10) && (Camera.main.transform.position.z >= 10)) {
 				pos = new Vector3 (0, 6, 100);
-				quat = Quaternion.Euler (0, 180, 0);
+				quat = Quaternion.Euler (0, 180, 0);//1
 			} else if ((Camera.main.transform.position.x <= -10) && (Camera.main.transform.position.z <= -10)) {
 				pos = new Vector3 (-100, 6, 0);
-				quat = Quaternion.Euler (0, 90, 0);
+				quat = Quaternion.Euler (0, 90, 0);//4
 			} else {
 				Debug.Log ("Otro Caso");
 			}
@@ -272,6 +271,80 @@ public class CameraPositionPreset : MonoBehaviour
 		}
 	}
 
+	public void GoToRigthOrto ()
+	{
+		if (isReaching && !Camera.main.orthographic)
+			return;
+
+		Camera.main.orthographic = !Camera.main.orthographic;
+		controller.enabled = !Camera.main.orthographic;
+		if (Camera.main.orthographic) {
+
+			ResetPan ();
+
+			ManagerInputItem.Instance.isClickOnGUI = true;
+			ManagerInputItem.Instance.HardReset ();
+			StopCoroutine ("BlockInputAlways");
+			StartCoroutine ("BlockInputAlways");
+			//ShowTip
+			tipOrto.ShowTip ();
+
+			CameraControls.interactable = false;
+			canvasCameraControls.SetIsShow (false);
+			colorCameraControls.SetIsShow (false);
+			isReaching = true;
+			Camera.main.orthographicSize = 22;
+			Quaternion quat = Quaternion.Euler (0, 180, 0);
+			Vector3 pos = new Vector3 (Camera.main.transform.position.x, 6, Camera.main.transform.position.z);
+
+			if ((Camera.main.transform.position.x <= 10 && -10 <= Camera.main.transform.position.x) && (Camera.main.transform.position.z >= 10)) {
+				pos = new Vector3 (0, 6, 100);
+				quat = Quaternion.Euler (0, 180, 0);//1
+			} else if ((Camera.main.transform.position.x >= 10) && (Camera.main.transform.position.z <= 10 && -10 <= Camera.main.transform.position.z)) {
+				pos = new Vector3 (100, 6, 0);
+				quat = Quaternion.Euler (0, 270, 0);//2
+			} else if ((Camera.main.transform.position.x <= 10 && -10 <= Camera.main.transform.position.x) && (Camera.main.transform.position.z <= -10)) {
+				pos = new Vector3 (0, 6, -100);
+				quat = Quaternion.Euler (0, 0, 0);//3
+			} else if ((Camera.main.transform.position.x <= -10) && (Camera.main.transform.position.z <= 10 && -10 <= Camera.main.transform.position.z)) {
+				pos = new Vector3 (-100, 6, 0);
+				quat = Quaternion.Euler (0, 90, 0);//4
+			} else if ((Camera.main.transform.position.x >= 10) && (Camera.main.transform.position.z >= 10)) {
+				pos = new Vector3 (100, 6, 0);
+				quat = Quaternion.Euler (0, 270, 0);//2
+			} else if ((Camera.main.transform.position.x >= 10) && (Camera.main.transform.position.z <= -10)) {
+				pos = new Vector3 (0, 6, -100);
+				quat = Quaternion.Euler (0, 0, 0);//3
+			} else if ((Camera.main.transform.position.x <= -10) && (Camera.main.transform.position.z >= 10)) {
+				pos = new Vector3 (0, 6, 100);
+				quat = Quaternion.Euler (0, 180, 0);//1
+			} else if ((Camera.main.transform.position.x <= -10) && (Camera.main.transform.position.z <= -10)) {
+				pos = new Vector3 (-100, 6, 0);
+				quat = Quaternion.Euler (0, 90, 0);//4
+			} else {
+				Debug.Log ("Otro Caso");
+			}
+
+			Camera.main.transform.rotation = quat;
+			Camera.main.transform.position = pos;
+
+			storeZoom = ZoomController.value;
+			storeOrbitY = OrbitController_Y.value;
+			storeOrbitX = OrbitController_X.value;
+		} else {
+			ResetPan ();
+
+			ZoomController.value = storeZoom;   
+			OrbitController_X.value = storeOrbitX;   
+			OrbitController_Y.value = storeOrbitY;
+			isReaching = false;
+			CameraControls.interactable = true;
+
+			tipOrto.Stop ();
+			ManagerInputItem.Instance.isClickOnGUI = false;
+			StopCoroutine ("BlockInputAlways");
+		}
+	}
 
 	public void CenterCamera ()
 	{

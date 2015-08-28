@@ -314,6 +314,13 @@ public class Item : MonoBehaviour
 
 	}
 
+	public virtual void SetPosNotCenter (QuadInfo quad)
+	{
+		PositionStart.center = quad.center;
+		PositionStart.index = quad.index;
+
+	}
+
 	public int[] SpotBrothersID {
 
 		get {

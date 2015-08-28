@@ -49,7 +49,6 @@ public class WallSpawnArrastre : MonoBehaviour
 		float distance = Vector3.Distance (lastMousePosition, posMouse.Value);
 		Vector3 directionAux = posMouse.Value - lastMousePosition;
 		float angle = Vector3.Angle (directionAux.normalized, direction);
-		Debug.Log (angle);
 		if (distance > minDistance && angle < maxangle && angle > -maxangle) {
 		} else {
 			return;
