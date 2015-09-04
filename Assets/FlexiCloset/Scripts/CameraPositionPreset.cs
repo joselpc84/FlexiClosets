@@ -17,12 +17,14 @@ public class CameraPositionPreset : MonoBehaviour
                 
 		}
 	}
-
+	/*
 	public Scrollbar ZoomController;
 	public Scrollbar OrbitController_X;
 	public Scrollbar OrbitController_Y;
 	public Scrollbar PanController_X;
 	public Scrollbar PanController_Y;
+*/
+	public CameraControllers cameraC;
 
 	public Button CameraControls;
 	public ChangeCanvasButton canvasCameraControls;
@@ -37,22 +39,26 @@ public class CameraPositionPreset : MonoBehaviour
 	{
 		//Izqueirda -- 1
 		// Derecha -- 0
-		OrbitController_X.value = PosXLeft;
-		OrbitController_Y.value = PosYLeft;
+		cameraC.SetGiroValue (PosXLeft);
+		cameraC.SetOrbitValue (PosYLeft);
+
+		//	OrbitController_X.value = PosXLeft;
+		//	OrbitController_Y.value = PosYLeft;
 	}
 
 	public void ShowRigth ()
 	{
 		//Izqueirda -- 1
 		// Derecha -- 0
-		OrbitController_X.value = PosXRigth;
-		OrbitController_Y.value = PosYRigth;
+		cameraC.SetGiroValue (PosXRigth);
+		cameraC.SetOrbitValue (PosYRigth);
+		// 	OrbitController_X.value = PosXRigth;
+		//	OrbitController_Y.value = PosYRigth;
 	}
 
 	[Serializable]
 	public class PresetPostion
 	{
-    
 		public Vector3 Position;
 		public Vector3 Rotation;
 		public float Zoom;
@@ -77,30 +83,33 @@ public class CameraPositionPreset : MonoBehaviour
 			return;
 
 		controller.target = GUI_ItemController.Instance.piso;
+		isReaching = true;
 		ResetPan ();
 
 		//C = 0,0.25 
 		//B = 0.75, 1
 		//A= 0.5,0.75
 		//D= 0.25,0.5
-		if ((0 <= OrbitController_Y.value) && (OrbitController_Y.value < posC.RotationValue)) {
+		if ((0 <= cameraC.GiroStoreValue) && (cameraC.GiroStoreValue < posC.RotationValue)) {
 			currentPreset = posC;
-		} else if ((posC.RotationValue <= OrbitController_Y.value) && (OrbitController_Y.value < 0.25f)) {
+		} else if ((posC.RotationValue <= cameraC.GiroStoreValue) && (cameraC.GiroStoreValue < 0.25f)) {
 			currentPreset = posD;
-		} else if ((0.25f <= OrbitController_Y.value) && (OrbitController_Y.value < posD.RotationValue)) {
+		} else if ((0.25f <= cameraC.GiroStoreValue) && (cameraC.GiroStoreValue < posD.RotationValue)) {
 			currentPreset = posD;
-		} else if ((posD.RotationValue <= OrbitController_Y.value) && (OrbitController_Y.value < 0.5f)) {
+		} else if ((posD.RotationValue <= cameraC.GiroStoreValue) && (cameraC.GiroStoreValue < 0.5f)) {
 			currentPreset = posA;
-		} else if ((0.5f <= OrbitController_Y.value) && (OrbitController_Y.value < posA.RotationValue)) {
+		} else if ((0.5f <= cameraC.GiroStoreValue) && (cameraC.GiroStoreValue < posA.RotationValue)) {
 			currentPreset = posA;
-		} else if ((posA.RotationValue <= OrbitController_Y.value) && (OrbitController_Y.value < 0.75f)) {
+		} else if ((posA.RotationValue <= cameraC.GiroStoreValue) && (cameraC.GiroStoreValue < 0.75f)) {
 			currentPreset = posB;
-		} else if ((0.75f <= OrbitController_Y.value) && (OrbitController_Y.value < posB.RotationValue)) {
+		} else if ((0.75f <= cameraC.GiroStoreValue) && (cameraC.GiroStoreValue < posB.RotationValue)) {
 			currentPreset = posB;
-		} else if ((posB.RotationValue <= OrbitController_Y.value) && (OrbitController_Y.value <= 1.0f)) {
+		} else if ((posB.RotationValue <= cameraC.GiroStoreValue) && (cameraC.GiroStoreValue <= 1.0f)) {
 			currentPreset = posC;
+		} else {
+		
 		}
-
+	
 		controller.enabled = false;
 		if (pos != null)
 			pos.pause ();
@@ -108,7 +117,6 @@ public class CameraPositionPreset : MonoBehaviour
 			rot.pause ();
 		pos = LeanTween.value (gameObject, OnPosChanged, transform.position, currentPreset.Position, TimeToReach);
 		pos.onComplete = OnCompelteAll;
-		isReaching = true;
 		// rot = LeanTween.value(gameObject, OnRotChanged, transform.rotation.eulerAngles, currentPreset.Rotation, TimeToReach);
 		// rot = rot.setEase(LeanTweenType.linear);
 
@@ -119,28 +127,30 @@ public class CameraPositionPreset : MonoBehaviour
 		if (isReaching)
 			return;
 
-
 		controller.target = GUI_ItemController.Instance.piso;
 		isReaching = true;
 		ResetPan ();
 
-		if ((0 <= OrbitController_Y.value) && (OrbitController_Y.value < posC.RotationValue)) {
+		if ((0 <= cameraC.GiroStoreValue) && (cameraC.GiroStoreValue < posC.RotationValue)) {
 			currentPreset = posB;
-		} else if ((posC.RotationValue <= OrbitController_Y.value) && (OrbitController_Y.value < 0.25f)) {
+		} else if ((posC.RotationValue <= cameraC.GiroStoreValue) && (cameraC.GiroStoreValue < 0.25f)) {
 			currentPreset = posB;
-		} else if ((0.25f <= OrbitController_Y.value) && (OrbitController_Y.value < posD.RotationValue)) {
+		} else if ((0.25f <= cameraC.GiroStoreValue) && (cameraC.GiroStoreValue < posD.RotationValue)) {
 			currentPreset = posC;
-		} else if ((posD.RotationValue <= OrbitController_Y.value) && (OrbitController_Y.value < 0.5f)) {
+		} else if ((posD.RotationValue <= cameraC.GiroStoreValue) && (cameraC.GiroStoreValue < 0.5f)) {
 			currentPreset = posC;
-		} else if ((0.5f <= OrbitController_Y.value) && (OrbitController_Y.value < posA.RotationValue)) {
+		} else if ((0.5f <= cameraC.GiroStoreValue) && (cameraC.GiroStoreValue < posA.RotationValue)) {
 			currentPreset = posD;
-		} else if ((posA.RotationValue <= OrbitController_Y.value) && (OrbitController_Y.value < 0.75f)) {
+		} else if ((posA.RotationValue <= cameraC.GiroStoreValue) && (cameraC.GiroStoreValue < 0.75f)) {
 			currentPreset = posD;
-		} else if ((0.75f <= OrbitController_Y.value) && (OrbitController_Y.value < posB.RotationValue)) {
+		} else if ((0.75f <= cameraC.GiroStoreValue) && (cameraC.GiroStoreValue < posB.RotationValue)) {
 			currentPreset = posA;
-		} else if ((posB.RotationValue <= OrbitController_Y.value) && (OrbitController_Y.value <= 1.0f)) {
+		} else if ((posB.RotationValue <= cameraC.GiroStoreValue) && (cameraC.GiroStoreValue <= 1.0f)) {
 
 			currentPreset = posA;
+		} else {
+
+			Debug.Log (posB.RotationValue);
 		}
 
 		controller.enabled = false;
@@ -160,9 +170,13 @@ public class CameraPositionPreset : MonoBehaviour
 		isReaching = false;
 		controller.enabled = true;
 
-		ZoomController.value = currentPreset.Zoom;   
-		OrbitController_X.value = currentPreset.Orbit;   
-		OrbitController_Y.value = currentPreset.RotationValue;
+		cameraC.SetZoomValue (currentPreset.Zoom);
+		cameraC.SetGiroValue (currentPreset.RotationValue);
+		cameraC.SetOrbitValue (currentPreset.Orbit);
+
+		//cameraC.ZoomStoreValue = currentPreset.Zoom;   
+		//OrbitController_X.value = currentPreset.Orbit;   
+		//OrbitController_Y.value = currentPreset.RotationValue;
 	}
 
 	void OnPosChanged (Vector3 pos)
@@ -217,6 +231,8 @@ public class CameraPositionPreset : MonoBehaviour
 			CameraControls.interactable = false;
 			canvasCameraControls.SetIsShow (false);
 			colorCameraControls.SetIsShow (false);
+			cameraC.SetIsShow (false);
+
 			isReaching = true;
 			Camera.main.orthographicSize = 22;
 			Quaternion quat = Quaternion.Euler (0, 180, 0);
@@ -253,15 +269,19 @@ public class CameraPositionPreset : MonoBehaviour
 			Camera.main.transform.rotation = quat;
 			Camera.main.transform.position = pos;
 
-			storeZoom = ZoomController.value;
-			storeOrbitY = OrbitController_Y.value;
-			storeOrbitX = OrbitController_X.value;
+			storeZoom = cameraC.ZoomStoreValue;
+			storeOrbitY = cameraC.OrbitStoreValue;
+			storeOrbitX = cameraC.GiroStoreValue;
 		} else {
 			ResetPan ();
 
-			ZoomController.value = storeZoom;   
-			OrbitController_X.value = storeOrbitX;   
-			OrbitController_Y.value = storeOrbitY;
+			cameraC.SetZoomValue (storeZoom);
+			cameraC.SetOrbitValue (storeOrbitY);
+			cameraC.SetGiroValue (storeOrbitX);
+
+			//cameraC.ZoomStoreValue = storeZoom;   
+			//OrbitController_X.value = storeOrbitX;   
+			//OrbitController_Y.value = storeOrbitY;
 			isReaching = false;
 			CameraControls.interactable = true;
 
@@ -292,6 +312,7 @@ public class CameraPositionPreset : MonoBehaviour
 			CameraControls.interactable = false;
 			canvasCameraControls.SetIsShow (false);
 			colorCameraControls.SetIsShow (false);
+			cameraC.SetIsShow (false);
 			isReaching = true;
 			Camera.main.orthographicSize = 22;
 			Quaternion quat = Quaternion.Euler (0, 180, 0);
@@ -329,15 +350,19 @@ public class CameraPositionPreset : MonoBehaviour
 			Camera.main.transform.rotation = quat;
 			Camera.main.transform.position = pos;
 
-			storeZoom = ZoomController.value;
-			storeOrbitY = OrbitController_Y.value;
-			storeOrbitX = OrbitController_X.value;
+			storeZoom = cameraC.ZoomStoreValue;
+			storeOrbitY = cameraC.OrbitStoreValue;
+			storeOrbitX = cameraC.GiroStoreValue;
 		} else {
 			ResetPan ();
 
-			ZoomController.value = storeZoom;   
-			OrbitController_X.value = storeOrbitX;   
-			OrbitController_Y.value = storeOrbitY;
+			cameraC.SetZoomValue (storeZoom);
+			cameraC.SetOrbitValue (storeOrbitY);
+			cameraC.SetGiroValue (storeOrbitX);
+
+			//cameraC.ZoomStoreValue = storeZoom;   
+			//OrbitController_X.value = storeOrbitX;   
+			//OrbitController_Y.value = storeOrbitY;
 			isReaching = false;
 			CameraControls.interactable = true;
 
@@ -348,26 +373,33 @@ public class CameraPositionPreset : MonoBehaviour
 	}
 
 	public void CenterCamera ()
-	{
-		if (!isReaching) {
+	{		
+		if (!isReaching || Camera.main.orthographic) {
 			CameraControls.interactable = true;
 			isReaching = false;
 			Camera.main.orthographic = false;
 			controller.enabled = true;
 			controller.target = GUI_ItemController.Instance.piso;
-			controller.ResetPos ();
-			ZoomController.value = controller.InitialZoom;   
-			OrbitController_X.value = controller.InitialPosY;   
-			OrbitController_Y.value = controller.InitialPosX;
+			tipOrto.Stop ();
 
-			ResetPan ();
+			controller.ResetPos ();
+			cameraC.ResetValues ();
+
+			//cameraC.ZoomStoreValue = controller.InitialZoom;   
+			//OrbitController_X.value = controller.InitialPosY;   
+			//OrbitController_Y.value = controller.InitialPosX;
+
+			//ResetPan ();
 
 		}
 	}
 
 	public void ResetPan ()
 	{
-		PanController_X.value = 0.5f;
-		PanController_Y.value = 0.5f;
+		cameraC.SetPanXValue (0.5f);
+		cameraC.SetPanYValue (0.5f);
+
+		//	PanController_X.value = 0.5f;
+		//	PanController_Y.value = 0.5f;
 	}
 }

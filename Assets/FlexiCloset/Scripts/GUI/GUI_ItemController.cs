@@ -144,7 +144,6 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
 			GUI_ItemController.Instance.WallItem [i].blocksRaycasts = true;
 			GUI_ItemController.Instance.WallItem [i].interactable = true;
 		}
-
 	}
 
 	public void TurnOffWall ()
@@ -178,6 +177,9 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
 		PopUpCanvas.interactable = true;
 		PopUpCanvas.blocksRaycasts = true;
 		ModuloUI.Instance.HidePopUp ();
+
+		canDelete = true;
+
 	}
 
 	public void HidePopObject ()
@@ -198,6 +200,9 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
 		groupCanvas.alpha = 0;
 		groupCanvas.interactable = false;
 		groupCanvas.blocksRaycasts = false;
+
+		canDelete = false;
+
 	}
 
 	public void TurnEditor ()
@@ -206,6 +211,23 @@ public class GUI_ItemController : PersistentSingleton<GUI_ItemController>
 			HidePopEditor ();
 		} else {
 			ShowPopEditor ();
+		}
+	}
+
+	bool canDelete = false;
+
+	void LateUpdate ()
+	{
+		if (canDelete) {
+			if (Input.GetButtonDown ("Delete")) {
+				if (item != null) {
+					if (item is Wall) {
+						RemoveAllWall ();
+					} else {
+						Remove ();
+					}
+				}
+			}
 		}
 	}
 }

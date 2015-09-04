@@ -81,6 +81,17 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 		Invoke ("ShowDistanceWall", 0.1f);
 	}
 
+	public void ResetAll ()
+	{
+		Item[] prueba = new Item[items.Values.Count];
+		items.Values.CopyTo (prueba, 0);
+
+		for (int i = 0; i < prueba.Length; ++i) {
+			if (prueba [i] != null)
+				prueba [i].Remove ();
+		}
+	}
+
 	void FixedShowDistanceofWall ()
 	{
 		ShowDistanceWall ();
@@ -422,5 +433,11 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 			}
 		}
 
+	}
+
+	public void GenerateURL ()
+	{
+		Application.ExternalEval ("window.open('http://ppdesa01.ddns.net/pdftest.php?sku01=75929910025362&sku02=75929910025292','Window title')");
+		//=Application.OpenURL ("http://ppdesa01.ddns.net/pdftest.php?sku01=75929910025362&sku02=75929910025292");
 	}
 }
