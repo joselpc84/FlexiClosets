@@ -298,29 +298,30 @@ public class CameraPositionPreset : MonoBehaviour
 			Vector3 pos = new Vector3 (Camera.main.transform.position.x, 6, Camera.main.transform.position.z);
 
 			if ((Camera.main.transform.position.x <= 10 && -10 <= Camera.main.transform.position.x) && (Camera.main.transform.position.z >= 10)) {
-				pos = new Vector3 (0, 6, 100);
-				quat = Quaternion.Euler (0, 180, 0);//1
+				pos = new Vector3 (-100, 6, 0);
+				quat = Quaternion.Euler (0, 90, 0);//4
 			} else if ((Camera.main.transform.position.x >= 10) && (Camera.main.transform.position.z <= 10 && -10 <= Camera.main.transform.position.z)) {
-				pos = new Vector3 (100, 6, 0);
-				quat = Quaternion.Euler (0, 270, 0);//2
-			} else if ((Camera.main.transform.position.x <= 10 && -10 <= Camera.main.transform.position.x) && (Camera.main.transform.position.z <= -10)) {
-				pos = new Vector3 (0, 6, -100);
-				quat = Quaternion.Euler (0, 0, 0);//3
-			} else if ((Camera.main.transform.position.x <= -10) && (Camera.main.transform.position.z <= 10 && -10 <= Camera.main.transform.position.z)) {
-				pos = new Vector3 (-100, 6, 0);
-				quat = Quaternion.Euler (0, 90, 0);//4
-			} else if ((Camera.main.transform.position.x >= 10) && (Camera.main.transform.position.z >= 10)) {
-				pos = new Vector3 (100, 6, 0);
-				quat = Quaternion.Euler (0, 270, 0);//2
-			} else if ((Camera.main.transform.position.x >= 10) && (Camera.main.transform.position.z <= -10)) {
-				pos = new Vector3 (0, 6, -100);
-				quat = Quaternion.Euler (0, 0, 0);//3
-			} else if ((Camera.main.transform.position.x <= -10) && (Camera.main.transform.position.z >= 10)) {
 				pos = new Vector3 (0, 6, 100);
 				quat = Quaternion.Euler (0, 180, 0);//1
-			} else if ((Camera.main.transform.position.x <= -10) && (Camera.main.transform.position.z <= -10)) {
+			} else if ((Camera.main.transform.position.x <= 10 && -10 <= Camera.main.transform.position.x) && (Camera.main.transform.position.z <= -10)) {
+				pos = new Vector3 (100, 6, 0);
+				quat = Quaternion.Euler (0, 270, 0);//2
+			} else if ((Camera.main.transform.position.x <= -10) && (Camera.main.transform.position.z <= 10 && -10 <= Camera.main.transform.position.z)) {
+				pos = new Vector3 (0, 6, -100);
+				quat = Quaternion.Euler (0, 0, 0);//3
+			} else if ((Camera.main.transform.position.x >= 10) && (Camera.main.transform.position.z >= 10)) {
+				pos = new Vector3 (0, 6, 100);
+				quat = Quaternion.Euler (0, 180, 0);//1
+			} else if ((Camera.main.transform.position.x >= 10) && (Camera.main.transform.position.z <= -10)) {
+				pos = new Vector3 (100, 6, 0);
+				quat = Quaternion.Euler (0, 270, 0);//2
+			} else if ((Camera.main.transform.position.x <= -10) && (Camera.main.transform.position.z >= 10)) {
 				pos = new Vector3 (-100, 6, 0);
 				quat = Quaternion.Euler (0, 90, 0);//4
+			} else if ((Camera.main.transform.position.x <= -10) && (Camera.main.transform.position.z <= -10)) {
+				pos = new Vector3 (0, 6, -100);
+				quat = Quaternion.Euler (0, 0, 0);//3
+
 			} else {
 				Debug.Log ("Otro Caso");
 			}
