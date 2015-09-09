@@ -33,16 +33,17 @@ public class BotonGuiWall : MonoBehaviour
 
 	protected virtual void Update ()
 	{
-		if (Input.GetMouseButton (0)) {
+		if (Input.GetMouseButton (0) && !ManagerInputItem.Instance.isClickOnGUI) {
 			ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			if (Physics.Raycast (ray, out hitInfo, Mathf.Infinity, LayerGUI)) {
 				if (hitInfo.collider == _collider) {
-					OnClick ();
-					ManagerInputItem.Instance.isClickOnGUI = true;
-					if (arrastre != null) {
+					if (OnClick ()) {
+						ManagerInputItem.Instance.SetIsClickOnGuiWithTimer (true);
+						if (arrastre != null) {
 						
-						WallSpawnArrastre spa = arrastre.Spawn (gameObject.transform.position);
-						spa.wall = wall;
+							WallSpawnArrastre spa = arrastre.Spawn (gameObject.transform.position);
+							spa.wall = wall;
+						}
 					}
 
 				}
@@ -58,10 +59,9 @@ public class BotonGuiWall : MonoBehaviour
 		ManagerInputItem.Instance.isClickOnGUI = value;
 	}
 
-	protected virtual void OnClick ()
+	protected virtual bool OnClick ()
 	{
-		if (ManagerInputItem.Instance.isClickOnGUI)
-			return;
+
 		Vector3 direction = gameObject.transform.position - wall.transform.position;
 		direction.y = 0;
 		QuadInfo quad;
@@ -74,11 +74,13 @@ public class BotonGuiWall : MonoBehaviour
 			ManagerInputItem.Instance.HardReset ();
 
 			ManagerInputItem.Instance.SelectItem (itemSpawned);
-			((Wall)itemSpawned).ResetGUI ();
+			//((Wall)itemSpawned).ResetGUI ();
+			//	StopCoroutine ("ResetClick");
+			//	StartCoroutine ("ResetClick", false);
+			return true;
+
 		}
-		//    StopCoroutine("ResetClick");
-		//    StartCoroutine("ResetClick", false);
-        
+		return false;
 	}
 
 	void OnFinish ()

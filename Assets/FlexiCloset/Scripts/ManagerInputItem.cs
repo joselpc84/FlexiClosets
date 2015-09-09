@@ -18,8 +18,31 @@ public class ManagerInputItem : PersistentSingleton<ManagerInputItem>
 	#endregion
 
 	Item currentSelected;
+	bool _isClickOnGUI = false;
 
-	public bool isClickOnGUI = false;
+	public bool isClickOnGUI {
+		get {
+			return _isClickOnGUI;
+		}
+		set {
+			_isClickOnGUI = value;
+			CancelInvoke ("ResetClick");
+		}
+	}
+
+	public void SetIsClickOnGuiWithTimer (bool value)
+	{
+		_isClickOnGUI = value;
+		if (_isClickOnGUI) {
+			CancelInvoke ("ResetClick");
+			Invoke ("ResetClick", 0.1f);
+		}
+	}
+
+	protected void ResetClick ()
+	{
+		_isClickOnGUI = false;
+	}
 
 	Vector3 MouseDown;
 

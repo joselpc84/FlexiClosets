@@ -5,18 +5,17 @@ public class BotonGuiItem : BotonGuiWall
 {
 	public bool RotateLeft = true;
 
-	protected override void OnClick ()
+	protected override bool OnClick ()
 	{
-		if (ManagerInputItem.Instance.isClickOnGUI)
-			return;
-		
 		if (RotateLeft) {
 			GUI_ItemController.Instance.RotaeLeft ();
 		} else {
 			GUI_ItemController.Instance.RotaeRigth ();
 
 		}
-		StopCoroutine ("ResetClick");
-		StartCoroutine ("ResetClick", false);
+		//	StopCoroutine ("ResetClick");
+		//	StartCoroutine ("ResetClick", false);
+
+		return true;
 	}
 }
