@@ -1623,7 +1623,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2012746553}
   m_Direction: 2
   m_Value: 1
-  m_Size: .655815184
+  m_Size: .655667901
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -16936,6 +16936,14 @@ Prefab:
     - target: {fileID: 11456042, guid: 78586930c92f24cbc9422180e82e1236, type: 2}
       propertyPath: offSetUp
       value: 1.10000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 11456042, guid: 78586930c92f24cbc9422180e82e1236, type: 2}
+      propertyPath: minNumOfWall
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11456042, guid: 78586930c92f24cbc9422180e82e1236, type: 2}
+      propertyPath: OffSetTextUp
+      value: 1.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78586930c92f24cbc9422180e82e1236, type: 2}
