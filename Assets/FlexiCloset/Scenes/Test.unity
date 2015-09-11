@@ -1623,7 +1623,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2012746553}
   m_Direction: 2
   m_Value: 1
-  m_Size: .655745387
+  m_Size: .655815184
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -16925,6 +16925,18 @@ Prefab:
       propertyPath: PopUp_2
       value: 
       objectReference: {fileID: 1255163873}
+    - target: {fileID: 11456042, guid: 78586930c92f24cbc9422180e82e1236, type: 2}
+      propertyPath: objMeasurefinal
+      value: 
+      objectReference: {fileID: 149220, guid: 237cf4834bbb04b0c9e35ca5034d0a9b, type: 2}
+    - target: {fileID: 11456042, guid: 78586930c92f24cbc9422180e82e1236, type: 2}
+      propertyPath: objMeasure
+      value: 
+      objectReference: {fileID: 119286, guid: 61c9bd6ec3b214c428a4d417f94f6865, type: 2}
+    - target: {fileID: 11456042, guid: 78586930c92f24cbc9422180e82e1236, type: 2}
+      propertyPath: offSetUp
+      value: 1.10000002
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78586930c92f24cbc9422180e82e1236, type: 2}
   m_IsPrefabParent: 0

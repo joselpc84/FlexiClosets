@@ -327,6 +327,8 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 	{
     
 		prefabText.CreatePool (10);
+		objMeasure.CreatePool (30);
+		objMeasurefinal.CreatePool (30);
 	}
 
 	public TextMesh prefabText;
@@ -353,8 +355,13 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 	public void offDistanceWall ()
 	{
 		prefabText.RecycleAll ();
-
+		objMeasure.RecycleAll ();
+		objMeasurefinal.RecycleAll ();
 	}
+
+	public GameObject objMeasure;
+	public GameObject objMeasurefinal;
+	public float offSetUp = 1.1f;
 
 	public void ShowDistanceWall ()
 	{
@@ -362,6 +369,8 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 		if (isShowDistanceWall == false)
 			return;
         
+		Quaternion rotateAnotherDir = Quaternion.Euler (new Vector3 (0, 90, 0));
+
 		List<Vector3> pos = new List<Vector3> ();
 		List<float> valuedistance = new List<float> ();
 
@@ -372,6 +381,7 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 			Wall right = itemsWall [testWallsLR [i] [0]];
 			Wall rightstore = right;
 			while (right != null) {
+				objMeasure.Spawn (right.transform.position + Vector3.up * offSetUp * right.HighValue);
 				rightstore = right;
 				right = right.rightWall;
 			}
@@ -379,8 +389,12 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 			Wall leftstore = left;
 			while (left != null) {
 				leftstore = left;
+				objMeasure.Spawn (left.transform.position + Vector3.up * offSetUp * left.HighValue);
 				left = left.leftWall;
 			}
+			objMeasurefinal.Spawn (leftstore.transform.position + Vector3.up * offSetUp * leftstore.HighValue);
+			objMeasurefinal.Spawn (rightstore.transform.position + Vector3.up * offSetUp * rightstore.HighValue);
+
 			valuedistance.Add (testWallsLR [i].Count * TamanoBloques);
 			Vector3 dir = leftstore.transform.position - rightstore.transform.position;
 			Vector3 poosAux = (rightstore.transform.position + dir.normalized * dir.magnitude * 0.5f) + Vector3.up * rightstore.HighValue;
@@ -394,15 +408,22 @@ public class ManagerItemGrid : PersistentSingleton<ManagerItemGrid>
 			Wall up = itemsWall [testWallUD [i] [0]];
 			Wall upstore = up;
 			while (up != null) {
+				objMeasure.Spawn (up.transform.position + Vector3.up * offSetUp * up.HighValue, rotateAnotherDir);
+
 				upstore = up;
 				up = up.upWall;
 			}
 			Wall down = itemsWall [testWallUD [i] [0]];
 			Wall downstore = down;
 			while (down != null) {
+				objMeasure.Spawn (down.transform.position + Vector3.up * offSetUp * down.HighValue, rotateAnotherDir);
+
 				downstore = down;
 				down = down.downWall;
 			}
+			objMeasurefinal.Spawn (downstore.transform.position + Vector3.up * offSetUp * downstore.HighValue, rotateAnotherDir);
+			objMeasurefinal.Spawn (upstore.transform.position + Vector3.up * offSetUp * upstore.HighValue, rotateAnotherDir);
+
 			valuedistance.Add (testWallUD [i].Count * TamanoBloques);
 			Vector3 dir = downstore.transform.position - upstore.transform.position;
 			Vector3 poosAux = (upstore.transform.position + dir.normalized * dir.magnitude * 0.5f) + Vector3.up * upstore.HighValue;
